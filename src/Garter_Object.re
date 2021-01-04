@@ -12,3 +12,5 @@ let any4 = (a, b, c, d) => [|Any(a), Any(b), Any(c), Any(d)|];
 let anyMany = objs => {
   Belt.Array.map(objs, x => Any(x));
 };
+
+let isEmpty = o => o->Js.Obj.keys->Garter_Array.isEmpty;
