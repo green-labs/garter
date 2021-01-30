@@ -42,7 +42,7 @@ let updateExn = (ar, i, f) => {
  * )
  * ```
  */
-let groupBy = (xs, ~keyFn=Garter_Fn.identity, ~id) => {
+let groupBy = (xs, ~keyFn, ~id) => {
   let empty = Belt.Map.make(~id);
 
   reduceU(xs, empty, (. res, x) => {
@@ -59,7 +59,7 @@ let groupBy = (xs, ~keyFn=Garter_Fn.identity, ~id) => {
  * 배열에 들어있는 값들의 빈도를 구하여 Map으로 반환합니다.
  */
 let frequencies = (ar, ~id) => {
-  groupBy(ar, ~keyFn=x => x, ~id)->Belt.Map.map(length);
+  groupBy(ar, ~keyFn=Garter_Fn.identity, ~id)->Belt.Map.map(length);
 };
 
 /** 먼저 등장하는 순서를 유지하면서 중복 원소를 제거합니다. */
@@ -95,7 +95,7 @@ let scan = (xs, init, f) => {
 
 module Int = {
   // Belt.Map 대신 Belt.Map.Int를 씁니다.
-  let groupBy = (xs, ~keyFn=Garter_Fn.identity, ()) => {
+  let groupBy = (xs, ~keyFn: 'a => int=Garter_Fn.identity, ()) => {
     let empty = Belt.Map.Int.empty;
 
     reduceU(xs, empty, (. res, x) => {
@@ -111,7 +111,7 @@ module Int = {
 
 module String = {
   // Belt.Map 대신 Belt.Map.String을 씁니다.
-  let groupBy = (xs, ~keyFn=Garter_Fn.identity, ()) => {
+  let groupBy = (xs, ~keyFn: 'a => string=Garter_Fn.identity, ()) => {
     let empty = Belt.Map.String.empty;
 
     reduceU(xs, empty, (. res, x) => {
