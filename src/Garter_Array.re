@@ -1,6 +1,6 @@
 include Belt.Array;
 
-let isEmpty = xs => Belt.Array.length(xs) === 0;
+let isEmpty = xs => length(xs) === 0;
 
 let lastUnsafe = ar => getUnsafe(ar, length(ar) - 1);
 
@@ -11,8 +11,8 @@ let last = ar => isEmpty(ar) ? None : Some(lastUnsafe(ar));
  * `f`는 old value를 받아 new value를 반환하는 함수입니다.
  */
 let updateUnsafeU = (ar, i, f) => {
-  let v = Belt.Array.getUnsafe(ar, i);
-  Belt.Array.setUnsafe(ar, i, f(. v));
+  let v = getUnsafe(ar, i);
+  setUnsafe(ar, i, f(. v));
 };
 
 let updateUnsafe = (ar, i, f) => {
@@ -20,8 +20,8 @@ let updateUnsafe = (ar, i, f) => {
 };
 
 let updateExnU = (ar, i, f) => {
-  let v = Belt.Array.getExn(ar, i);
-  Belt.Array.setUnsafe(ar, i, f(. v));
+  let v = getExn(ar, i);
+  setUnsafe(ar, i, f(. v));
 };
 
 let updateExn = (ar, i, f) => {
@@ -35,12 +35,6 @@ let updateExn = (ar, i, f) => {
  *
  * 예)
  * ```
- * module IntCmp =
- *   Belt.Id.MakeComparable({
- *     type t = int;
- *     let cmp = (a, b) => Pervasives.compare(a, b);
- *   });
- *
  * groupBy(
  *   [|1, 2, 3, 4, 5, 6, 7, 8, 9, 10|],
  *   ~keyFn=x => x mod 3,
@@ -65,7 +59,22 @@ let groupBy = (xs, ~keyFn, ~id) => {
  * 배열에 들어있는 값들의 빈도를 구하여 Map으로 반환합니다.
  */
 let frequencies = (ar, ~id) => {
-  groupBy(ar, ~keyFn=x => x, ~id)->Belt.Map.map(Belt.Array.length);
+  groupBy(ar, ~keyFn=x => x, ~id)->Belt.Map.map(length);
+};
+
+/** 먼저 등장하는 순서를 유지하면서 중복 원소를 제거합니다. */
+let distinct = (ar, ~id) => {
+  ar
+  ->reduce((Belt.Set.make(~id), []), ((seen, res), v) =>
+      if (seen->Belt.Set.has(v)) {
+        (seen, res);
+      } else {
+        (seen->Belt.Set.add(v), res->Belt.List.add(v));
+      }
+    )
+  ->snd
+  ->Belt.List.reverse
+  ->Belt.List.toArray;
 };
 
 /**
