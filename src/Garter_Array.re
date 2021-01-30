@@ -42,7 +42,7 @@ let updateExn = (ar, i, f) => {
  * )
  * ```
  */
-let groupBy = (xs, ~keyFn, ~id) => {
+let groupBy = (xs, ~keyFn=Garter_Fn.identity, ~id) => {
   let empty = Belt.Map.make(~id);
 
   reduceU(xs, empty, (. res, x) => {
@@ -91,4 +91,36 @@ let scan = (xs, init, f) => {
     },
   );
   state;
+};
+
+module Int = {
+  // Belt.Map 대신 Belt.Map.Int를 씁니다.
+  let groupBy = (xs, ~keyFn=Garter_Fn.identity, ()) => {
+    let empty = Belt.Map.Int.empty;
+
+    reduceU(xs, empty, (. res, x) => {
+      Belt.Map.Int.updateU(res, keyFn(x), (. v) =>
+        switch (v) {
+        | Some(l) => Some(l->concat([|x|]))
+        | None => Some([|x|])
+        }
+      )
+    });
+  };
+};
+
+module String = {
+  // Belt.Map 대신 Belt.Map.String을 씁니다.
+  let groupBy = (xs, ~keyFn=Garter_Fn.identity, ()) => {
+    let empty = Belt.Map.String.empty;
+
+    reduceU(xs, empty, (. res, x) => {
+      Belt.Map.String.updateU(res, keyFn(x), (. v) =>
+        switch (v) {
+        | Some(l) => Some(l->concat([|x|]))
+        | None => Some([|x|])
+        }
+      )
+    });
+  };
 };

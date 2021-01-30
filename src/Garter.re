@@ -1,5 +1,7 @@
 module Array = Garter_Array;
 
+module Fn = Garter_Fn;
+
 module Id = Garter_Id;
 
 module Int = Garter_Int;
