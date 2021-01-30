@@ -6,6 +6,8 @@ module Int = Garter_Int;
 
 module List = Garter_List;
 
+module Math = Garter_Math;
+
 module Object = Garter_Object;
 
 module Option = Garter_Option;
