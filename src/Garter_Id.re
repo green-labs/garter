@@ -10,6 +10,13 @@ module IntComparable =
     let cmp = (. a, b) => a - b;
   });
 
+module Int64Comparable =
+  Belt.Id.MakeComparableU({
+    type t = Int64.t;
+    let cmp = (. a, b) => Int64.compare(a, b);
+  });
+
+// 정말 필요한 것인지 다시 생각해기
 module FloatComparable =
   Belt.Id.MakeComparableU({
     type t = float;

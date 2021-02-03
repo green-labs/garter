@@ -65,7 +65,7 @@ let frequencies = (ar, ~id) => {
 /** 먼저 등장하는 순서를 유지하면서 중복 원소를 제거합니다. */
 let distinct = (ar, ~id) => {
   ar
-  ->reduce((Belt.Set.make(~id), []), ((seen, res), v) =>
+  ->reduceU((Belt.Set.make(~id), []), (. (seen, res), v) =>
       if (seen->Belt.Set.has(v)) {
         (seen, res);
       } else {
