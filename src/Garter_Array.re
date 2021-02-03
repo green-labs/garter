@@ -95,7 +95,7 @@ let scan = (xs, init, f) => {
 
 module Int = {
   // Belt.Map 대신 Belt.Map.Int를 씁니다.
-  let groupBy = (xs, ~keyFn: 'a => int=Garter_Fn.identity, ()) => {
+  let groupBy = (xs, ~keyFn, ()) => {
     let empty = Belt.Map.Int.empty;
 
     reduceU(xs, empty, (. res, x) => {
@@ -107,11 +107,14 @@ module Int = {
       )
     });
   };
+
+  // group by `x => x` keyFn
+  let groupById = xs => groupBy(xs, ~keyFn=Garter_Fn.identity);
 };
 
 module String = {
   // Belt.Map 대신 Belt.Map.String을 씁니다.
-  let groupBy = (xs, ~keyFn: 'a => string=Garter_Fn.identity, ()) => {
+  let groupBy = (xs, ~keyFn, ()) => {
     let empty = Belt.Map.String.empty;
 
     reduceU(xs, empty, (. res, x) => {
@@ -123,4 +126,7 @@ module String = {
       )
     });
   };
+
+  // group by `x => x` keyFn
+  let groupById = xs => groupBy(xs, ~keyFn=Garter_Fn.identity);
 };
