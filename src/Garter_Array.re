@@ -104,19 +104,11 @@ let reduce1U = (xs, f) => {
 
 let reduce1 = (xs, f) => reduce1U(xs, (. a, x) => f(. a, x));
 
-let min =
-    (type value, type identity, xs, ~id: Belt.Id.comparable(value, identity)) => {
-  module M = (val id);
-  let cmp = Belt.Id.getCmpInternal(M.cmp);
+let minBy = (xs, cmp) =>
   reduce1U(xs, (. a, b) => {cmp(. b, a) < 0 ? b : a});
-};
 
-let max =
-    (type value, type identity, xs, ~id: Belt.Id.comparable(value, identity)) => {
-  module M = (val id);
-  let cmp = Belt.Id.getCmpInternal(M.cmp);
+let maxBy = (xs, cmp) =>
   reduce1U(xs, (. a, b) => {cmp(. b, a) > 0 ? b : a});
-};
 
 module Int = {
   // Belt.Map 대신 Belt.Map.Int를 씁니다.
