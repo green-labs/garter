@@ -93,9 +93,34 @@ let scan = (xs, init, f) => {
   state;
 };
 
+// `xs` must be non-empty
+let reduce1U = (xs, f) => {
+  let r = ref(xs->Belt.Array.getUnsafe(0));
+  for (i in 1 to length(xs) - 1) {
+    r := f(. r^, xs->Belt.Array.getUnsafe(i));
+  };
+  r^;
+};
+
+let reduce1 = (xs, f) => reduce1U(xs, (. a, x) => f(. a, x));
+
+let min =
+    (type value, type identity, xs, ~id: Belt.Id.comparable(value, identity)) => {
+  module M = (val id);
+  let cmp = Belt.Id.getCmpInternal(M.cmp);
+  reduce1U(xs, (. a, b) => {cmp(. b, a) < 0 ? b : a});
+};
+
+let max =
+    (type value, type identity, xs, ~id: Belt.Id.comparable(value, identity)) => {
+  module M = (val id);
+  let cmp = Belt.Id.getCmpInternal(M.cmp);
+  reduce1U(xs, (. a, b) => {cmp(. b, a) > 0 ? b : a});
+};
+
 module Int = {
   // Belt.Map 대신 Belt.Map.Int를 씁니다.
-  let groupBy = (xs, ~keyFn, ()) => {
+  let groupBy = (xs, ~keyFn) => {
     let empty = Belt.Map.Int.empty;
 
     reduceU(xs, empty, (. res, x) => {
@@ -114,7 +139,7 @@ module Int = {
 
 module String = {
   // Belt.Map 대신 Belt.Map.String을 씁니다.
-  let groupBy = (xs, ~keyFn, ()) => {
+  let groupBy = (xs, ~keyFn) => {
     let empty = Belt.Map.String.empty;
 
     reduceU(xs, empty, (. res, x) => {
