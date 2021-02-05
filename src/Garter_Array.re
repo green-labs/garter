@@ -104,11 +104,13 @@ let reduce1U = (xs, f) => {
 
 let reduce1 = (xs, f) => reduce1U(xs, (. a, x) => f(. a, x));
 
-let minBy = (xs, cmp) =>
-  reduce1U(xs, (. a, b) => {cmp(. b, a) < 0 ? b : a});
+let minByU = (xs, cmp) => reduce1U(xs, (. a, b) => cmp(. a, b) > 0 ? b : a);
 
-let maxBy = (xs, cmp) =>
-  reduce1U(xs, (. a, b) => {cmp(. b, a) > 0 ? b : a});
+let minBy = (xs, cmp) => minByU(xs, (. a, b) => cmp(a, b));
+
+let maxByU = (xs, cmp) => reduce1U(xs, (. a, b) => cmp(. a, b) < 0 ? b : a);
+
+let maxBy = (xs, cmp) => maxByU(xs, (. a, b) => cmp(a, b));
 
 module Int = {
   // Belt.Map 대신 Belt.Map.Int를 씁니다.
