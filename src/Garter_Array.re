@@ -125,8 +125,7 @@ module Int = {
     });
   };
 
-  // group by `x => x` keyFn
-  let groupById = xs => groupBy(xs, ~keyFn=Garter_Fn.identity);
+  let groupByIdentity = xs => groupBy(xs, ~keyFn=Garter_Fn.identity);
 };
 
 module String = {
@@ -144,6 +143,5 @@ module String = {
     });
   };
 
-  // group by `x => x` keyFn
-  let groupById = xs => groupBy(xs, ~keyFn=Garter_Fn.identity);
+  let groupByIdentity = xs => groupBy(xs, ~keyFn=Garter_Fn.identity);
 };
