@@ -1,8 +1,8 @@
 include Js.Math;
 
-let sum_int = Belt.Array.reduce(_, 0, (+));
+let sum_int = Belt.Array.reduceU(_, 0, (. s, x) => s + x);
 
-let sum_float = Belt.Array.reduce(_, 0., (+.));
+let sum_float = Belt.Array.reduceU(_, 0., (. s, x) => s +. x);
 
 let average_int = nums => {
   nums->Belt.Array.length == 0

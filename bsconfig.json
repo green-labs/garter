@@ -1,11 +1,11 @@
 {
   "name": "@greenlabs/garter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "sources": {
-    "dir" : "src",
-    "subdirs" : true
+    "dir": "src",
+    "subdirs": true
   },
   "warnings": {
-    "error" : "+101"
+    "error": "+101"
   }
 }
