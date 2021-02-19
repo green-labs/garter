@@ -3,7 +3,7 @@
   "version": "0.2.2",
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "^8.4.2"
+    "bs-platform": "9.0.1"
   },
   "scripts": {
     "clean": "bsb -clean-world",
