@@ -7,6 +7,30 @@ let lastUnsafe = ar => getUnsafe(ar, length(ar) - 1);
 let last = ar => isEmpty(ar) ? None : Some(lastUnsafe(ar));
 
 /**
+ * 0번째 인덱스부터 최대 n개의 원소를 반환합니다.
+ */
+let take = (ar, n) =>
+  if (n <= 0) {
+    [||];
+  } else if (n < length(ar)) {
+    slice(ar, ~offset=0, ~len=n);
+  } else {
+    copy(ar);
+  };
+
+/**
+ * 0번째 인덱스부터 n개를 제외한 원소들의 배열을 반환합니다.
+ */
+let drop = (ar, n) =>
+  if (n <= 0) {
+    copy(ar);
+  } else if (n < length(ar)) {
+    sliceToEnd(ar, n);
+  } else {
+    [||];
+  };
+
+/**
  * `i`번째 인덱스의 값에 `f`를 수행한 결과를 in-place로 업데이트합니다.
  * `f`는 old value를 받아 new value를 반환하는 함수입니다.
  */
