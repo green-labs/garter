@@ -8,27 +8,55 @@ let last = ar => isEmpty(ar) ? None : Some(lastUnsafe(ar));
 
 /**
  * 0번째 인덱스부터 최대 n개의 원소를 반환합니다.
+ * n이 음수라면 빈 배열을 반환합니다.
  */
-let take = (ar, n) =>
-  if (n <= 0) {
-    [||];
-  } else if (n < length(ar)) {
-    slice(ar, ~offset=0, ~len=n);
-  } else {
-    copy(ar);
+let take = (ar, n) => {
+  let len =
+    if (n < 0) {
+      0;
+    } else if (n > length(ar)) {
+      length(ar);
+    } else {
+      n;
+    };
+  slice(ar, ~offset=0, ~len);
+};
+
+let takeWhileU = (ar, pred) => {
+  let i = ref(0);
+  while (i^ < length(ar) && pred(. getUnsafe(ar, i^))) {
+    i := i^ + 1;
   };
+  take(ar, i^);
+};
+
+let takeWhile = (ar, pred) => takeWhileU(ar, (. x) => pred(x));
 
 /**
  * 0번째 인덱스부터 n개를 제외한 원소들의 배열을 반환합니다.
+ * n이 배열의 크기보다 크면 빈 배열 반환합니다.
  */
-let drop = (ar, n) =>
-  if (n <= 0) {
-    copy(ar);
-  } else if (n < length(ar)) {
-    sliceToEnd(ar, n);
-  } else {
-    [||];
+let drop = (ar, n) => {
+  let offset =
+    if (n < 0) {
+      0;
+    } else if (n > length(ar)) {
+      length(ar);
+    } else {
+      n;
+    };
+  sliceToEnd(ar, offset);
+};
+
+let dropWhileU = (ar, pred) => {
+  let i = ref(0);
+  while (i^ < length(ar) && pred(. getUnsafe(ar, i^))) {
+    i := i^ + 1;
   };
+  drop(ar, i^);
+};
+
+let dropWhile = (ar, pred) => dropWhileU(ar, (. x) => pred(x));
 
 /**
  * `i`번째 인덱스의 값에 `f`를 수행한 결과를 in-place로 업데이트합니다.
