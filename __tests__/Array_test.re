@@ -1,6 +1,13 @@
 open Garter.Array;
 open Garter.Fn;
 
+assert(take([|1, 2, 3, 4, 5|], -1) == [||]);
+assert(take([|1, 2, 3, 4, 5|], 2) == [|1, 2|]);
+assert(take([|1, 2, 3, 4, 5|], 7) == [|1, 2, 3, 4, 5|]);
+assert(drop([|1, 2, 3, 4, 5|], -1) == [|1, 2, 3, 4, 5|]);
+assert(drop([|1, 2, 3, 4, 5|], 2) == [|3, 4, 5|]);
+assert(drop([|1, 2, 3, 4, 5|], 7) == [||]);
+
 assert(takeWhile([|1, 2, 3, 4, 5|], x => x <= 2) == [|1, 2|]);
 assert(takeWhile([|1, 2, 3, 4, 5|], constantly(false)) == [||]);
 assert(dropWhile([|1, 2, 3, 4, 5|], x => x <= 2) == [|3, 4, 5|]);

@@ -19,7 +19,7 @@ let take = (ar, n) => {
     } else {
       n;
     };
-  slice(ar, ~offset=0, ~len);
+  Js.Array2.slice(ar, ~start=0, ~end_=len);
 };
 
 let takeWhileU = (ar, pred) => {
@@ -45,7 +45,7 @@ let drop = (ar, n) => {
     } else {
       n;
     };
-  sliceToEnd(ar, offset);
+  Js.Array2.sliceFrom(ar, offset);
 };
 
 let dropWhileU = (ar, pred) => {
