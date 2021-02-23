@@ -108,6 +108,29 @@ let groupBy = (xs, ~keyFn, ~id) => {
 };
 
 /**
+ * ~indexFn의 결과값을 Belt.Map의 key로 할당한 값을 반환합니다.
+ * ~indexFn의 결과값이 중복되면 마지막으로 나온 값이 할당됩니다. 
+ *
+ * 예)
+ * ```
+ * type t = {a:int, b:int}
+ * indexBy(
+ *   [|{a:1, b:1}, {a:1, b:2}, {a:2, b:2}, {a:3, b:3}|],
+ *   ~keyFn=x => x.a,
+ *   ~id=Garter.Id.IntComparable,
+ * )
+ * // (1, {a:1, b:2}), (2, {a:2, b:2}), (3, {a:3, b:3})
+ * ```
+ */
+let indexBy = (xs, ~indexFn, ~id) => {
+  let empty = Belt.Map.make(~id);
+
+  reduceU(xs, empty, (. res, x) => {
+    Belt.Map.set(res, indexFn(x), x);
+  });
+};
+
+/**
  * 배열에 들어있는 값들의 빈도를 구하여 Map으로 반환합니다.
  */
 let frequencies = (ar, ~id) => {
@@ -180,6 +203,14 @@ module Int = {
   };
 
   let groupByIdentity = xs => groupBy(xs, ~keyFn=Garter_Fn.identity);
+
+  let indexBy = (xs, ~indexFn) => {
+    let empty = Belt.Map.Int.empty;
+
+    reduceU(xs, empty, (. res, x) => {
+      Belt.Map.Int.set(res, indexFn(x), x);
+    });
+  };
 };
 
 module String = {
@@ -198,4 +229,12 @@ module String = {
   };
 
   let groupByIdentity = xs => groupBy(xs, ~keyFn=Garter_Fn.identity);
+
+  let indexBy = (xs, ~indexFn) => {
+    let empty = Belt.Map.String.empty;
+
+    reduceU(xs, empty, (. res, x) => {
+      Belt.Map.String.set(res, indexFn(x), x);
+    });
+  };
 };
