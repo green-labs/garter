@@ -81,7 +81,7 @@ let updateExn = (ar, i, f) => {
 };
 
 /**
- * ~keyFn으로 그루핑된 Belt.Map을 반환합니다.
+ * keyFn으로 그루핑된 Belt.Map을 반환합니다.
  * ~id에는 Belt.Id.Comparable 모듈이 전달되어야 합니다.
  * 일반적인 타입에 대한 Comparable 모듈은 Garter.Id를 참고하세요.
  *
@@ -89,12 +89,12 @@ let updateExn = (ar, i, f) => {
  * ```
  * groupBy(
  *   [|1, 2, 3, 4, 5, 6, 7, 8, 9, 10|],
- *   ~keyFn=x => x mod 3,
+ *   x => x mod 3,
  *   ~id=Garter.Id.IntComparable,
  * )
  * ```
  */
-let groupBy = (xs, ~keyFn, ~id) => {
+let groupBy = (xs, keyFn, ~id) => {
   let empty = Belt.Map.make(~id);
 
   reduceU(xs, empty, (. res, x) => {
@@ -108,33 +108,31 @@ let groupBy = (xs, ~keyFn, ~id) => {
 };
 
 /**
- * ~indexFn의 결과값을 Belt.Map의 key로 할당한 값을 반환합니다.
- * ~indexFn의 결과값이 중복되면 마지막으로 나온 값이 할당됩니다. 
+ * indexFn의 결과값을 Belt.Map의 key로 할당한 값을 반환합니다.
+ * indexFn의 결과값이 중복되면 마지막으로 나온 값이 할당됩니다.
  *
  * 예)
  * ```
  * type t = {a:int, b:int}
  * indexBy(
  *   [|{a:1, b:1}, {a:1, b:2}, {a:2, b:2}, {a:3, b:3}|],
- *   ~keyFn=x => x.a,
+ *   keyFn=x => x.a,
  *   ~id=Garter.Id.IntComparable,
  * )
  * // (1, {a:1, b:2}), (2, {a:2, b:2}), (3, {a:3, b:3})
  * ```
  */
-let indexBy = (xs, ~indexFn, ~id) => {
+let indexBy = (xs, indexFn, ~id) => {
   let empty = Belt.Map.make(~id);
 
-  reduceU(xs, empty, (. res, x) => {
-    Belt.Map.set(res, indexFn(x), x);
-  });
+  reduceU(xs, empty, (. res, x) => Belt.Map.set(res, indexFn(x), x));
 };
 
 /**
  * 배열에 들어있는 값들의 빈도를 구하여 Map으로 반환합니다.
  */
 let frequencies = (ar, ~id) => {
-  groupBy(ar, ~keyFn=Garter_Fn.identity, ~id)->Belt.Map.map(length);
+  groupBy(ar, Garter_Fn.identity, ~id)->Belt.Map.map(length);
 };
 
 /** 먼저 등장하는 순서를 유지하면서 중복 원소를 제거합니다. */
@@ -189,7 +187,7 @@ let maxBy = (xs, cmp) => maxByU(xs, (. a, b) => cmp(a, b));
 
 module Int = {
   // Belt.Map 대신 Belt.Map.Int를 씁니다.
-  let groupBy = (xs, ~keyFn) => {
+  let groupBy = (xs, keyFn) => {
     let empty = Belt.Map.Int.empty;
 
     reduceU(xs, empty, (. res, x) => {
@@ -202,20 +200,16 @@ module Int = {
     });
   };
 
-  let groupByIdentity = xs => groupBy(xs, ~keyFn=Garter_Fn.identity);
-
-  let indexBy = (xs, ~indexFn) => {
+  let indexBy = (xs, indexFn) => {
     let empty = Belt.Map.Int.empty;
 
-    reduceU(xs, empty, (. res, x) => {
-      Belt.Map.Int.set(res, indexFn(x), x);
-    });
+    reduceU(xs, empty, (. res, x) => Belt.Map.Int.set(res, indexFn(x), x));
   };
 };
 
 module String = {
   // Belt.Map 대신 Belt.Map.String을 씁니다.
-  let groupBy = (xs, ~keyFn) => {
+  let groupBy = (xs, keyFn) => {
     let empty = Belt.Map.String.empty;
 
     reduceU(xs, empty, (. res, x) => {
@@ -228,13 +222,11 @@ module String = {
     });
   };
 
-  let groupByIdentity = xs => groupBy(xs, ~keyFn=Garter_Fn.identity);
-
-  let indexBy = (xs, ~indexFn) => {
+  let indexBy = (xs, indexFn) => {
     let empty = Belt.Map.String.empty;
 
     reduceU(xs, empty, (. res, x) => {
-      Belt.Map.String.set(res, indexFn(x), x);
+      Belt.Map.String.set(res, indexFn(x), x)
     });
   };
 };
