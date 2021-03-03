@@ -3,6 +3,7 @@
   "version": "0.4.0",
   "license": "MIT",
   "devDependencies": {
+    "@glennsl/bs-jest": "0.6.0",
     "bs-platform": "9.0.1"
   },
   "files": [
@@ -12,6 +13,7 @@
   "scripts": {
     "clean": "bsb -clean-world",
     "build": "bsb -make-world",
-    "watch": "bsb -make-world -w"
+    "watch": "bsb -make-world -w",
+    "test": "jest"
   }
 }
