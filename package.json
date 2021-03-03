@@ -1,6 +1,6 @@
 {
   "name": "@greenlabs/garter",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "license": "MIT",
   "devDependencies": {
     "bs-platform": "9.0.1"
