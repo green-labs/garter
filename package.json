@@ -5,6 +5,10 @@
   "devDependencies": {
     "bs-platform": "9.0.1"
   },
+  "files": [
+    "/bsconfig.json",
+    "/src"
+  ],
   "scripts": {
     "clean": "bsb -clean-world",
     "build": "bsb -make-world",
