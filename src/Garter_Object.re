@@ -1,5 +1,4 @@
-[@bs.module "./Garter_Object"]
-external fromKV: (string, 'a) => Js.t({..}) = "fromKV";
+let fromKV = [%raw {js|(k, v) => ({ [k]: v })|js}];
 
 [@unboxed]
 type t =
