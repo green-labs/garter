@@ -2,7 +2,12 @@ include module type of Belt_Array
 
 let isEmpty: array<'a> => bool
 
+let firstUnsafe: array<'a> => 'a
+let firstExn: array<'a> => 'a
+let first: array<'a> => option<'a>
+
 let lastUnsafe: array<'a> => 'a
+let lastExn: array<'a> => 'a
 let last: array<'a> => option<'a>
 
 @ocaml.doc("
