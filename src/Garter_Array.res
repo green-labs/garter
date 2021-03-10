@@ -2,9 +2,13 @@ include Belt.Array
 
 let isEmpty = xs => length(xs) === 0
 
-let lastUnsafe = ar => getUnsafe(ar, length(ar) - 1)
+let firstUnsafe = getUnsafe(_, 0)
+let firstExn = getExn(_, 0)
+let first = get(_, 0)
 
-let last = ar => isEmpty(ar) ? None : Some(lastUnsafe(ar))
+let lastUnsafe = ar => getUnsafe(ar, length(ar) - 1)
+let lastExn = ar => getExn(ar, length(ar) - 1)
+let last = ar => get(ar, length(ar) - 1)
 
 let take = (ar, n) => {
   let len = if n < 0 {
