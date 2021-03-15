@@ -36,6 +36,17 @@ let updateExnU: (array<'a>, int, (. 'a) => 'a) => unit
 let updateExn: (array<'a>, int, 'a => 'a) => unit
 
 @ocaml.doc("
+option타입의 배열에서 None을 제거하고, Some의 값을 꺼낸 결과의 배열을 반환합니다.
+시간 복잡도: O(n)
+
+예)
+```
+catOptions([|Some(1), None, Some(3)|]) == [|1, 3|]
+```
+")
+let catOptions: array<option<'a>> => array<'a>
+
+@ocaml.doc("
 keyFn으로 그루핑된 Belt.Map을 반환합니다.
 ~id에는 Belt.Id.Comparable 모듈이 전달되어야 합니다.
 일반적인 타입에 대한 Comparable 모듈은 Garter.Id를 참고하세요.
