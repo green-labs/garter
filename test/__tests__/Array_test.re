@@ -32,8 +32,8 @@ describe("dropWhile", () => {
   testEqual("2", dropWhile([|1, 2, 3, 4, 5|], constantly(true)), [||]);
 });
 
-describe("catOptions", () => {
-  testEqual("1", catOptions([|Some(1), None, Some(3)|]), [|1, 3|])
+describe("keepSome", () => {
+  testEqual("1", keepSome([|Some(1), None, Some(3)|]), [|1, 3|])
 });
 
 describe("minBy", () => {

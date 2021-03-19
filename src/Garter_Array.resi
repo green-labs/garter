@@ -41,10 +41,10 @@ option타입의 배열에서 None을 제거하고, Some의 값을 꺼낸 결과�
 
 예)
 ```
-catOptions([|Some(1), None, Some(3)|]) == [|1, 3|]
+keepSome([|Some(1), None, Some(3)|]) == [|1, 3|]
 ```
 ")
-let catOptions: array<option<'a>> => array<'a>
+let keepSome: array<option<'a>> => array<'a>
 
 @ocaml.doc("
 keyFn으로 그루핑된 Belt.Map을 반환합니다.

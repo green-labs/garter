@@ -66,7 +66,7 @@ let updateExnU = (ar, i, f) => {
 
 let updateExn = (ar, i, f) => updateExnU(ar, i, (. x) => f(x))
 
-let catOptions = xs => keepMap(xs, x => x)
+let keepSome = xs => keepMap(xs, x => x)
 
 let groupBy = (xs, keyFn, ~id) => {
   let empty = Belt.Map.make(~id)
