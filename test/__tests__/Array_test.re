@@ -32,6 +32,10 @@ describe("dropWhile", () => {
   testEqual("2", dropWhile([|1, 2, 3, 4, 5|], constantly(true)), [||]);
 });
 
+describe("keepSome", () => {
+  testEqual("1", keepSome([|Some(1), None, Some(3)|]), [|1, 3|])
+});
+
 describe("minBy", () => {
   testEqual("1", minBy([|1, 2, 3, 4, 5|], compare), 1);
   testEqual("2", minByU([|1, 2, 3, 4, 5|], (. a, b) => compare(a, b)), 1);
