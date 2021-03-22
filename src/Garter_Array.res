@@ -121,7 +121,7 @@ let reduce1U = (xs, f) => {
   r.contents
 }
 
-let reduce1 = (xs, f) => reduce1U(xs, (. a, x) => f(. a, x))
+let reduce1 = (xs, f) => reduce1U(xs, (. a, x) => f(a, x))
 
 let minByU = (xs, cmp) => reduce1U(xs, (. a, b) => cmp(. a, b) > 0 ? b : a)
 

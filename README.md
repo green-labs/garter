@@ -1,5 +1,8 @@
 # Garter
 
+<img src="docs/garter.svg" alt="garter"
+     width="200" height="200" style="float: right;" hspace="20" />
+
 ReScript의 표준 라이브러리라 할 수 있는 Belt는 아직 충분히 성숙하지 않아 필수 유틸리티 함수가 많이 부족합니다.
 Garter는 Belt 라이브러리의 부족한 부분을 보완하는 그린랩스의 표준 라이브러리입니다.
 
