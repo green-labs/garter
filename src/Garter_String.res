@@ -23,7 +23,7 @@ external padEnd: (t, int) => t = "padEnd"
   (ES8)
 
 @example {[
-  padEndWith \"Breaded Mushrooms\" 25 = \"Breaded Mushrooms........\"
+  padEndWith \"Breaded Mushrooms\" 25 \".\" = \"Breaded Mushrooms........\"
 ]}
 ")
 @send
