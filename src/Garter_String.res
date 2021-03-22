@@ -49,7 +49,7 @@ external padStart: (t, int) => t = "padStart"
   (ES8)
 
 @example {[
-  padStartWith \"Breaded Mushrooms\" 25 = \"........Breaded Mushrooms\"
+  padStartWith \"Breaded Mushrooms\" 25 \".\" = \"........Breaded Mushrooms\"
 ]}
 ")
 @send
