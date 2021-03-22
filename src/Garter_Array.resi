@@ -95,7 +95,7 @@ reduce와 비슷하나 중간 결과를 모두 포함한 array를 반환합니�
 let scan: (array<'a>, 'b, ('b, 'a) => 'b) => array<'b>
 
 let reduce1U: (array<'a>, (. 'a, 'a) => 'a) => 'a
-let reduce1: (array<'a>, (. 'a, 'a) => 'a) => 'a
+let reduce1: (array<'a>, ('a, 'a) => 'a) => 'a
 
 let minByU: (array<'a>, (. 'a, 'a) => int) => 'a
 let minBy: (array<'a>, ('a, 'a) => int) => 'a
