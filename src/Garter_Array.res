@@ -131,17 +131,10 @@ let maxByU = (xs, cmp) => reduce1U(xs, (. a, b) => cmp(. a, b) < 0 ? b : a)
 
 let maxBy = (xs, cmp) => maxByU(xs, (. a, b) => cmp(a, b))
 
-let chunk = (xs, size) => {
-  let xsSize = xs->Belt.Array.size
-  let max = xsSize / size + (mod(xsSize, size) > 0 ? 1 : 0)
-  if max == 1 {
-    [xs]
-  } else {
-    Belt.Array.range(0, max - 1)->Belt.Array.map(i => {
-      xs->Belt.Array.slice(~offset=i * size, ~len=size)
-    })
-  }
-}
+let chunk = (xs, step) =>
+  rangeBy(0, length(xs) - 1, ~step)->map(offset => {
+    xs->Belt.Array.slice(~offset, ~len=step)
+  })
 
 module Int = {
   // Belt.Map 대신 Belt.Map.Int를 씁니다.
