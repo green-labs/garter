@@ -103,6 +103,18 @@ let minBy: (array<'a>, ('a, 'a) => int) => 'a
 let maxByU: (array<'a>, (. 'a, 'a) => int) => 'a
 let maxBy: (array<'a>, ('a, 'a) => int) => 'a
 
+@ocaml.doc("
+배열을 일정 크기로 자른 2차원 배열을 반환합니다.
+
+예)
+```
+chunk([|1, 2, 3, 4|], 2)    // -> [| [| 1, 2 |], [| 3, 4 |] |]
+chunk([|1, 2, 3, 4, 5|], 2) // -> [| [| 1, 2 |], [| 3, 4 |], [| 5 |] |]
+chunk([|1, 2, 3, 4, 5|], 6) // -> [| [| 1, 2, 3, 4, 5 |] |]
+```
+")
+let chunk: (array<'a>, int) => array<array<'a>>
+
 module Int: {
   let groupBy: (array<'a>, 'a => Belt.Map.Int.key) => Belt.Map.Int.t<array<'a>>
   let indexBy: (array<'a>, 'a => Belt.Map.Int.key) => Belt.Map.Int.t<'a>
