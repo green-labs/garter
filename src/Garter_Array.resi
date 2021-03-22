@@ -41,7 +41,7 @@ option타입의 배열에서 None을 제거하고, Some의 값을 꺼낸 결과�
 
 예)
 ```
-keepSome([|Some(1), None, Some(3)|]) == [|1, 3|]
+keepSome([ Some(1), None, Some(3) ]) == [ 1, 3 ]
 ```
 ")
 let keepSome: array<option<'a>> => array<'a>
@@ -54,7 +54,7 @@ keyFn으로 그루핑된 Belt.Map을 반환합니다.
 예)
 ```
 groupBy(
-  [|1, 2, 3, 4, 5, 6, 7, 8, 9, 10|],
+  [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ],
   x => x mod 3,
   ~id=Garter.Id.IntComparable,
 )
@@ -70,7 +70,7 @@ indexFn의 결과값이 중복되면 마지막으로 나온 값이 할당됩니�
 ```
 type t = {a:int, b:int}
 indexBy(
-  [|{a:1, b:1}, {a:1, b:2}, {a:2, b:2}, {a:3, b:3}|],
+  [ {a:1, b:1}, {a:1, b:2}, {a:2, b:2}, {a:3, b:3} ],
   keyFn=x => x.a,
   ~id=Garter.Id.IntComparable,
 )
@@ -102,6 +102,18 @@ let minBy: (array<'a>, ('a, 'a) => int) => 'a
 
 let maxByU: (array<'a>, (. 'a, 'a) => int) => 'a
 let maxBy: (array<'a>, ('a, 'a) => int) => 'a
+
+@ocaml.doc("
+배열을 일정 크기로 자른 2차원 배열을 반환합니다.
+
+예)
+```
+chunk([ 1, 2, 3, 4 ], 2)    // -> [ [ 1, 2 ], [ 3, 4 ] ]
+chunk([ 1, 2, 3, 4, 5 ], 2) // -> [ [ 1, 2 ], [ 3, 4 ], [ 5 ] ]
+chunk([ 1, 2, 3, 4, 5 ], 6) // -> [ [ 1, 2, 3, 4, 5 ] ]
+```
+")
+let chunk: (array<'a>, int) => array<array<'a>>
 
 module Int: {
   let groupBy: (array<'a>, 'a => Belt.Map.Int.key) => Belt.Map.Int.t<array<'a>>
