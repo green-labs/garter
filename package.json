@@ -6,6 +6,9 @@
     "@glennsl/bs-jest": "0.6.0",
     "bs-platform": "9.0.1"
   },
+  "peerDependencies": {
+    "bs-platform": "^9.0.1"
+  },
   "files": [
     "/bsconfig.json",
     "/src"
