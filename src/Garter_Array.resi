@@ -115,6 +115,22 @@ chunk([ 1, 2, 3, 4, 5 ], 6) // -> [ [ 1, 2, 3, 4, 5 ] ]
 ")
 let chunk: (array<'a>, int) => array<array<'a>>
 
+@ocaml.doc("
+임의의 원소 1개를 무작위로 추출합니다.
+참고:  https://clojuredocs.org/clojure.core/rand-nth
+
+예) randomOne([#ice-cream, #steak, #apple]) // -> #apple
+")
+let randomOne: array<'a> => option<'a>
+
+@ocaml.doc("
+주어진 확률로 원소를 채택한 결과를 반환합니다.
+참고: https://clojuredocs.org/clojure.core/random-sample
+
+예) randomSample([1, 2, 3, 4, 5], 0.5) // -> [1, 2, 4]
+")
+let randomSample: (array<'a>, float) => array<'a>
+
 module Int: {
   let groupBy: (array<'a>, 'a => Belt.Map.Int.key) => Belt.Map.Int.t<array<'a>>
   let indexBy: (array<'a>, 'a => Belt.Map.Int.key) => Belt.Map.Int.t<'a>

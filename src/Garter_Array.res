@@ -136,6 +136,10 @@ let chunk = (xs, step) =>
     xs->Belt.Array.slice(~offset, ~len=step)
   })
 
+let randomOne = xs => xs->get(Js.Math.random_int(0, length(xs)))
+
+let randomSample = (xs, prob) => xs->keep(_ => Js.Math.random() < prob)
+
 module Int = {
   // Belt.Map 대신 Belt.Map.Int를 씁니다.
   let groupBy = (xs, keyFn) => {
