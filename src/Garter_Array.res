@@ -114,9 +114,9 @@ let scan = (xs, init, f) => {
 
 // `xs` must be non-empty
 let reduce1U = (xs, f) => {
-  let r = ref(xs->Belt.Array.getUnsafe(0))
+  let r = ref(xs->getUnsafe(0))
   for i in 1 to length(xs) - 1 {
-    r := f(. r.contents, xs->Belt.Array.getUnsafe(i))
+    r := f(. r.contents, xs->getUnsafe(i))
   }
   r.contents
 }
@@ -133,7 +133,7 @@ let maxBy = (xs, cmp) => maxByU(xs, (. a, b) => cmp(a, b))
 
 let chunk = (xs, step) =>
   rangeBy(0, length(xs) - 1, ~step)->map(offset => {
-    xs->Belt.Array.slice(~offset, ~len=step)
+    xs->Js.Array2.slice(~start=offset, ~end_=offset + step)
   })
 
 let randomOne = xs => xs->get(Js.Math.random_int(0, length(xs)))
