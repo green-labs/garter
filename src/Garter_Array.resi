@@ -131,6 +131,8 @@ let randomOne: array<'a> => option<'a>
 ")
 let randomSample: (array<'a>, float) => array<'a>
 
+let intersperse: (array<'a>, 'a) => array<'a>
+
 module Int: {
   let groupBy: (array<'a>, 'a => Belt.Map.Int.key) => Belt.Map.Int.t<array<'a>>
   let indexBy: (array<'a>, 'a => Belt.Map.Int.key) => Belt.Map.Int.t<'a>
