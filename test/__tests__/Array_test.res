@@ -41,3 +41,10 @@ describe("maxBy", () => {
   testEqual("1", maxBy([1, 2, 3, 4, 5], compare), 5)
   testEqual("2", maxByU([1, 2, 3, 4, 5], (. a, b) => compare(a, b)), 5)
 })
+
+describe("intersperse", () => {
+  testEqual("1", intersperse([], 0), [])
+  testEqual("2", intersperse([1], 0), [1])
+  testEqual("3", intersperse([1, 2], 0), [1, 0, 2])
+  testEqual("4", intersperse([1, 2, 3], 0), [1, 0, 2, 0, 3])
+})

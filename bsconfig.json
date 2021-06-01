@@ -1,6 +1,8 @@
 {
   "name": "@greenlabs/garter",
-  "bs-dev-dependencies": [ "@glennsl/bs-jest" ],
+  "bs-dev-dependencies": [
+    "@glennsl/bs-jest"
+  ],
   "sources": [
     {
       "dir": "src",

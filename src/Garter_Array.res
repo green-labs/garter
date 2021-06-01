@@ -140,6 +140,19 @@ let randomOne = xs => xs->get(Js.Math.random_int(0, length(xs)))
 
 let randomSample = (xs, prob) => xs->keep(_ => Js.Math.random() < prob)
 
+let intersperse = (xs, delim) => {
+  switch xs->length {
+  | 0 => []
+  | 1 => xs
+  | xlen =>
+    let ys = make(xlen * 2 - 1, delim)
+    xs->forEachWithIndex((i, x) => {
+      ys->setUnsafe(i * 2, x)
+    })
+    ys
+  }
+}
+
 module Int = {
   // Belt.Map 대신 Belt.Map.Int를 씁니다.
   let groupBy = (xs, keyFn) => {
