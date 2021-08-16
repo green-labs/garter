@@ -1,12 +1,8 @@
 {
   "name": "@greenlabs/garter",
-  "bs-dev-dependencies": [
-    "@glennsl/bs-jest"
-  ],
   "sources": [
     {
-      "dir": "src",
-      "subdirs": true
+      "dir": "src"
     },
     {
       "dir": "test",
@@ -14,7 +10,15 @@
       "subdirs": true
     }
   ],
-  "warnings": {
-    "error": "+101"
-  }
+  "package-specs": [
+    {
+      "module": "es6",
+      "in-source": true
+    }
+  ],
+  "suffix": ".mjs",
+  "external-stdlib": "@rescript/std",
+  "bs-dev-dependencies": [
+    "@glennsl/bs-jest"
+  ]
 }
