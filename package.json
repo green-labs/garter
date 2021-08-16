@@ -9,12 +9,14 @@
     "@rescript/std": "^9.1.3"
   },
   "devDependencies": {
-    "@glennsl/bs-jest": "0.6.0",
+    "@glennsl/bs-jest": "0.7.0",
+    "jest": "^27.0.6",
     "rescript": "^9.1.4"
   },
   "files": [
-    "/bsconfig.json",
-    "/src"
+    "bsconfig.json",
+    "src/*.res",
+    "src/*.resi"
   ],
   "scripts": {
     "clean": "rescript clean",
