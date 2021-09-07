@@ -1,2 +1,2 @@
-src/*.mjs       linguist-generated
-tests/*.mjs     linguist-generated
+src/**/*.mjs    linguist-generated
+test/**/*.mjs   linguist-generated
