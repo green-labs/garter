@@ -196,3 +196,19 @@ module String = {
     reduceU(xs, empty, (. res, x) => Belt.Map.String.set(res, indexFn(x), x))
   }
 }
+
+module NonEmpty = {
+  type t<'a> = NonEmptyArray(array<'a>)
+
+  let fromArray = xs =>
+    if xs->isEmpty {
+      None
+    } else {
+      Some(NonEmptyArray(xs))
+    }
+
+  let toArray = nxs =>
+    switch nxs {
+    | NonEmptyArray(xs) => xs
+    }
+}

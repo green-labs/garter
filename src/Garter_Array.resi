@@ -143,3 +143,10 @@ module String: {
   let groupBy: (array<'a>, 'a => Belt.Map.String.key) => Belt.Map.String.t<array<'a>>
   let indexBy: (array<'a>, 'a => Belt.Map.String.key) => Belt.Map.String.t<'a>
 }
+
+module NonEmpty: {
+  type t<'a> = NonEmptyArray(array<'a>)
+
+  let fromArray: array<'a> => option<t<'a>>
+  let toArray: t<'a> => array<'a>
+}

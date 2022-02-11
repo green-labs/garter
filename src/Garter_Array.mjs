@@ -280,6 +280,25 @@ var $$String = {
   indexBy: indexBy$2
 };
 
+function fromArray(xs) {
+  if (xs.length === 0) {
+    return ;
+  } else {
+    return /* NonEmptyArray */{
+            _0: xs
+          };
+  }
+}
+
+function toArray(nxs) {
+  return nxs._0;
+}
+
+var NonEmpty = {
+  fromArray: fromArray,
+  toArray: toArray
+};
+
 var get = Belt_Array.get;
 
 var getExn = Belt_Array.getExn;
@@ -520,6 +539,7 @@ export {
   intersperse ,
   Int ,
   $$String ,
+  NonEmpty ,
   
 }
 /* No side effect */
