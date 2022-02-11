@@ -9,6 +9,7 @@ import * as Garter_Fn from "./Garter_Fn.mjs";
 import * as Belt_Array from "@rescript/std/lib/es6/belt_Array.js";
 import * as Belt_MapInt from "@rescript/std/lib/es6/belt_MapInt.js";
 import * as Belt_MapString from "@rescript/std/lib/es6/belt_MapString.js";
+import * as Caml_exceptions from "@rescript/std/lib/es6/caml_exceptions.js";
 
 function isEmpty(xs) {
   return xs.length === 0;
@@ -280,6 +281,8 @@ var $$String = {
   indexBy: indexBy$2
 };
 
+var ErrorEmpty = /* @__PURE__ */Caml_exceptions.create("Garter_Array.NonEmpty.ErrorEmpty");
+
 function fromArray(xs) {
   if (xs.length === 0) {
     return ;
@@ -288,6 +291,18 @@ function fromArray(xs) {
             _0: xs
           };
   }
+}
+
+function fromArrayExn(xs) {
+  if (xs.length === 0) {
+    throw {
+          RE_EXN_ID: ErrorEmpty,
+          Error: new Error()
+        };
+  }
+  return /* NonEmptyArray */{
+          _0: xs
+        };
 }
 
 function toArray(nxs) {
@@ -313,16 +328,6 @@ function takeWhileU$1(nxs, n) {
 function takeWhile$1(nxs, n) {
   return takeWhileU(nxs._0, Curry.__1(n));
 }
-
-var NonEmpty = {
-  fromArray: fromArray,
-  toArray: toArray,
-  first: first$1,
-  last: last$1,
-  take: take$1,
-  takeWhileU: takeWhileU$1,
-  takeWhile: takeWhile$1
-};
 
 var get = Belt_Array.get;
 
@@ -459,6 +464,17 @@ var cmp = Belt_Array.cmp;
 var eqU = Belt_Array.eqU;
 
 var eq = Belt_Array.eq;
+
+var NonEmpty = {
+  fromArray: fromArray,
+  fromArrayExn: fromArrayExn,
+  toArray: toArray,
+  first: first$1,
+  last: last$1,
+  take: take$1,
+  takeWhileU: takeWhileU$1,
+  takeWhile: takeWhile$1
+};
 
 export {
   get ,

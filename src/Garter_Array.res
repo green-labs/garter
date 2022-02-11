@@ -198,6 +198,7 @@ module String = {
 }
 
 module NonEmpty = {
+  exception ErrorEmpty
   type t<'a> = NonEmptyArray(array<'a>)
 
   let fromArray = xs =>
@@ -205,6 +206,13 @@ module NonEmpty = {
       None
     } else {
       Some(NonEmptyArray(xs))
+    }
+
+  let fromArrayExn = xs =>
+    if xs->isEmpty {
+      raise(ErrorEmpty)
+    } else {
+      NonEmptyArray(xs)
     }
 
   let toArray = nxs =>

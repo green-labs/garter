@@ -148,6 +148,7 @@ module NonEmpty: {
   type t<'a>
 
   let fromArray: array<'a> => option<t<'a>>
+  let fromArrayExn: array<'a> => t<'a>
   let toArray: t<'a> => array<'a>
   let first: t<'a> => 'a
   let last: t<'a> => 'a

@@ -15,7 +15,7 @@ function testEqual(t, name, lhs, rhs) {
 
 var emptyArray = Garter_Array.NonEmpty.fromArray([]);
 
-var nonEmptyArray = Garter_Array.NonEmpty.fromArray([
+var nonEmptyArray = Garter_Array.NonEmpty.fromArrayExn([
       1,
       2,
       3,
@@ -29,7 +29,7 @@ Zora$1.test("fromArray", (function (t) {
 
 Zora$1.test("toArray", (function (t) {
         testEqual(t, "Empty", Belt_Option.map(emptyArray, Garter_Array.NonEmpty.toArray), undefined);
-        return testEqual(t, "NonEmpty", Belt_Option.map(nonEmptyArray, Garter_Array.NonEmpty.toArray), [
+        return testEqual(t, "NonEmpty", Garter_Array.NonEmpty.toArray(nonEmptyArray), [
                     1,
                     2,
                     3,
@@ -40,27 +40,21 @@ Zora$1.test("toArray", (function (t) {
 
 Zora$1.test("first", (function (t) {
         testEqual(t, "Empty", Belt_Option.map(emptyArray, Garter_Array.NonEmpty.first), undefined);
-        return testEqual(t, "NonEmpty", Belt_Option.map(nonEmptyArray, Garter_Array.NonEmpty.first), 1);
+        return testEqual(t, "NonEmpty", Garter_Array.NonEmpty.first(nonEmptyArray), 1);
       }));
 
 Zora$1.test("last", (function (t) {
         testEqual(t, "Empty", Belt_Option.map(emptyArray, Garter_Array.NonEmpty.last), undefined);
-        return testEqual(t, "NonEmpty", Belt_Option.map(nonEmptyArray, Garter_Array.NonEmpty.last), 5);
+        return testEqual(t, "NonEmpty", Garter_Array.NonEmpty.last(nonEmptyArray), 5);
       }));
 
 Zora$1.test("take", (function (t) {
-        testEqual(t, "1", Belt_Option.map(nonEmptyArray, (function (ar) {
-                    return Garter_Array.NonEmpty.take(ar, -1);
-                  })), []);
-        testEqual(t, "2", Belt_Option.map(nonEmptyArray, (function (ar) {
-                    return Garter_Array.NonEmpty.take(ar, 2);
-                  })), [
+        testEqual(t, "1", Garter_Array.NonEmpty.take(nonEmptyArray, -1), []);
+        testEqual(t, "2", Garter_Array.NonEmpty.take(nonEmptyArray, 2), [
               1,
               2
             ]);
-        return testEqual(t, "3", Belt_Option.map(nonEmptyArray, (function (ar) {
-                          return Garter_Array.NonEmpty.take(ar, 7);
-                        })), [
+        return testEqual(t, "3", Garter_Array.NonEmpty.take(nonEmptyArray, 7), [
                     1,
                     2,
                     3,
