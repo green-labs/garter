@@ -7,8 +7,14 @@ import * as Array_NonEmpty_test from "./spec/Array_NonEmpty_test.mjs";
 
 var testEqual = Array_NonEmpty_test.testEqual;
 
+var emptyArray = Array_NonEmpty_test.emptyArray;
+
+var nonEmptyArray = Array_NonEmpty_test.nonEmptyArray;
+
 export {
   testEqual ,
+  emptyArray ,
+  nonEmptyArray ,
   
 }
 /* Array_test Not a pure module */

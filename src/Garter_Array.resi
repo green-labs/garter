@@ -145,7 +145,7 @@ module String: {
 }
 
 module NonEmpty: {
-  type t<'a> = NonEmptyArray(array<'a>)
+  type t<'a>
 
   let fromArray: array<'a> => option<t<'a>>
   let toArray: t<'a> => array<'a>

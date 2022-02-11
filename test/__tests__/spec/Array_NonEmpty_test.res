@@ -9,27 +9,30 @@ let testEqual = (t, name, lhs, rhs) =>
     done()
   })
 
+let emptyArray: option<Garter.Array.NonEmpty.t<int>> = []->fromArray
+let nonEmptyArray = [1, 2, 3, 4, 5]->fromArray
+
 zoraBlock("fromArray", t => {
   t->testEqual("Empty", fromArray([]), None)
-  t->testEqual("NonEmpty", fromArray([1, 2, 3]), Some(NonEmptyArray([1, 2, 3])))
 })
 
 zoraBlock("toArray", t => {
-  t->testEqual("NonEmpty", toArray(NonEmptyArray([1, 2, 3])), [1, 2, 3])
+  t->testEqual("Empty", emptyArray->Belt.Option.map(toArray), None)
+  t->testEqual("NonEmpty", nonEmptyArray->Belt.Option.map(toArray), Some([1, 2, 3, 4, 5]))
 })
 
 zoraBlock("first", t => {
-  t->testEqual("1", first(NonEmptyArray([1])), 1)
-  t->testEqual("2", first(NonEmptyArray([1, 2, 3])), 1)
+  t->testEqual("Empty", emptyArray->Belt.Option.map(first), None)
+  t->testEqual("NonEmpty", nonEmptyArray->Belt.Option.map(first), Some(1))
 })
 
 zoraBlock("last", t => {
-  t->testEqual("1", last(NonEmptyArray([1])), 1)
-  t->testEqual("2", last(NonEmptyArray([1, 2, 3, 4, 5])), 5)
+  t->testEqual("Empty", emptyArray->Belt.Option.map(last), None)
+  t->testEqual("NonEmpty", nonEmptyArray->Belt.Option.map(last), Some(5))
 })
 
 zoraBlock("take", t => {
-  t->testEqual("1", take(NonEmptyArray([1, 2, 3, 4, 5]), -1), [])
-  t->testEqual("2", take(NonEmptyArray([1, 2, 3, 4, 5]), 2), [1, 2])
-  t->testEqual("3", take(NonEmptyArray([1, 2, 3, 4, 5]), 7), [1, 2, 3, 4, 5])
+  t->testEqual("1", nonEmptyArray->Belt.Option.map(ar => take(ar, -1)), Some([]))
+  t->testEqual("2", nonEmptyArray->Belt.Option.map(ar => take(ar, 2)), Some([1, 2]))
+  t->testEqual("3", nonEmptyArray->Belt.Option.map(ar => take(ar, 7)), Some([1, 2, 3, 4, 5]))
 })
