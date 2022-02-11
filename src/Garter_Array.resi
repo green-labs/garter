@@ -149,4 +149,9 @@ module NonEmpty: {
 
   let fromArray: array<'a> => option<t<'a>>
   let toArray: t<'a> => array<'a>
+  let first: t<'a> => 'a
+  let last: t<'a> => 'a
+  let take: (t<'a>, int) => array<'a>
+  let takeWhileU: (t<'a>, (. 'a) => bool) => array<'a>
+  let takeWhile: (t<'a>, 'a => bool) => array<'a>
 }

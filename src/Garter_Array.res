@@ -211,4 +211,14 @@ module NonEmpty = {
     switch nxs {
     | NonEmptyArray(xs) => xs
     }
+
+  let first = nxs => nxs->toArray->firstUnsafe
+
+  let last = nxs => nxs->toArray->lastUnsafe
+
+  let take = (nxs, n) => nxs->toArray->take(n)
+
+  let takeWhileU = (nxs, n) => nxs->toArray->takeWhileU(n)
+
+  let takeWhile = (nxs, n) => nxs->toArray->takeWhile(n)
 }

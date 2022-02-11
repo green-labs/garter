@@ -294,9 +294,34 @@ function toArray(nxs) {
   return nxs._0;
 }
 
+function first$1(nxs) {
+  return nxs._0[0];
+}
+
+function last$1(nxs) {
+  return lastUnsafe(nxs._0);
+}
+
+function take$1(nxs, n) {
+  return take(nxs._0, n);
+}
+
+function takeWhileU$1(nxs, n) {
+  return takeWhileU(nxs._0, n);
+}
+
+function takeWhile$1(nxs, n) {
+  return takeWhileU(nxs._0, Curry.__1(n));
+}
+
 var NonEmpty = {
   fromArray: fromArray,
-  toArray: toArray
+  toArray: toArray,
+  first: first$1,
+  last: last$1,
+  take: take$1,
+  takeWhileU: takeWhileU$1,
+  takeWhile: takeWhile$1
 };
 
 var get = Belt_Array.get;

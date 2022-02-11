@@ -41,6 +41,73 @@ Zora$1.test("toArray", (function (t) {
                   ]);
       }));
 
+Zora$1.test("first", (function (t) {
+        testEqual(t, "1", Garter_Array.NonEmpty.first(/* NonEmptyArray */{
+                  _0: [1]
+                }), 1);
+        return testEqual(t, "2", Garter_Array.NonEmpty.first(/* NonEmptyArray */{
+                        _0: [
+                          1,
+                          2,
+                          3
+                        ]
+                      }), 1);
+      }));
+
+Zora$1.test("last", (function (t) {
+        testEqual(t, "1", Garter_Array.NonEmpty.last(/* NonEmptyArray */{
+                  _0: [1]
+                }), 1);
+        return testEqual(t, "2", Garter_Array.NonEmpty.last(/* NonEmptyArray */{
+                        _0: [
+                          1,
+                          2,
+                          3,
+                          4,
+                          5
+                        ]
+                      }), 5);
+      }));
+
+Zora$1.test("take", (function (t) {
+        testEqual(t, "1", Garter_Array.NonEmpty.take(/* NonEmptyArray */{
+                  _0: [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ]
+                }, -1), []);
+        testEqual(t, "2", Garter_Array.NonEmpty.take(/* NonEmptyArray */{
+                  _0: [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ]
+                }, 2), [
+              1,
+              2
+            ]);
+        return testEqual(t, "3", Garter_Array.NonEmpty.take(/* NonEmptyArray */{
+                        _0: [
+                          1,
+                          2,
+                          3,
+                          4,
+                          5
+                        ]
+                      }, 7), [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ]);
+      }));
+
 export {
   testEqual ,
   
