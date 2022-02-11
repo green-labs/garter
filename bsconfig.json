@@ -19,6 +19,6 @@
   "suffix": ".mjs",
   "external-stdlib": "@rescript/std",
   "bs-dev-dependencies": [
-    "@glennsl/bs-jest"
+    "@dusty-phillips/rescript-zora"
   ]
 }

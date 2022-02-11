@@ -11,9 +11,12 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.17.0",
-    "@glennsl/bs-jest": "0.7.0",
-    "jest": "^27.0.6",
-    "rescript": "^9.1.4"
+    "@dusty-phillips/rescript-zora": "^3.0.0",
+    "onchange": "^7.1.0",
+    "pta": "^1.0.2",
+    "rescript": "^9.1.4",
+    "tap-difflet": "^0.7.2",
+    "zora": "^5.0.3"
   },
   "files": [
     "bsconfig.json",
@@ -24,6 +27,7 @@
     "clean": "rescript clean",
     "build": "rescript build",
     "watch": "rescript build -w",
-    "test": "jest"
+    "test:watch": "onchange --initial '{test,src}/**/*.mjs' -- pta 'test/__tests__/**/*.mjs' | tap-difflet",
+    "test": "pta './test/__tests__/Index.mjs' | tap-difflet"
   }
 }
