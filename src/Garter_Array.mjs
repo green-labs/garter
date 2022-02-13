@@ -9,7 +9,6 @@ import * as Garter_Fn from "./Garter_Fn.mjs";
 import * as Belt_Array from "@rescript/std/lib/es6/belt_Array.js";
 import * as Belt_MapInt from "@rescript/std/lib/es6/belt_MapInt.js";
 import * as Belt_MapString from "@rescript/std/lib/es6/belt_MapString.js";
-import * as Caml_exceptions from "@rescript/std/lib/es6/caml_exceptions.js";
 
 function isEmpty(xs) {
   return xs.length === 0;
@@ -241,47 +240,38 @@ var $$String = {
   indexBy: indexBy$2
 };
 
-var ErrorEmpty = /* @__PURE__ */Caml_exceptions.create("Garter_Array.NonEmpty.ErrorEmpty");
-
 function fromArray(xs) {
-  if (xs.length === 0) {
-    return ;
-  } else {
-    return /* NonEmptyArray */{
-            _0: xs
-          };
+  if (xs.length !== 0) {
+    return xs;
   }
+  
 }
 
 function fromArrayExn(xs) {
-  if (xs.length === 0) {
-    throw {
-          RE_EXN_ID: ErrorEmpty,
-          Error: new Error()
-        };
+  if (xs.length !== 0) {
+    return xs;
   }
-  return /* NonEmptyArray */{
-          _0: xs
-        };
+  throw {
+        RE_EXN_ID: "Invalid_argument",
+        _1: "array is empty",
+        Error: new Error()
+      };
 }
 
 function toArray(nxs) {
-  return nxs._0;
+  return nxs;
 }
 
 function first$1(nxs) {
-  return nxs._0[0];
+  return nxs[0];
 }
 
-function last$1(nxs) {
-  return lastUnsafe(nxs._0);
-}
+var last$1 = lastUnsafe;
 
 function reduce1U(xs, f) {
-  var xs$1 = xs._0;
-  var r = xs$1[0];
-  for(var i = 1 ,i_finish = xs$1.length; i < i_finish; ++i){
-    r = f(r, xs$1[i]);
+  var r = xs[0];
+  for(var i = 1 ,i_finish = xs.length; i < i_finish; ++i){
+    r = f(r, xs[i]);
   }
   return r;
 }
@@ -318,17 +308,30 @@ function maxBy(xs, cmp) {
   return maxByU(xs, Curry.__2(cmp));
 }
 
-function take$1(nxs, n) {
-  return take(nxs._0, n);
-}
+var take$1 = take;
 
-function takeWhileU$1(nxs, n) {
-  return takeWhileU(nxs._0, n);
-}
+var takeWhileU$1 = takeWhileU;
 
 function takeWhile$1(nxs, n) {
-  return takeWhileU(nxs._0, Curry.__1(n));
+  return takeWhileU(nxs, Curry.__1(n));
 }
+
+var NonEmpty = {
+  fromArray: fromArray,
+  fromArrayExn: fromArrayExn,
+  toArray: toArray,
+  first: first$1,
+  last: last$1,
+  reduce1U: reduce1U,
+  reduce1: reduce1,
+  minByU: minByU,
+  minBy: minBy,
+  maxByU: maxByU,
+  maxBy: maxBy,
+  take: take$1,
+  takeWhileU: takeWhileU$1,
+  takeWhile: takeWhile$1
+};
 
 var get = Belt_Array.get;
 
@@ -465,23 +468,6 @@ var cmp = Belt_Array.cmp;
 var eqU = Belt_Array.eqU;
 
 var eq = Belt_Array.eq;
-
-var NonEmpty = {
-  fromArray: fromArray,
-  fromArrayExn: fromArrayExn,
-  toArray: toArray,
-  first: first$1,
-  last: last$1,
-  reduce1U: reduce1U,
-  reduce1: reduce1,
-  minByU: minByU,
-  minBy: minBy,
-  maxByU: maxByU,
-  maxBy: maxBy,
-  take: take$1,
-  takeWhileU: takeWhileU$1,
-  takeWhile: takeWhile$1
-};
 
 export {
   get ,

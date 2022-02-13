@@ -179,30 +179,28 @@ module String = {
 }
 
 module NonEmpty = {
-  exception ErrorEmpty
-  type t<'a> = NonEmptyArray(array<'a>)
+  @unboxed
+  type t<'a> = NonEmpty(array<'a>)
 
   let fromArray = xs =>
-    if xs->isEmpty {
-      None
-    } else {
-      Some(NonEmptyArray(xs))
+    switch xs {
+    | [] => None
+    | nxs => Some(NonEmpty(nxs))
     }
 
   let fromArrayExn = xs =>
-    if xs->isEmpty {
-      raise(ErrorEmpty)
-    } else {
-      NonEmptyArray(xs)
+    switch xs {
+    | [] => raise(Invalid_argument("array is empty"))
+    | nxs => NonEmpty(nxs)
     }
 
-  let toArray = (NonEmptyArray(nxs)) => nxs
+  let toArray = (NonEmpty(nxs)) => nxs
 
-  let first = nxs => nxs->toArray->firstUnsafe
+  let first = (NonEmpty(nxs)) => nxs->firstUnsafe
 
-  let last = nxs => nxs->toArray->lastUnsafe
+  let last = (NonEmpty(nxs)) => nxs->lastUnsafe
 
-  let reduce1U = (NonEmptyArray(xs), f) => {
+  let reduce1U = (NonEmpty(xs), f) => {
     let r = ref(xs->getUnsafe(0))
     for i in 1 to length(xs) - 1 {
       r := f(. r.contents, xs->getUnsafe(i))
