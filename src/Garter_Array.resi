@@ -143,3 +143,16 @@ module String: {
   let groupBy: (array<'a>, 'a => Belt.Map.String.key) => Belt.Map.String.t<array<'a>>
   let indexBy: (array<'a>, 'a => Belt.Map.String.key) => Belt.Map.String.t<'a>
 }
+
+module NonEmpty: {
+  type t<'a>
+
+  let fromArray: array<'a> => option<t<'a>>
+  let fromArrayExn: array<'a> => t<'a>
+  let toArray: t<'a> => array<'a>
+  let first: t<'a> => 'a
+  let last: t<'a> => 'a
+  let take: (t<'a>, int) => array<'a>
+  let takeWhileU: (t<'a>, (. 'a) => bool) => array<'a>
+  let takeWhile: (t<'a>, 'a => bool) => array<'a>
+}
