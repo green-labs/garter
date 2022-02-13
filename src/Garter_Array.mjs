@@ -163,46 +163,6 @@ function scan(xs, init, f) {
   return state;
 }
 
-function reduce1U(xs, f) {
-  var r = xs[0];
-  for(var i = 1 ,i_finish = xs.length; i < i_finish; ++i){
-    r = f(r, xs[i]);
-  }
-  return r;
-}
-
-function reduce1(xs, f) {
-  return reduce1U(xs, Curry.__2(f));
-}
-
-function minByU(xs, cmp) {
-  return reduce1U(xs, (function (a, b) {
-                if (cmp(a, b) > 0) {
-                  return b;
-                } else {
-                  return a;
-                }
-              }));
-}
-
-function minBy(xs, cmp) {
-  return minByU(xs, Curry.__2(cmp));
-}
-
-function maxByU(xs, cmp) {
-  return reduce1U(xs, (function (a, b) {
-                if (cmp(a, b) < 0) {
-                  return b;
-                } else {
-                  return a;
-                }
-              }));
-}
-
-function maxBy(xs, cmp) {
-  return maxByU(xs, Curry.__2(cmp));
-}
-
 function chunk(xs, step) {
   return Belt_Array.map(Belt_Array.rangeBy(0, xs.length - 1 | 0, step), (function (offset) {
                 return xs.slice(offset, offset + step | 0);
@@ -315,6 +275,47 @@ function first$1(nxs) {
 
 function last$1(nxs) {
   return lastUnsafe(nxs._0);
+}
+
+function reduce1U(xs, f) {
+  var xs$1 = xs._0;
+  var r = xs$1[0];
+  for(var i = 1 ,i_finish = xs$1.length; i < i_finish; ++i){
+    r = f(r, xs$1[i]);
+  }
+  return r;
+}
+
+function reduce1(xs, f) {
+  return reduce1U(xs, Curry.__2(f));
+}
+
+function minByU(xs, cmp) {
+  return reduce1U(xs, (function (a, b) {
+                if (cmp(a, b) > 0) {
+                  return b;
+                } else {
+                  return a;
+                }
+              }));
+}
+
+function minBy(xs, cmp) {
+  return minByU(xs, Curry.__2(cmp));
+}
+
+function maxByU(xs, cmp) {
+  return reduce1U(xs, (function (a, b) {
+                if (cmp(a, b) < 0) {
+                  return b;
+                } else {
+                  return a;
+                }
+              }));
+}
+
+function maxBy(xs, cmp) {
+  return maxByU(xs, Curry.__2(cmp));
 }
 
 function take$1(nxs, n) {
@@ -471,6 +472,12 @@ var NonEmpty = {
   toArray: toArray,
   first: first$1,
   last: last$1,
+  reduce1U: reduce1U,
+  reduce1: reduce1,
+  minByU: minByU,
+  minBy: minBy,
+  maxByU: maxByU,
+  maxBy: maxBy,
   take: take$1,
   takeWhileU: takeWhileU$1,
   takeWhile: takeWhile$1
@@ -568,12 +575,6 @@ export {
   frequencies ,
   distinct ,
   scan ,
-  reduce1U ,
-  reduce1 ,
-  minByU ,
-  minBy ,
-  maxByU ,
-  maxBy ,
   chunk ,
   randomOne ,
   randomSample ,

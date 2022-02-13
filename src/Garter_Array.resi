@@ -91,15 +91,6 @@ reduce와 비슷하나 중간 결과를 모두 포함한 array를 반환합니�
 ")
 let scan: (array<'a>, 'b, ('b, 'a) => 'b) => array<'b>
 
-let reduce1U: (array<'a>, (. 'a, 'a) => 'a) => 'a
-let reduce1: (array<'a>, ('a, 'a) => 'a) => 'a
-
-let minByU: (array<'a>, (. 'a, 'a) => int) => 'a
-let minBy: (array<'a>, ('a, 'a) => int) => 'a
-
-let maxByU: (array<'a>, (. 'a, 'a) => int) => 'a
-let maxBy: (array<'a>, ('a, 'a) => int) => 'a
-
 @ocaml.doc("
 배열을 일정 크기로 자른 2차원 배열을 반환합니다.
 
@@ -149,9 +140,21 @@ module NonEmpty: {
 
   let fromArray: array<'a> => option<t<'a>>
   let fromArrayExn: array<'a> => t<'a>
+
   let toArray: t<'a> => array<'a>
+
   let first: t<'a> => 'a
   let last: t<'a> => 'a
+
+  let reduce1U: (t<'a>, (. 'a, 'a) => 'a) => 'a
+  let reduce1: (t<'a>, ('a, 'a) => 'a) => 'a
+
+  let minByU: (t<'a>, (. 'a, 'a) => int) => 'a
+  let minBy: (t<'a>, ('a, 'a) => int) => 'a
+
+  let maxByU: (t<'a>, (. 'a, 'a) => int) => 'a
+  let maxBy: (t<'a>, ('a, 'a) => int) => 'a
+
   let take: (t<'a>, int) => array<'a>
   let takeWhileU: (t<'a>, (. 'a) => bool) => array<'a>
   let takeWhile: (t<'a>, 'a => bool) => array<'a>
