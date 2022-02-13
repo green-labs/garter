@@ -31,6 +31,14 @@ function average_float(nums) {
   }
 }
 
+function clamp_int(x, lower, upper) {
+  return Math.min(Math.max(x, lower), upper);
+}
+
+function clamp_float(x, lower, upper) {
+  return Math.min(Math.max(x, lower), upper);
+}
+
 var unsafe_ceil = Js_math.unsafe_ceil;
 
 var ceil_int = Js_math.ceil_int;
@@ -57,6 +65,8 @@ export {
   sum_float ,
   average_int ,
   average_float ,
+  clamp_int ,
+  clamp_float ,
   
 }
 /* No side effect */

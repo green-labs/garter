@@ -13,3 +13,11 @@ let average_int = nums => {
 let average_float = nums => {
   nums->Belt.Array.length == 0 ? 0. : sum_float(nums) /. nums->Belt.Array.length->float_of_int
 }
+
+let clamp_int = (x, ~lower, ~upper) => {
+  min_int(max_int(x, lower), upper)
+}
+
+let clamp_float = (x, ~lower, ~upper) => {
+  min_float(max_float(x, lower), upper)
+}
