@@ -34,18 +34,6 @@ zoraBlock("dropWhile", t => {
 
 zoraBlock("keepSome", t => t->testEqual("1", keepSome([Some(1), None, Some(3)]), [1, 3]))
 
-zoraBlock("reduce1", t => t->testEqual("", reduce1(range(1, 10), \"+"), 55))
-
-zoraBlock("minBy", t => {
-  t->testEqual("1", minBy([1, 2, 3, 4, 5], compare), 1)
-  t->testEqual("2", minByU([1, 2, 3, 4, 5], (. a, b) => compare(a, b)), 1)
-})
-
-zoraBlock("maxBy", t => {
-  t->testEqual("1", maxBy([1, 2, 3, 4, 5], compare), 5)
-  t->testEqual("2", maxByU([1, 2, 3, 4, 5], (. a, b) => compare(a, b)), 5)
-})
-
 zoraBlock("intersperse", t => {
   t->testEqual("1", intersperse([], 0), [])
   t->testEqual("2", intersperse([1], 0), [1])

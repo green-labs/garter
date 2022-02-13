@@ -112,25 +112,6 @@ let scan = (xs, init, f) => {
   state
 }
 
-// `xs` must be non-empty
-let reduce1U = (xs, f) => {
-  let r = ref(xs->getUnsafe(0))
-  for i in 1 to length(xs) - 1 {
-    r := f(. r.contents, xs->getUnsafe(i))
-  }
-  r.contents
-}
-
-let reduce1 = (xs, f) => reduce1U(xs, (. a, x) => f(a, x))
-
-let minByU = (xs, cmp) => reduce1U(xs, (. a, b) => cmp(. a, b) > 0 ? b : a)
-
-let minBy = (xs, cmp) => minByU(xs, (. a, b) => cmp(a, b))
-
-let maxByU = (xs, cmp) => reduce1U(xs, (. a, b) => cmp(. a, b) < 0 ? b : a)
-
-let maxBy = (xs, cmp) => maxByU(xs, (. a, b) => cmp(a, b))
-
 let chunk = (xs, step) =>
   rangeBy(0, length(xs) - 1, ~step)->map(offset => {
     xs->Js.Array2.slice(~start=offset, ~end_=offset + step)
@@ -198,31 +179,44 @@ module String = {
 }
 
 module NonEmpty = {
-  exception ErrorEmpty
-  type t<'a> = NonEmptyArray(array<'a>)
+  @unboxed
+  type t<'a> = NonEmpty(array<'a>)
 
   let fromArray = xs =>
-    if xs->isEmpty {
-      None
-    } else {
-      Some(NonEmptyArray(xs))
+    switch xs {
+    | [] => None
+    | nxs => Some(NonEmpty(nxs))
     }
 
   let fromArrayExn = xs =>
-    if xs->isEmpty {
-      raise(ErrorEmpty)
-    } else {
-      NonEmptyArray(xs)
+    switch xs {
+    | [] => raise(Invalid_argument("array is empty"))
+    | nxs => NonEmpty(nxs)
     }
 
-  let toArray = nxs =>
-    switch nxs {
-    | NonEmptyArray(xs) => xs
+  let toArray = (NonEmpty(nxs)) => nxs
+
+  let first = (NonEmpty(nxs)) => nxs->firstUnsafe
+
+  let last = (NonEmpty(nxs)) => nxs->lastUnsafe
+
+  let reduce1U = (NonEmpty(xs), f) => {
+    let r = ref(xs->getUnsafe(0))
+    for i in 1 to length(xs) - 1 {
+      r := f(. r.contents, xs->getUnsafe(i))
     }
+    r.contents
+  }
 
-  let first = nxs => nxs->toArray->firstUnsafe
+  let reduce1 = (xs, f) => reduce1U(xs, (. a, x) => f(a, x))
 
-  let last = nxs => nxs->toArray->lastUnsafe
+  let minByU = (xs, cmp) => reduce1U(xs, (. a, b) => cmp(. a, b) > 0 ? b : a)
+
+  let minBy = (xs, cmp) => minByU(xs, (. a, b) => cmp(a, b))
+
+  let maxByU = (xs, cmp) => reduce1U(xs, (. a, b) => cmp(. a, b) < 0 ? b : a)
+
+  let maxBy = (xs, cmp) => maxByU(xs, (. a, b) => cmp(a, b))
 
   let take = (nxs, n) => nxs->toArray->take(n)
 
