@@ -1,5 +1,6 @@
 open Zora
 
+open Belt.Array
 open Garter.Array.NonEmpty
 
 let testEqual = (t, name, lhs, rhs) =>
@@ -35,4 +36,16 @@ zoraBlock("take", t => {
   t->testEqual("1", nonEmptyArray->take(-1), [])
   t->testEqual("2", nonEmptyArray->take(2), [1, 2])
   t->testEqual("3", nonEmptyArray->take(7), [1, 2, 3, 4, 5])
+})
+
+zoraBlock("reduce1", t => t->testEqual("", reduce1(range(1, 10)->fromArrayExn, \"+"), 55))
+
+zoraBlock("minBy", t => {
+  t->testEqual("1", minBy([1, 2, 3, 4, 5]->fromArrayExn, compare), 1)
+  t->testEqual("2", minByU([1, 2, 3, 4, 5]->fromArrayExn, (. a, b) => compare(a, b)), 1)
+})
+
+zoraBlock("maxBy", t => {
+  t->testEqual("1", maxBy([1, 2, 3, 4, 5]->fromArrayExn, compare), 5)
+  t->testEqual("2", maxByU([1, 2, 3, 4, 5]->fromArrayExn, (. a, b) => compare(a, b)), 5)
 })
