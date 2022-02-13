@@ -196,3 +196,37 @@ module String = {
     reduceU(xs, empty, (. res, x) => Belt.Map.String.set(res, indexFn(x), x))
   }
 }
+
+module NonEmpty = {
+  exception ErrorEmpty
+  type t<'a> = NonEmptyArray(array<'a>)
+
+  let fromArray = xs =>
+    if xs->isEmpty {
+      None
+    } else {
+      Some(NonEmptyArray(xs))
+    }
+
+  let fromArrayExn = xs =>
+    if xs->isEmpty {
+      raise(ErrorEmpty)
+    } else {
+      NonEmptyArray(xs)
+    }
+
+  let toArray = nxs =>
+    switch nxs {
+    | NonEmptyArray(xs) => xs
+    }
+
+  let first = nxs => nxs->toArray->firstUnsafe
+
+  let last = nxs => nxs->toArray->lastUnsafe
+
+  let take = (nxs, n) => nxs->toArray->take(n)
+
+  let takeWhileU = (nxs, n) => nxs->toArray->takeWhileU(n)
+
+  let takeWhile = (nxs, n) => nxs->toArray->takeWhile(n)
+}
