@@ -316,23 +316,6 @@ function takeWhile$1(nxs, n) {
   return takeWhileU(nxs, Curry.__1(n));
 }
 
-var NonEmpty = {
-  fromArray: fromArray,
-  fromArrayExn: fromArrayExn,
-  toArray: toArray,
-  first: first$1,
-  last: last$1,
-  reduce1U: reduce1U,
-  reduce1: reduce1,
-  minByU: minByU,
-  minBy: minBy,
-  maxByU: maxByU,
-  maxBy: maxBy,
-  take: take$1,
-  takeWhileU: takeWhileU$1,
-  takeWhile: takeWhile$1
-};
-
 var get = Belt_Array.get;
 
 var getExn = Belt_Array.getExn;
@@ -468,6 +451,28 @@ var cmp = Belt_Array.cmp;
 var eqU = Belt_Array.eqU;
 
 var eq = Belt_Array.eq;
+
+function NonEmpty_length(prim) {
+  return prim.length;
+}
+
+var NonEmpty = {
+  fromArray: fromArray,
+  fromArrayExn: fromArrayExn,
+  toArray: toArray,
+  first: first$1,
+  last: last$1,
+  reduce1U: reduce1U,
+  reduce1: reduce1,
+  minByU: minByU,
+  minBy: minBy,
+  maxByU: maxByU,
+  maxBy: maxBy,
+  take: take$1,
+  takeWhileU: takeWhileU$1,
+  takeWhile: takeWhile$1,
+  length: NonEmpty_length
+};
 
 export {
   get ,
