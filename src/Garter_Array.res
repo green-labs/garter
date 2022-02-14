@@ -179,6 +179,8 @@ module String = {
 }
 
 module NonEmpty = {
+  include Belt.Array
+
   type t<'a> = array<'a>
 
   let fromArray = xs =>
@@ -217,11 +219,53 @@ module NonEmpty = {
 
   let maxBy = (xs, cmp) => maxByU(xs, (. a, b) => cmp(a, b))
 
-  let take = (nxs, n) => nxs->toArray->take(n)
+  let take = (nxs, n) => nxs->take(n)
 
-  let takeWhileU = (nxs, n) => nxs->toArray->takeWhileU(n)
+  let takeWhileU = (nxs, n) => nxs->takeWhileU(n)
 
-  let takeWhile = (nxs, n) => nxs->toArray->takeWhile(n)
+  let takeWhile = (nxs, n) => nxs->takeWhile(n)
 
-  include Belt_Array
+  let drop = (nxs, n) => nxs->drop(n)
+
+  let dropWhileU = (nxs, pred) => nxs->dropWhileU(pred)
+
+  let dropWhile = (nxs, pred) => nxs->dropWhile(pred)
+
+  let updateUnsafeU = (nxs, i, f) => nxs->updateUnsafeU(i, f)
+
+  let updateUnsafe = (nxs, i, f) => nxs->updateUnsafe(i, f)
+
+  let updateExnU = (nxs, i, f) => nxs->updateExnU(i, f)
+
+  let updateExn = (nxs, i, f) => nxs->updateExn(i, f)
+
+  let keepSome = nxs => nxs->keepSome
+
+  let groupBy = (nxs, keyFn, ~id) => nxs->groupBy(keyFn, ~id)
+
+  let indexBy = (nxs, indexFn, ~id) => nxs->indexBy(indexFn, ~id)
+
+  let frequencies = (nxs, ~id) => nxs->frequencies(~id)
+
+  let distinct = (nxs, ~id) => nxs->distinct(~id)->fromArrayExn
+
+  let scan = (nxs, init, f) => nxs->scan(init, f)->fromArrayExn
+
+  let chunk = (nxs, step) => nxs->chunk(step)->fromArrayExn
+
+  let randomOne = nxs => nxs->getUnsafe(Js.Math.random_int(0, length(nxs)))
+
+  let randomSample = (nxs, prob) => nxs->randomSample(prob)
+
+  let intersperse = (nxs, delim) => nxs->intersperse(delim)->fromArrayExn
+
+  module Int = {
+    let groupBy = (nxs, keyFn) => nxs->Int.groupBy(keyFn)
+    let indexBy = (nxs, indexFn) => nxs->Int.indexBy(indexFn)
+  }
+
+  module String = {
+    let groupBy = (nxs, keyFn) => nxs->String.groupBy(keyFn)
+    let indexBy = (nxs, indexFn) => nxs->String.indexBy(indexFn)
+  }
 }
