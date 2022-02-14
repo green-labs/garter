@@ -179,6 +179,8 @@ module String = {
 }
 
 module NonEmpty = {
+  include Belt.Array
+
   type t<'a> = array<'a>
 
   let fromArray = xs =>
@@ -223,5 +225,47 @@ module NonEmpty = {
 
   let takeWhile = (nxs, n) => nxs->toArray->takeWhile(n)
 
-  include Belt_Array
+  let drop = (nxs, n) => nxs->toArray->drop(n)
+
+  let dropWhileU = (nxs, pred) => nxs->toArray->dropWhileU(pred)
+
+  let dropWhile = (nxs, pred) => nxs->toArray->dropWhile(pred)
+
+  let updateUnsafeU = (nxs, i, f) => nxs->toArray->updateUnsafeU(i, f)
+
+  let updateUnsafe = (nxs, i, f) => nxs->toArray->updateUnsafe(i, f)
+
+  let updateExnU = (nxs, i, f) => nxs->toArray->updateExnU(i, f)
+
+  let updateExn = (nxs, i, f) => nxs->toArray->updateExn(i, f)
+
+  let keepSome = nxs => nxs->toArray->keepSome
+
+  let groupBy = (nxs, keyFn, ~id) => nxs->toArray->groupBy(keyFn, ~id)
+
+  let indexBy = (nxs, indexFn, ~id) => nxs->toArray->indexBy(indexFn, ~id)
+
+  let frequencies = (nxs, ~id) => nxs->toArray->frequencies(~id)
+
+  let distinct = (nxs, ~id) => nxs->toArray->distinct(~id)->fromArrayExn
+
+  let scan = (nxs, init, f) => nxs->toArray->scan(init, f)->fromArrayExn
+
+  let chunk = (nxs, step) => nxs->toArray->chunk(step)->fromArrayExn
+
+  let randomOne = nxs => nxs->toArray->getUnsafe(Js.Math.random_int(0, length(nxs->toArray)))
+
+  let randomSample = (nxs, prob) => nxs->toArray->randomSample(prob)
+
+  let intersperse = (nxs, delim) => nxs->toArray->intersperse(delim)->fromArrayExn
+
+  module Int = {
+    let groupBy = (nxs, keyFn) => nxs->toArray->Int.groupBy(keyFn)
+    let indexBy = (nxs, indexFn) => nxs->toArray->Int.indexBy(indexFn)
+  }
+
+  module String = {
+    let groupBy = (nxs, keyFn) => nxs->toArray->String.groupBy(keyFn)
+    let indexBy = (nxs, indexFn) => nxs->toArray->String.indexBy(indexFn)
+  }
 }

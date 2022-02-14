@@ -316,6 +316,74 @@ function takeWhile$1(nxs, n) {
   return takeWhileU(nxs, Curry.__1(n));
 }
 
+var drop$1 = drop;
+
+var dropWhileU$1 = dropWhileU;
+
+function dropWhile$1(nxs, pred) {
+  return dropWhileU(nxs, Curry.__1(pred));
+}
+
+var updateUnsafeU$1 = updateUnsafeU;
+
+var updateUnsafe$1 = updateUnsafe;
+
+var updateExnU$1 = updateExnU;
+
+var updateExn$1 = updateExn;
+
+function keepSome$1(nxs) {
+  return Belt_Array.keepMap(nxs, (function (x) {
+                return x;
+              }));
+}
+
+var groupBy$3 = groupBy;
+
+var indexBy$3 = indexBy;
+
+var frequencies$1 = frequencies;
+
+function distinct$1(nxs, id) {
+  return fromArrayExn(distinct(nxs, id));
+}
+
+function scan$1(nxs, init, f) {
+  return fromArrayExn(scan(nxs, init, f));
+}
+
+function chunk$1(nxs, step) {
+  return fromArrayExn(chunk(nxs, step));
+}
+
+function randomOne$1(nxs) {
+  return nxs[Js_math.random_int(0, nxs.length)];
+}
+
+var randomSample$1 = randomSample;
+
+function intersperse$1(nxs, delim) {
+  return fromArrayExn(intersperse(nxs, delim));
+}
+
+var groupBy$4 = groupBy$1;
+
+var indexBy$4 = indexBy$1;
+
+var Int$1 = {
+  groupBy: groupBy$4,
+  indexBy: indexBy$4
+};
+
+var groupBy$5 = groupBy$2;
+
+var indexBy$5 = indexBy$2;
+
+var $$String$1 = {
+  groupBy: groupBy$5,
+  indexBy: indexBy$5
+};
+
 var get = Belt_Array.get;
 
 var getExn = Belt_Array.getExn;
@@ -456,7 +524,101 @@ function NonEmpty_length(prim) {
   return prim.length;
 }
 
+function NonEmpty_size(prim) {
+  return prim.length;
+}
+
+function NonEmpty_getUnsafe(prim0, prim1) {
+  return prim0[prim1];
+}
+
+function NonEmpty_getUndefined(prim0, prim1) {
+  return prim0[prim1];
+}
+
+function NonEmpty_setUnsafe(prim0, prim1, prim2) {
+  prim0[prim1] = prim2;
+  
+}
+
+function NonEmpty_copy(prim) {
+  return prim.slice(0);
+}
+
+function NonEmpty_truncateToLengthUnsafe(prim0, prim1) {
+  prim0.length = prim1;
+  
+}
+
 var NonEmpty = {
+  length: NonEmpty_length,
+  size: NonEmpty_size,
+  get: Belt_Array.get,
+  getExn: Belt_Array.getExn,
+  getUnsafe: NonEmpty_getUnsafe,
+  getUndefined: NonEmpty_getUndefined,
+  set: Belt_Array.set,
+  setExn: Belt_Array.setExn,
+  setUnsafe: NonEmpty_setUnsafe,
+  shuffleInPlace: Belt_Array.shuffleInPlace,
+  shuffle: Belt_Array.shuffle,
+  reverseInPlace: Belt_Array.reverseInPlace,
+  reverse: Belt_Array.reverse,
+  zip: Belt_Array.zip,
+  zipByU: Belt_Array.zipByU,
+  zipBy: Belt_Array.zipBy,
+  unzip: Belt_Array.unzip,
+  concat: Belt_Array.concat,
+  concatMany: Belt_Array.concatMany,
+  slice: Belt_Array.slice,
+  sliceToEnd: Belt_Array.sliceToEnd,
+  copy: NonEmpty_copy,
+  fill: Belt_Array.fill,
+  blit: Belt_Array.blit,
+  blitUnsafe: Belt_Array.blitUnsafe,
+  forEachU: Belt_Array.forEachU,
+  forEach: Belt_Array.forEach,
+  mapU: Belt_Array.mapU,
+  map: Belt_Array.map,
+  getByU: Belt_Array.getByU,
+  getBy: Belt_Array.getBy,
+  getIndexByU: Belt_Array.getIndexByU,
+  getIndexBy: Belt_Array.getIndexBy,
+  keepU: Belt_Array.keepU,
+  keep: Belt_Array.keep,
+  keepWithIndexU: Belt_Array.keepWithIndexU,
+  keepWithIndex: Belt_Array.keepWithIndex,
+  keepMapU: Belt_Array.keepMapU,
+  keepMap: Belt_Array.keepMap,
+  forEachWithIndexU: Belt_Array.forEachWithIndexU,
+  forEachWithIndex: Belt_Array.forEachWithIndex,
+  mapWithIndexU: Belt_Array.mapWithIndexU,
+  mapWithIndex: Belt_Array.mapWithIndex,
+  partitionU: Belt_Array.partitionU,
+  partition: Belt_Array.partition,
+  reduceU: Belt_Array.reduceU,
+  reduce: Belt_Array.reduce,
+  reduceReverseU: Belt_Array.reduceReverseU,
+  reduceReverse: Belt_Array.reduceReverse,
+  reduceReverse2U: Belt_Array.reduceReverse2U,
+  reduceReverse2: Belt_Array.reduceReverse2,
+  reduceWithIndexU: Belt_Array.reduceWithIndexU,
+  reduceWithIndex: Belt_Array.reduceWithIndex,
+  joinWithU: Belt_Array.joinWithU,
+  joinWith: Belt_Array.joinWith,
+  someU: Belt_Array.someU,
+  some: Belt_Array.some,
+  everyU: Belt_Array.everyU,
+  every: Belt_Array.every,
+  some2U: Belt_Array.some2U,
+  some2: Belt_Array.some2,
+  every2U: Belt_Array.every2U,
+  every2: Belt_Array.every2,
+  cmpU: Belt_Array.cmpU,
+  cmp: Belt_Array.cmp,
+  eqU: Belt_Array.eqU,
+  eq: Belt_Array.eq,
+  truncateToLengthUnsafe: NonEmpty_truncateToLengthUnsafe,
   fromArray: fromArray,
   fromArrayExn: fromArrayExn,
   toArray: toArray,
@@ -471,7 +633,25 @@ var NonEmpty = {
   take: take$1,
   takeWhileU: takeWhileU$1,
   takeWhile: takeWhile$1,
-  length: NonEmpty_length
+  drop: drop$1,
+  dropWhileU: dropWhileU$1,
+  dropWhile: dropWhile$1,
+  updateUnsafeU: updateUnsafeU$1,
+  updateUnsafe: updateUnsafe$1,
+  updateExnU: updateExnU$1,
+  updateExn: updateExn$1,
+  keepSome: keepSome$1,
+  groupBy: groupBy$3,
+  indexBy: indexBy$3,
+  frequencies: frequencies$1,
+  distinct: distinct$1,
+  scan: scan$1,
+  chunk: chunk$1,
+  randomOne: randomOne$1,
+  randomSample: randomSample$1,
+  intersperse: intersperse$1,
+  Int: Int$1,
+  $$String: $$String$1
 };
 
 export {
