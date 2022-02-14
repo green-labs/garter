@@ -138,6 +138,114 @@ module String: {
 module NonEmpty: {
   type t<'a>
 
+  let length: t<'a> => int
+
+  let size: t<'a> => int
+
+  let get: (t<'a>, int) => option<'a>
+  let getExn: (t<'a>, int) => 'a
+  let getUnsafe: (t<'a>, int) => 'a
+  let getUndefined: (t<'a>, int) => Js.Undefined.t<'a>
+
+  let set: (t<'a>, int, 'a) => bool
+  let setExn: (t<'a>, int, 'a) => unit
+  let setUnsafe: (t<'a>, int, 'a) => unit
+
+  let shuffleInPlace: t<'a> => unit
+  let shuffle: t<'a> => t<'a>
+
+  let reverseInPlace: t<'a> => unit
+  let reverse: t<'a> => t<'a>
+
+  let zip: (t<'a>, t<'b>) => t<('a, 'b)>
+  let zipByU: (t<'a>, t<'b>, (. 'a, 'b) => 'c) => t<'c>
+  let zipBy: (t<'a>, t<'b>, ('a, 'b) => 'c) => t<'c>
+
+  let unzip: t<('a, 'b)> => (t<'a>, t<'b>)
+
+  let concat: (t<'a>, t<'a>) => t<'a>
+  let concatMany: t<array<'a>> => array<'a>
+
+  let slice: (t<'a>, ~offset: int, ~len: int) => array<'a>
+  let sliceToEnd: (t<'a>, int) => array<'a>
+  let copy: t<'a> => t<'a>
+
+  let fill: (t<'a>, ~offset: int, ~len: int, 'a) => unit
+
+  let blit: (~src: t<'a>, ~srcOffset: int, ~dst: array<'a>, ~dstOffset: int, ~len: int) => unit
+  let blitUnsafe: (
+    ~src: t<'a>,
+    ~srcOffset: int,
+    ~dst: array<'a>,
+    ~dstOffset: int,
+    ~len: int,
+  ) => unit
+
+  let forEachU: (t<'a>, (. 'a) => unit) => unit
+  let forEach: (t<'a>, 'a => unit) => unit
+
+  let mapU: (t<'a>, (. 'a) => 'b) => t<'b>
+  let map: (t<'a>, 'a => 'b) => t<'b>
+
+  let getByU: (t<'a>, (. 'a) => bool) => option<'a>
+  let getBy: (t<'a>, 'a => bool) => option<'a>
+
+  let getIndexByU: (t<'a>, (. 'a) => bool) => option<int>
+  let getIndexBy: (t<'a>, 'a => bool) => option<int>
+
+  let keepU: (t<'a>, (. 'a) => bool) => array<'a>
+  let keep: (t<'a>, 'a => bool) => array<'a>
+
+  let keepWithIndexU: (t<'a>, (. 'a, int) => bool) => array<'a>
+  let keepWithIndex: (t<'a>, ('a, int) => bool) => array<'a>
+
+  let keepMapU: (t<'a>, (. 'a) => option<'b>) => array<'b>
+  let keepMap: (t<'a>, 'a => option<'b>) => array<'b>
+
+  let forEachWithIndexU: (t<'a>, (. int, 'a) => unit) => unit
+  let forEachWithIndex: (t<'a>, (int, 'a) => unit) => unit
+
+  let mapWithIndexU: (t<'a>, (. int, 'a) => 'b) => t<'b>
+  let mapWithIndex: (t<'a>, (int, 'a) => 'b) => t<'b>
+
+  let partitionU: (t<'a>, (. 'a) => bool) => (array<'a>, array<'a>)
+  let partition: (t<'a>, 'a => bool) => (array<'a>, array<'a>)
+
+  let reduceU: (t<'b>, 'a, (. 'a, 'b) => 'a) => 'a
+  let reduce: (t<'b>, 'a, ('a, 'b) => 'a) => 'a
+
+  let reduceReverseU: (t<'b>, 'a, (. 'a, 'b) => 'a) => 'a
+  let reduceReverse: (t<'b>, 'a, ('a, 'b) => 'a) => 'a
+
+  let reduceReverse2U: (t<'a>, t<'b>, 'c, (. 'c, 'a, 'b) => 'c) => 'c
+  let reduceReverse2: (t<'a>, t<'b>, 'c, ('c, 'a, 'b) => 'c) => 'c
+
+  let reduceWithIndexU: (t<'a>, 'b, (. 'b, 'a, int) => 'b) => 'b
+  let reduceWithIndex: (t<'a>, 'b, ('b, 'a, int) => 'b) => 'b
+
+  let joinWithU: (t<'a>, string, (. 'a) => string) => string
+  let joinWith: (t<'a>, string, 'a => string) => string
+
+  let someU: (t<'a>, (. 'a) => bool) => bool
+  let some: (t<'a>, 'a => bool) => bool
+
+  let everyU: (t<'a>, (. 'a) => bool) => bool
+  let every: (t<'a>, 'a => bool) => bool
+
+  let some2U: (t<'a>, t<'b>, (. 'a, 'b) => bool) => bool
+  let some2: (t<'a>, t<'b>, ('a, 'b) => bool) => bool
+
+  let every2U: (t<'a>, t<'b>, (. 'a, 'b) => bool) => bool
+  let every2: (t<'a>, t<'b>, ('a, 'b) => bool) => bool
+
+  let cmpU: (t<'a>, t<'a>, (. 'a, 'a) => int) => int
+  let cmp: (t<'a>, t<'a>, ('a, 'a) => int) => int
+
+  let eqU: (t<'a>, t<'a>, (. 'a, 'a) => bool) => bool
+  let eq: (t<'a>, t<'a>, ('a, 'a) => bool) => bool
+
+  let truncateToLengthUnsafe: (t<'a>, int) => unit
+
   let fromArray: array<'a> => option<t<'a>>
   let fromArrayExn: array<'a> => t<'a>
 
@@ -159,5 +267,42 @@ module NonEmpty: {
   let takeWhileU: (t<'a>, (. 'a) => bool) => array<'a>
   let takeWhile: (t<'a>, 'a => bool) => array<'a>
 
-  let length: t<'a> => int
+  let drop: (t<'a>, int) => array<'a>
+  let dropWhileU: (t<'a>, (. 'a) => bool) => array<'a>
+  let dropWhile: (t<'a>, 'a => bool) => array<'a>
+
+  let updateUnsafeU: (t<'a>, int, (. 'a) => 'a) => unit
+  let updateUnsafe: (t<'a>, int, 'a => 'a) => unit
+  let updateExnU: (t<'a>, int, (. 'a) => 'a) => unit
+  let updateExn: (t<'a>, int, 'a => 'a) => unit
+
+  let keepSome: t<option<'a>> => array<'a>
+
+  let groupBy: (t<'a>, 'a => 'b, ~id: Belt.Map.id<'b, 'c>) => Belt.Map.t<'b, t<'a>, 'c>
+
+  let indexBy: (t<'a>, 'a => 'b, ~id: Belt.Map.id<'b, 'c>) => Belt.Map.t<'b, 'a, 'c>
+
+  let frequencies: (t<'a>, ~id: Belt.Map.id<'a, 'b>) => Belt.Map.t<'a, int, 'b>
+
+  let distinct: (t<'a>, ~id: Belt.Set.id<'a, 'b>) => t<'a>
+
+  let scan: (t<'a>, 'b, ('b, 'a) => 'b) => t<'b>
+
+  let chunk: (t<'a>, int) => t<array<'a>>
+
+  let randomOne: t<'a> => 'a
+
+  let randomSample: (t<'a>, float) => array<'a>
+
+  let intersperse: (t<'a>, 'a) => t<'a>
+
+  module Int: {
+    let groupBy: (t<'a>, 'a => Belt.Map.Int.key) => Belt.Map.Int.t<t<'a>>
+    let indexBy: (t<'a>, 'a => Belt.Map.Int.key) => Belt.Map.Int.t<'a>
+  }
+
+  module String: {
+    let groupBy: (t<'a>, 'a => Belt.Map.String.key) => Belt.Map.String.t<t<'a>>
+    let indexBy: (t<'a>, 'a => Belt.Map.String.key) => Belt.Map.String.t<'a>
+  }
 }
