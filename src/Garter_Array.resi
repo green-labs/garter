@@ -158,4 +158,6 @@ module NonEmpty: {
   let take: (t<'a>, int) => array<'a>
   let takeWhileU: (t<'a>, (. 'a) => bool) => array<'a>
   let takeWhile: (t<'a>, 'a => bool) => array<'a>
+
+  let length: t<'a> => int
 }

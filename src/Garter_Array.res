@@ -179,28 +179,27 @@ module String = {
 }
 
 module NonEmpty = {
-  @unboxed
-  type t<'a> = NonEmpty(array<'a>)
+  type t<'a> = array<'a>
 
   let fromArray = xs =>
     switch xs {
     | [] => None
-    | nxs => Some(NonEmpty(nxs))
+    | nxs => Some(nxs)
     }
 
   let fromArrayExn = xs =>
     switch xs {
     | [] => raise(Invalid_argument("array is empty"))
-    | nxs => NonEmpty(nxs)
+    | nxs => nxs
     }
 
-  let toArray = (NonEmpty(nxs)) => nxs
+  let toArray = nxs => nxs
 
-  let first = (NonEmpty(nxs)) => nxs->firstUnsafe
+  let first = nxs => nxs->firstUnsafe
 
-  let last = (NonEmpty(nxs)) => nxs->lastUnsafe
+  let last = nxs => nxs->lastUnsafe
 
-  let reduce1U = (NonEmpty(xs), f) => {
+  let reduce1U = (xs, f) => {
     let r = ref(xs->getUnsafe(0))
     for i in 1 to length(xs) - 1 {
       r := f(. r.contents, xs->getUnsafe(i))
@@ -223,4 +222,6 @@ module NonEmpty = {
   let takeWhileU = (nxs, n) => nxs->toArray->takeWhileU(n)
 
   let takeWhile = (nxs, n) => nxs->toArray->takeWhile(n)
+
+  include Belt_Array
 }
