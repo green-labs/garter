@@ -296,7 +296,6 @@ __metadata:
     "@changesets/cli": ^2.20.0
     "@dusty-phillips/rescript-zora": ^3.0.0
     "@rescript/std": ^9.1.3
-    bsdoc: ^6.0.4-alpha
     onchange: ^7.1.0
     pta: ^1.0.2
     rescript: ^9.1.4
@@ -637,15 +636,6 @@ __metadata:
   dependencies:
     wcwidth: ^1.0.1
   checksum: 8ca7b10bbbbfe1c45c12c9119c4bc1e585452ddd58c5da93020a0c1deac3cf6bb335632675c9c705ba7b644065ae1d6623a25e79b7a48e0ee0ff42cb6e94b357
-  languageName: node
-  linkType: hard
-
-"bsdoc@npm:^6.0.4-alpha":
-  version: 6.0.4-alpha
-  resolution: "bsdoc@npm:6.0.4-alpha"
-  bin:
-    bsdoc: bin/bsdoc
-  checksum: 78bca580161d88e9905812e5dcbb71c37fa2f02d77eeadfea09ac3fb409828540076990f417542fbfb7ca5565fe3fec39d04b026347c2a57017b9ce1da21e95e
   languageName: node
   linkType: hard
 
