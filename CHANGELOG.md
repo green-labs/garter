@@ -1,5 +1,11 @@
 # @greenlabs/garter
 
+## 0.7.1
+
+### Patch Changes
+
+- d91050d: Fix installation on linux
+
 ## 0.7.0
 
 ### Minor Changes
