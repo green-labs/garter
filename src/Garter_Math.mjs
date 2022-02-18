@@ -16,19 +16,11 @@ function sum_float(__x) {
 }
 
 function average_int(nums) {
-  if (nums.length === 0) {
-    return 0;
-  } else {
-    return sum_int(nums) / nums.length;
-  }
+  return sum_int(nums) / nums.length;
 }
 
 function average_float(nums) {
-  if (nums.length === 0) {
-    return 0;
-  } else {
-    return sum_float(nums) / nums.length;
-  }
+  return sum_float(nums) / nums.length;
 }
 
 function clamp_int(x, lower, upper) {
