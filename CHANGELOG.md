@@ -1,5 +1,12 @@
 # @greenlabs/garter
 
+## 0.8.0
+
+### Minor Changes
+
+- Garter.Math.average 빈 배열에 대해 NaN을 반환하도록 수정
+  Garter.Array.NonEmpty.concat 추가
+
 ## 0.7.1
 
 ### Patch Changes
