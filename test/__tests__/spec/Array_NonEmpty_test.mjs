@@ -105,6 +105,25 @@ Zora$1.test("maxBy", (function (t) {
                           ]), Caml.caml_int_compare), 5);
       }));
 
+Zora$1.test("concatMany", (function (t) {
+        var nonEmptyArrayArray = Garter_Array.NonEmpty.fromArrayExn([
+              nonEmptyArray,
+              nonEmptyArray
+            ]);
+        return testEqual(t, "1", Garter_Array.NonEmpty.concatMany(nonEmptyArrayArray), Garter_Array.NonEmpty.fromArrayExn([
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                      ]));
+      }));
+
 export {
   testEqual ,
   emptyArray ,

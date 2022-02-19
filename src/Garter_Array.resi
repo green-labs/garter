@@ -164,7 +164,7 @@ module NonEmpty: {
   let unzip: t<('a, 'b)> => (t<'a>, t<'b>)
 
   let concat: (t<'a>, t<'a>) => t<'a>
-  let concatMany: t<array<'a>> => array<'a>
+  let concatMany: t<t<'a>> => t<'a>
 
   let slice: (t<'a>, ~offset: int, ~len: int) => array<'a>
   let sliceToEnd: (t<'a>, int) => array<'a>
