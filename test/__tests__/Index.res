@@ -1,4 +1,5 @@
 include Array_test
+include Array_NonEmpty_test
+include Math_test
 include Object_test
 include String_test
-include Array_NonEmpty_test
