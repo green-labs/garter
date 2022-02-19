@@ -49,3 +49,8 @@ zoraBlock("maxBy", t => {
   t->testEqual("1", maxBy([1, 2, 3, 4, 5]->fromArrayExn, compare), 5)
   t->testEqual("2", maxByU([1, 2, 3, 4, 5]->fromArrayExn, (. a, b) => compare(a, b)), 5)
 })
+
+zoraBlock("concatMany", t => {
+  let nonEmptyArrayArray = [nonEmptyArray, nonEmptyArray]->fromArrayExn
+  t->testEqual("1", nonEmptyArrayArray->concatMany, [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]->fromArrayExn)
+})
