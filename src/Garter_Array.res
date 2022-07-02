@@ -185,8 +185,6 @@ module String = {
 module NonEmpty = {
   include Belt.Array
 
-  type t<'a> = array<'a>
-
   let fromArray = xs =>
     switch xs {
     | [] => None
