@@ -69,6 +69,10 @@ function isEmpty(o) {
   return Garter_Array.isEmpty(Object.keys(o));
 }
 
+function toJson(prim) {
+  return prim;
+}
+
 export {
   fromKV ,
   any ,
@@ -79,6 +83,7 @@ export {
   any6 ,
   any7 ,
   isEmpty ,
+  toJson ,
   
 }
 /* No side effect */
