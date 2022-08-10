@@ -217,6 +217,12 @@ var Int = {
   indexBy: indexBy$1
 };
 
+function joinWith(xs, s) {
+  return Belt_Array.joinWithU(xs, s, (function (x) {
+                return x;
+              }));
+}
+
 function groupBy$2(xs, keyFn) {
   return Belt_Array.reduceU(xs, undefined, (function (res, x) {
                 return Belt_MapString.updateU(res, Curry._1(keyFn, x), (function (v) {
@@ -236,6 +242,7 @@ function indexBy$2(xs, indexFn) {
 }
 
 var $$String = {
+  joinWith: joinWith,
   groupBy: groupBy$2,
   indexBy: indexBy$2
 };
@@ -379,11 +386,6 @@ var groupBy$5 = groupBy$2;
 
 var indexBy$5 = indexBy$2;
 
-var $$String$1 = {
-  groupBy: groupBy$5,
-  indexBy: indexBy$5
-};
-
 var get = Belt_Array.get;
 
 var getExn = Belt_Array.getExn;
@@ -494,7 +496,7 @@ var reduceWithIndex = Belt_Array.reduceWithIndex;
 
 var joinWithU = Belt_Array.joinWithU;
 
-var joinWith = Belt_Array.joinWith;
+var joinWith$1 = Belt_Array.joinWith;
 
 var someU = Belt_Array.someU;
 
@@ -549,6 +551,12 @@ function NonEmpty_truncateToLengthUnsafe(prim0, prim1) {
   prim0.length = prim1;
   
 }
+
+var NonEmpty_String = {
+  joinWith: joinWith,
+  groupBy: groupBy$5,
+  indexBy: indexBy$5
+};
 
 var NonEmpty = {
   length: NonEmpty_length,
@@ -651,7 +659,7 @@ var NonEmpty = {
   randomSample: randomSample$1,
   intersperse: intersperse$1,
   Int: Int$1,
-  $$String: $$String$1
+  $$String: NonEmpty_String
 };
 
 export {
@@ -710,7 +718,7 @@ export {
   reduceWithIndexU ,
   reduceWithIndex ,
   joinWithU ,
-  joinWith ,
+  joinWith$1 as joinWith,
   someU ,
   some ,
   everyU ,

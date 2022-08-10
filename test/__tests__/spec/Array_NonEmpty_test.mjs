@@ -3,7 +3,6 @@
 import * as Caml from "@rescript/std/lib/es6/caml.js";
 import * as Zora from "@dusty-phillips/rescript-zora/src/Zora.mjs";
 import * as Zora$1 from "zora";
-import * as Belt_Array from "@rescript/std/lib/es6/belt_Array.js";
 import * as Belt_Option from "@rescript/std/lib/es6/belt_Option.js";
 import * as Garter_Array from "../../../src/Garter_Array.mjs";
 
@@ -66,7 +65,7 @@ Zora$1.test("take", (function (t) {
       }));
 
 Zora$1.test("reduce1", (function (t) {
-        return testEqual(t, "", Garter_Array.NonEmpty.reduce1(Garter_Array.NonEmpty.fromArrayExn(Belt_Array.range(1, 10)), (function (prim0, prim1) {
+        return testEqual(t, "", Garter_Array.NonEmpty.reduce1(Garter_Array.NonEmpty.fromArrayExn(Garter_Array.range(1, 10)), (function (prim0, prim1) {
                           return prim0 + prim1 | 0;
                         })), 55);
       }));
