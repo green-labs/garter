@@ -18,3 +18,5 @@ let any5: ({..}, {..}, {..}, {..}, {..}) => array<t>
 let any6: ({..}, {..}, {..}, {..}, {..}, {..}) => array<t>
 let any7: ({..}, {..}, {..}, {..}, {..}, {..}, {..}) => array<t>
 let isEmpty: {..} => bool
+
+let toJson: {..} => Js.Json.t
