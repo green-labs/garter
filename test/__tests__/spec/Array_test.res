@@ -40,3 +40,11 @@ zoraBlock("intersperse", t => {
   t->testEqual("3", intersperse([1, 2], 0), [1, 0, 2])
   t->testEqual("4", intersperse([1, 2, 3], 0), [1, 0, 2, 0, 3])
 })
+
+module String = {
+  zoraBlock("joinWith", t => {
+    t->testEqual("", String.joinWith([], ","), "")
+    t->testEqual("", String.joinWith(["a"], ","), "a")
+    t->testEqual("", String.joinWith(["a", "b", "c"], ","), "a,b,c")
+  })
+}

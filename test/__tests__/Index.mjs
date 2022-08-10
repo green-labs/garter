@@ -6,6 +6,8 @@ import * as Object_test from "./spec/Object_test.mjs";
 import * as String_test from "./spec/String_test.mjs";
 import * as Array_NonEmpty_test from "./spec/Array_NonEmpty_test.mjs";
 
+var $$String = Array_test.$$String;
+
 var emptyArray = Array_NonEmpty_test.emptyArray;
 
 var nonEmptyArray = Array_NonEmpty_test.nonEmptyArray;
@@ -13,6 +15,7 @@ var nonEmptyArray = Array_NonEmpty_test.nonEmptyArray;
 var testEqual = String_test.testEqual;
 
 export {
+  $$String ,
   emptyArray ,
   nonEmptyArray ,
   testEqual ,

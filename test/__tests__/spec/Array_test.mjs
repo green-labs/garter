@@ -164,8 +164,21 @@ Zora$1.test("intersperse", (function (t) {
                   ]);
       }));
 
+Zora$1.test("joinWith", (function (t) {
+        testEqual(t, "", Garter_Array.$$String.joinWith([], ","), "");
+        testEqual(t, "", Garter_Array.$$String.joinWith(["a"], ","), "a");
+        return testEqual(t, "", Garter_Array.$$String.joinWith([
+                        "a",
+                        "b",
+                        "c"
+                      ], ","), "a,b,c");
+      }));
+
+var $$String = {};
+
 export {
   testEqual ,
+  $$String ,
   
 }
 /*  Not a pure module */

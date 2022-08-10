@@ -131,6 +131,7 @@ module Int: {
 }
 
 module String: {
+  let joinWith: (array<string>, string) => string
   let groupBy: (array<'a>, 'a => Belt.Map.String.key) => Belt.Map.String.t<array<'a>>
   let indexBy: (array<'a>, 'a => Belt.Map.String.key) => Belt.Map.String.t<'a>
 }
@@ -302,6 +303,7 @@ module NonEmpty: {
   }
 
   module String: {
+    let joinWith: (t<string>, string) => string
     let groupBy: (t<'a>, 'a => Belt.Map.String.key) => Belt.Map.String.t<t<'a>>
     let indexBy: (t<'a>, 'a => Belt.Map.String.key) => Belt.Map.String.t<'a>
   }

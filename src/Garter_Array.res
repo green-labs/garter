@@ -157,6 +157,10 @@ module Int = {
 }
 
 module String = {
+  let joinWith = (xs, s) => {
+    Belt.Array.joinWithU(xs, s, (. x) => x)
+  }
+
   // Belt.Map 대신 Belt.Map.String을 씁니다.
   let groupBy = (xs, keyFn) => {
     let empty = Belt.Map.String.empty
@@ -267,5 +271,6 @@ module NonEmpty = {
   module String = {
     let groupBy = (nxs, keyFn) => nxs->String.groupBy(keyFn)
     let indexBy = (nxs, indexFn) => nxs->String.indexBy(indexFn)
+    let joinWith = String.joinWith
   }
 }

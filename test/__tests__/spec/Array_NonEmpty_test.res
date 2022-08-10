@@ -1,7 +1,7 @@
 open Zora
 
-open Belt.Array
-open Garter.Array.NonEmpty
+open Garter.Array
+open! Garter.Array.NonEmpty
 
 let testEqual = (t, name, lhs, rhs) =>
   t->test(name, t => {
