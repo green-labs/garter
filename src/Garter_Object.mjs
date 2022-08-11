@@ -69,7 +69,7 @@ function isEmpty(o) {
   return Garter_Array.isEmpty(Object.keys(o));
 }
 
-function toJson(prim) {
+function toJsonUnsafe(prim) {
   return prim;
 }
 
@@ -83,7 +83,7 @@ export {
   any6 ,
   any7 ,
   isEmpty ,
-  toJson ,
+  toJsonUnsafe ,
   
 }
 /* No side effect */

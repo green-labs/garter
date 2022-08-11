@@ -2,6 +2,8 @@
 
 import * as Zora from "@dusty-phillips/rescript-zora/src/Zora.mjs";
 import * as Zora$1 from "zora";
+import * as Js_dict from "@rescript/std/lib/es6/js_dict.js";
+import * as Belt_Option from "@rescript/std/lib/es6/belt_Option.js";
 import * as Garter_Object from "../../../src/Garter_Object.mjs";
 
 function testEqual(t, name, lhs, rhs) {
@@ -18,8 +20,37 @@ Zora$1.test("fromKV", (function (t) {
                   });
       }));
 
+function roundtrip(o) {
+  return Belt_Option.map(JSON.stringify(o), (function (prim) {
+                return JSON.parse(prim);
+              }));
+}
+
+Zora$1.test("toJsonUnsafe", (function (t) {
+        t.test("safe", (function (t) {
+                t.equal(Garter_Object.toJsonUnsafe({
+                          x: 0
+                        }), Js_dict.fromArray([[
+                            "x",
+                            0.0
+                          ]]), "dict");
+                return Zora.done(undefined);
+              }));
+        t.test("unsafe", (function (t) {
+                var o = {
+                  x: (function (param) {
+                      return 1;
+                    })
+                };
+                t.notEqual(Garter_Object.toJsonUnsafe(o), roundtrip(o), "function");
+                return Zora.done(undefined);
+              }));
+        
+      }));
+
 export {
   testEqual ,
+  roundtrip ,
   
 }
 /*  Not a pure module */

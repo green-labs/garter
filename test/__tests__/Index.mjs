@@ -12,12 +12,15 @@ var emptyArray = Array_NonEmpty_test.emptyArray;
 
 var nonEmptyArray = Array_NonEmpty_test.nonEmptyArray;
 
+var roundtrip = Object_test.roundtrip;
+
 var testEqual = String_test.testEqual;
 
 export {
   $$String ,
   emptyArray ,
   nonEmptyArray ,
+  roundtrip ,
   testEqual ,
   
 }
