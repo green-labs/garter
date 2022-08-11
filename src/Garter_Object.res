@@ -13,4 +13,4 @@ let any7 = (a, b, c, d, e, f, g) => [Any(a), Any(b), Any(c), Any(d), Any(e), Any
 
 let isEmpty = o => o->Js.Obj.keys->Garter_Array.isEmpty
 
-external toJson: {..} => Js.Json.t = "%identity"
+external toJsonUnsafe: {..} => Js.Json.t = "%identity"

@@ -19,4 +19,4 @@ let any6: ({..}, {..}, {..}, {..}, {..}, {..}) => array<t>
 let any7: ({..}, {..}, {..}, {..}, {..}, {..}, {..}) => array<t>
 let isEmpty: {..} => bool
 
-let toJson: {..} => Js.Json.t
+let toJsonUnsafe: {..} => Js.Json.t
