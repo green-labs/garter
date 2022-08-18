@@ -20,3 +20,5 @@ let any7: ({..}, {..}, {..}, {..}, {..}, {..}, {..}) => array<t>
 let isEmpty: {..} => bool
 
 let toJsonUnsafe: {..} => Js.Json.t
+let toJsonExn: {..} => Js.Json.t
+let toJson: {..} => option<Js.Json.t>

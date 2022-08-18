@@ -30,3 +30,39 @@ zoraBlock("toJsonUnsafe", t => {
     done()
   })
 })
+
+zoraBlock("[Object] toJsonExn", t => {
+  t->test("dict", t => {
+    t->equal(
+      Garter.Object.toJsonExn({"x": 0}),
+      Js.Json.object_(Js.Dict.fromArray([("x", Js.Json.number(0.0))])),
+      "",
+    )
+    done()
+  })
+
+  t->test("roundtrip", t => {
+    let o = {"x": () => 1}
+    t->equal(Garter.Object.toJsonExn(o), roundtrip(o), "roundtrip")
+
+    done()
+  })
+})
+
+zoraBlock("[Object] toJson", t => {
+  t->test("dict", t => {
+    t->equal(
+      Garter.Object.toJson({"x": 0}),
+      Some(Js.Json.object_(Js.Dict.fromArray([("x", Js.Json.number(0.0))]))),
+      "",
+    )
+    done()
+  })
+
+  t->test("roundtrip", t => {
+    let o = {"x": () => 1}
+    t->equal(Garter.Object.toJson(o), Some(roundtrip(o)), "roundtrip")
+
+    done()
+  })
+})

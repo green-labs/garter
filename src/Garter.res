@@ -15,3 +15,5 @@ module Object = Garter_Object
 module Option = Garter_Option
 
 module String = Garter_String
+
+module Json = Garter_Json
