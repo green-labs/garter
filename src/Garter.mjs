@@ -19,6 +19,8 @@ var $$Option;
 
 var $$String;
 
+var Json;
+
 export {
   $$Array ,
   Fn ,
@@ -29,6 +31,7 @@ export {
   $$Object ,
   $$Option ,
   $$String ,
+  Json ,
   
 }
 /* No side effect */

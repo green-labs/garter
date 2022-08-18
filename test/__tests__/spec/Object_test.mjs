@@ -4,6 +4,7 @@ import * as Zora from "@dusty-phillips/rescript-zora/src/Zora.mjs";
 import * as Zora$1 from "zora";
 import * as Js_dict from "@rescript/std/lib/es6/js_dict.js";
 import * as Belt_Option from "@rescript/std/lib/es6/belt_Option.js";
+import * as Caml_option from "@rescript/std/lib/es6/caml_option.js";
 import * as Garter_Object from "../../../src/Garter_Object.mjs";
 
 function testEqual(t, name, lhs, rhs) {
@@ -43,6 +44,50 @@ Zora$1.test("toJsonUnsafe", (function (t) {
                     })
                 };
                 t.notEqual(Garter_Object.toJsonUnsafe(o), roundtrip(o), "function");
+                return Zora.done(undefined);
+              }));
+        
+      }));
+
+Zora$1.test("[Object] toJsonExn", (function (t) {
+        t.test("dict", (function (t) {
+                t.equal(Garter_Object.toJsonExn({
+                          x: 0
+                        }), Js_dict.fromArray([[
+                            "x",
+                            0.0
+                          ]]), "");
+                return Zora.done(undefined);
+              }));
+        t.test("roundtrip", (function (t) {
+                var o = {
+                  x: (function (param) {
+                      return 1;
+                    })
+                };
+                t.equal(Garter_Object.toJsonExn(o), roundtrip(o), "roundtrip");
+                return Zora.done(undefined);
+              }));
+        
+      }));
+
+Zora$1.test("[Object] toJson", (function (t) {
+        t.test("dict", (function (t) {
+                t.equal(Garter_Object.toJson({
+                          x: 0
+                        }), Caml_option.some(Js_dict.fromArray([[
+                                "x",
+                                0.0
+                              ]])), "");
+                return Zora.done(undefined);
+              }));
+        t.test("roundtrip", (function (t) {
+                var o = {
+                  x: (function (param) {
+                      return 1;
+                    })
+                };
+                t.equal(Garter_Object.toJson(o), Caml_option.some(roundtrip(o)), "roundtrip");
                 return Zora.done(undefined);
               }));
         

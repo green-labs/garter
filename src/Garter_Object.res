@@ -14,3 +14,12 @@ let any7 = (a, b, c, d, e, f, g) => [Any(a), Any(b), Any(c), Any(d), Any(e), Any
 let isEmpty = o => o->Js.Obj.keys->Garter_Array.isEmpty
 
 external toJsonUnsafe: {..} => Js.Json.t = "%identity"
+
+let toJsonExn = o => o->Garter_Json.stringifyExn->Obj.magic->Js.Json.parseExn
+
+let toJson = o =>
+  try {
+    o->toJsonExn->Some
+  } catch {
+  | _ => None
+  }
