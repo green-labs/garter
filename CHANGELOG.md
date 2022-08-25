@@ -1,5 +1,11 @@
 # @greenlabs/garter
 
+## 0.11.0
+
+### Minor Changes
+
+- b63511d: Support ReScript v10
+
 ## 0.10.0
 
 ### Minor Changes
