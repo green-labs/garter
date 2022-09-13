@@ -36,7 +36,7 @@ let updateExnU: (array<'a>, int, (. 'a) => 'a) => unit
 let updateExn: (array<'a>, int, 'a => 'a) => unit
 
 /**
-option타입의 배열에서 None을 제거하고, Some의 값을 꺼낸 결과의 배열을 반환합니다.  
+`option`타입의 배열에서 `None`을 제거하고, `Some`의 값을 꺼낸 결과의 배열을 반환합니다.  
 시간 복잡도: O(n)
 
 ```
@@ -46,8 +46,8 @@ keepSome([ Some(1), None, Some(3) ]) == [ 1, 3 ]
 let keepSome: array<option<'a>> => array<'a>
 
 /**
-keyFn으로 그루핑된 Belt.Map을 반환합니다.  
-~id에는 Belt.Id.Comparable 모듈이 전달되어야 합니다.  
+`keyFn`으로 그루핑된 `Belt.Map`을 반환합니다.  
+`~id`에는 `Belt.Id.Comparable`` 모듈이 전달되어야 합니다.  
 일반적인 타입에 대한 Comparable 모듈은 Garter.Id를 참고하세요.
 
 ```
@@ -61,8 +61,8 @@ groupBy(
 let groupBy: (array<'a>, 'a => 'b, ~id: Belt.Map.id<'b, 'c>) => Belt.Map.t<'b, array<'a>, 'c>
 
 /**
-indexFn의 결과값을 Belt.Map의 key로 할당한 값을 반환합니다.  
-indexFn의 결과값이 중복되면 마지막으로 나온 값이 할당됩니다.
+`indexFn`의 결과값을 `Belt.Map`의 `key`로 할당한 값을 반환합니다.  
+`indexFn`의 결과값이 중복되면 마지막으로 나온 값이 할당됩니다.
 
 ```
 type t = {a:int, b:int}
@@ -77,7 +77,7 @@ indexBy(
 let indexBy: (array<'a>, 'a => 'b, ~id: Belt.Map.id<'b, 'c>) => Belt.Map.t<'b, 'a, 'c>
 
 /**
-배열에 들어있는 값들의 빈도를 구하여 Map으로 반환합니다.
+배열에 들어있는 값들의 빈도를 구하여 `Map`으로 반환합니다.
 */
 let frequencies: (array<'a>, ~id: Belt.Map.id<'a, 'b>) => Belt.Map.t<'a, int, 'b>
 
@@ -87,7 +87,7 @@ let frequencies: (array<'a>, ~id: Belt.Map.id<'a, 'b>) => Belt.Map.t<'a, int, 'b
 let distinct: (array<'a>, ~id: Belt.Set.id<'a, 'b>) => array<'a>
 
 /**
-reduce와 비슷하나 중간 결과를 모두 포함한 array를 반환합니다.
+`reduce`와 비슷하나 중간 결과를 모두 포함한 `array`를 반환합니다.
 */
 let scan: (array<'a>, 'b, ('b, 'a) => 'b) => array<'b>
 
