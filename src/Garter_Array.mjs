@@ -79,21 +79,19 @@ function dropWhile(ar, pred) {
 function updateUnsafeU(ar, i, f) {
   var v = ar[i];
   ar[i] = f(v);
-  
 }
 
 function updateUnsafe(ar, i, f) {
-  return updateUnsafeU(ar, i, Curry.__1(f));
+  updateUnsafeU(ar, i, Curry.__1(f));
 }
 
 function updateExnU(ar, i, f) {
   var v = Belt_Array.getExn(ar, i);
   ar[i] = f(v);
-  
 }
 
 function updateExn(ar, i, f) {
-  return updateExnU(ar, i, Curry.__1(f));
+  updateExnU(ar, i, Curry.__1(f));
 }
 
 function keepSome(xs) {
@@ -157,7 +155,6 @@ function scan(xs, init, f) {
   Belt_Array.forEachWithIndex(xs, (function (idx, x) {
           cur.contents = Curry._2(f, cur.contents, x);
           state[idx] = cur.contents;
-          
         }));
   return state;
 }
@@ -189,7 +186,6 @@ function intersperse(xs, delim) {
   var ys = Belt_Array.make((xlen << 1) - 1 | 0, delim);
   Belt_Array.forEachWithIndex(xs, (function (i, x) {
           ys[(i << 1)] = x;
-          
         }));
   return ys;
 }
@@ -446,6 +442,10 @@ var mapU = Belt_Array.mapU;
 
 var map = Belt_Array.map;
 
+var flatMapU = Belt_Array.flatMapU;
+
+var flatMap = Belt_Array.flatMap;
+
 var getByU = Belt_Array.getByU;
 
 var getBy = Belt_Array.getBy;
@@ -522,6 +522,10 @@ var eqU = Belt_Array.eqU;
 
 var eq = Belt_Array.eq;
 
+var initU = Belt_Array.initU;
+
+var init = Belt_Array.init;
+
 function NonEmpty_length(prim) {
   return prim.length;
 }
@@ -540,7 +544,6 @@ function NonEmpty_getUndefined(prim0, prim1) {
 
 function NonEmpty_setUnsafe(prim0, prim1, prim2) {
   prim0[prim1] = prim2;
-  
 }
 
 function NonEmpty_copy(prim) {
@@ -549,7 +552,6 @@ function NonEmpty_copy(prim) {
 
 function NonEmpty_truncateToLengthUnsafe(prim0, prim1) {
   prim0.length = prim1;
-  
 }
 
 var NonEmpty_String = {
@@ -693,6 +695,8 @@ export {
   forEach ,
   mapU ,
   map ,
+  flatMapU ,
+  flatMap ,
   getByU ,
   getBy ,
   getIndexByU ,
@@ -731,6 +735,8 @@ export {
   cmp ,
   eqU ,
   eq ,
+  initU ,
+  init ,
   isEmpty ,
   firstUnsafe ,
   firstExn ,
@@ -761,6 +767,5 @@ export {
   Int ,
   $$String ,
   NonEmpty ,
-  
 }
 /* No side effect */

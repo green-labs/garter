@@ -26,7 +26,7 @@ var Int64Comparable = Belt_Id.MakeComparableU({
       cmp: cmp$2
     });
 
-var cmp$3 = Caml_obj.caml_compare;
+var cmp$3 = Caml_obj.compare;
 
 var FloatComparable = Belt_Id.MakeComparableU({
       cmp: cmp$3
@@ -37,6 +37,5 @@ export {
   IntComparable ,
   Int64Comparable ,
   FloatComparable ,
-  
 }
 /* StringComparable Not a pure module */

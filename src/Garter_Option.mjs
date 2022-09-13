@@ -15,6 +15,5 @@ var $less$star$great = apply;
 export {
   apply ,
   $less$star$great ,
-  
 }
 /* No side effect */

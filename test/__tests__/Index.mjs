@@ -23,6 +23,5 @@ export {
   nonEmptyArray ,
   testEqual ,
   roundtrip ,
-  
 }
 /* Json_test Not a pure module */
