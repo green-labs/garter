@@ -1,5 +1,11 @@
 # @greenlabs/garter
 
+## 0.11.1
+
+### Patch Changes
+
+- e993829: fix doc string
+
 ## 0.11.0
 
 ### Minor Changes
