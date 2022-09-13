@@ -47,7 +47,7 @@ let keepSome: array<option<'a>> => array<'a>
 
 /**
 `keyFn`으로 그루핑된 `Belt.Map`을 반환합니다.  
-`~id`에는 `Belt.Id.Comparable`` 모듈이 전달되어야 합니다.  
+`~id`에는 `Belt.Id.Comparable` 모듈이 전달되어야 합니다.  
 일반적인 타입에 대한 Comparable 모듈은 Garter.Id를 참고하세요.
 
 ```
