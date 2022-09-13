@@ -5,7 +5,7 @@ import * as Caml_obj from "@rescript/std/lib/es6/caml_obj.js";
 import * as Garter_Math from "../../../src/Garter_Math.mjs";
 
 function testEqual(lhs, rhs) {
-  if (Caml_obj.caml_equal(lhs, rhs)) {
+  if (Caml_obj.equal(lhs, rhs)) {
     return ;
   }
   throw {
@@ -22,7 +22,6 @@ function testEqual(lhs, rhs) {
 Zora.test("average", (function (t) {
         t.ok(Number.isNaN(Garter_Math.average_int([])), "average of no numbers");
         t.ok(Number.isNaN(Garter_Math.average_float([])), "average of no numbers");
-        
       }));
 
 Zora.test("clamp", (function (t) {
@@ -32,11 +31,9 @@ Zora.test("clamp", (function (t) {
         t.ok(Number.isNaN(Garter_Math.clamp_float(0, NaN, 1.15)), "");
         t.ok(Number.isNaN(Garter_Math.clamp_float(0, NaN, NaN)), "");
         t.ok(Number.isNaN(Garter_Math.clamp_float(NaN, 0.5, 1.15)), "");
-        
       }));
 
 export {
   testEqual ,
-  
 }
 /*  Not a pure module */

@@ -12,7 +12,6 @@ function testEqual(t, name, lhs, rhs) {
           t.equal(lhs, rhs, name);
           return Zora.done(undefined);
         }));
-  
 }
 
 Zora$1.test("[Json] stringifyExn", (function (t) {
@@ -26,7 +25,6 @@ Zora$1.test("[Json] stringifyExn", (function (t) {
                 t.equal(Garter_Json.stringifyExn(undefined), undefined, "");
                 return Zora.done(undefined);
               }));
-        
       }));
 
 Zora$1.test("[Json] stringify", (function (t) {
@@ -40,7 +38,6 @@ Zora$1.test("[Json] stringify", (function (t) {
                 t.equal(Garter_Json.stringify(undefined), undefined, "");
                 return Zora.done(undefined);
               }));
-        
       }));
 
 Zora$1.test("[Json] parse", (function (t) {
@@ -57,7 +54,6 @@ Zora$1.test("[Json] parse", (function (t) {
                 t.equal(Garter_Json.parse(undefined), undefined, "");
                 return Zora.done(undefined);
               }));
-        
       }));
 
 function roundtrip(json) {
@@ -73,12 +69,10 @@ Zora$1.test("[Json] roundtrip", (function (t) {
                 t.equal(Belt_Option.flatMap(Garter_Json.stringify(json), Garter_Json.parse), Caml_option.some(json), "");
                 return Zora.done(undefined);
               }));
-        
       }));
 
 export {
   testEqual ,
   roundtrip ,
-  
 }
 /*  Not a pure module */

@@ -11,7 +11,6 @@ function testEqual(t, name, lhs, rhs) {
           t.equal(lhs, rhs, name);
           return Zora.done(undefined);
         }));
-  
 }
 
 var emptyArray = Garter_Array.NonEmpty.fromArray([]);
@@ -25,28 +24,28 @@ var nonEmptyArray = Garter_Array.NonEmpty.fromArrayExn([
     ]);
 
 Zora$1.test("fromArray", (function (t) {
-        return testEqual(t, "Empty", Garter_Array.NonEmpty.fromArray([]), undefined);
+        testEqual(t, "Empty", Garter_Array.NonEmpty.fromArray([]), undefined);
       }));
 
 Zora$1.test("toArray", (function (t) {
         testEqual(t, "Empty", Belt_Option.map(emptyArray, Garter_Array.NonEmpty.toArray), undefined);
-        return testEqual(t, "NonEmpty", Garter_Array.NonEmpty.toArray(nonEmptyArray), [
-                    1,
-                    2,
-                    3,
-                    4,
-                    5
-                  ]);
+        testEqual(t, "NonEmpty", Garter_Array.NonEmpty.toArray(nonEmptyArray), [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]);
       }));
 
 Zora$1.test("first", (function (t) {
         testEqual(t, "Empty", Belt_Option.map(emptyArray, Garter_Array.NonEmpty.first), undefined);
-        return testEqual(t, "NonEmpty", Garter_Array.NonEmpty.first(nonEmptyArray), 1);
+        testEqual(t, "NonEmpty", Garter_Array.NonEmpty.first(nonEmptyArray), 1);
       }));
 
 Zora$1.test("last", (function (t) {
         testEqual(t, "Empty", Belt_Option.map(emptyArray, Garter_Array.NonEmpty.last), undefined);
-        return testEqual(t, "NonEmpty", Garter_Array.NonEmpty.last(nonEmptyArray), 5);
+        testEqual(t, "NonEmpty", Garter_Array.NonEmpty.last(nonEmptyArray), 5);
       }));
 
 Zora$1.test("take", (function (t) {
@@ -55,19 +54,19 @@ Zora$1.test("take", (function (t) {
               1,
               2
             ]);
-        return testEqual(t, "3", Garter_Array.NonEmpty.take(nonEmptyArray, 7), [
-                    1,
-                    2,
-                    3,
-                    4,
-                    5
-                  ]);
+        testEqual(t, "3", Garter_Array.NonEmpty.take(nonEmptyArray, 7), [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]);
       }));
 
 Zora$1.test("reduce1", (function (t) {
-        return testEqual(t, "", Garter_Array.NonEmpty.reduce1(Garter_Array.NonEmpty.fromArrayExn(Garter_Array.range(1, 10)), (function (prim0, prim1) {
-                          return prim0 + prim1 | 0;
-                        })), 55);
+        testEqual(t, "", Garter_Array.NonEmpty.reduce1(Garter_Array.NonEmpty.fromArrayExn(Garter_Array.range(1, 10)), (function (prim0, prim1) {
+                    return prim0 + prim1 | 0;
+                  })), 55);
       }));
 
 Zora$1.test("minBy", (function (t) {
@@ -77,14 +76,14 @@ Zora$1.test("minBy", (function (t) {
                       3,
                       4,
                       5
-                    ]), Caml.caml_int_compare), 1);
-        return testEqual(t, "2", Garter_Array.NonEmpty.minByU(Garter_Array.NonEmpty.fromArrayExn([
-                            1,
-                            2,
-                            3,
-                            4,
-                            5
-                          ]), Caml.caml_int_compare), 1);
+                    ]), Caml.int_compare), 1);
+        testEqual(t, "2", Garter_Array.NonEmpty.minByU(Garter_Array.NonEmpty.fromArrayExn([
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ]), Caml.int_compare), 1);
       }));
 
 Zora$1.test("maxBy", (function (t) {
@@ -94,14 +93,14 @@ Zora$1.test("maxBy", (function (t) {
                       3,
                       4,
                       5
-                    ]), Caml.caml_int_compare), 5);
-        return testEqual(t, "2", Garter_Array.NonEmpty.maxByU(Garter_Array.NonEmpty.fromArrayExn([
-                            1,
-                            2,
-                            3,
-                            4,
-                            5
-                          ]), Caml.caml_int_compare), 5);
+                    ]), Caml.int_compare), 5);
+        testEqual(t, "2", Garter_Array.NonEmpty.maxByU(Garter_Array.NonEmpty.fromArrayExn([
+                      1,
+                      2,
+                      3,
+                      4,
+                      5
+                    ]), Caml.int_compare), 5);
       }));
 
 Zora$1.test("concatMany", (function (t) {
@@ -109,24 +108,23 @@ Zora$1.test("concatMany", (function (t) {
               nonEmptyArray,
               nonEmptyArray
             ]);
-        return testEqual(t, "1", Garter_Array.NonEmpty.concatMany(nonEmptyArrayArray), Garter_Array.NonEmpty.fromArrayExn([
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5
-                      ]));
+        testEqual(t, "1", Garter_Array.NonEmpty.concatMany(nonEmptyArrayArray), Garter_Array.NonEmpty.fromArrayExn([
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]));
       }));
 
 export {
   testEqual ,
   emptyArray ,
   nonEmptyArray ,
-  
 }
 /* emptyArray Not a pure module */

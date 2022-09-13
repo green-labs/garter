@@ -18,6 +18,5 @@ export {
   identity ,
   complement ,
   constantly ,
-  
 }
 /* No side effect */

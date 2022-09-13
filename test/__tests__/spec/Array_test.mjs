@@ -10,7 +10,6 @@ function testEqual(t, name, lhs, rhs) {
           t.equal(lhs, rhs, name);
           return Zora.done(undefined);
         }));
-  
 }
 
 Zora$1.test("take", (function (t) {
@@ -31,19 +30,19 @@ Zora$1.test("take", (function (t) {
               1,
               2
             ]);
-        return testEqual(t, "3", Garter_Array.take([
-                        1,
-                        2,
-                        3,
-                        4,
-                        5
-                      ], 7), [
-                    1,
-                    2,
-                    3,
-                    4,
-                    5
-                  ]);
+        testEqual(t, "3", Garter_Array.take([
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ], 7), [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]);
       }));
 
 Zora$1.test("drop", (function (t) {
@@ -71,13 +70,13 @@ Zora$1.test("drop", (function (t) {
               4,
               5
             ]);
-        return testEqual(t, "3", Garter_Array.drop([
-                        1,
-                        2,
-                        3,
-                        4,
-                        5
-                      ], 7), []);
+        testEqual(t, "3", Garter_Array.drop([
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ], 7), []);
       }));
 
 Zora$1.test("takeWhile", (function (t) {
@@ -93,15 +92,15 @@ Zora$1.test("takeWhile", (function (t) {
               1,
               2
             ]);
-        return testEqual(t, "2", Garter_Array.takeWhile([
-                        1,
-                        2,
-                        3,
-                        4,
-                        5
-                      ], (function (param) {
-                          return Garter_Fn.constantly(false, param);
-                        })), []);
+        testEqual(t, "2", Garter_Array.takeWhile([
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ], (function (param) {
+                    return Garter_Fn.constantly(false, param);
+                  })), []);
       }));
 
 Zora$1.test("dropWhile", (function (t) {
@@ -118,26 +117,26 @@ Zora$1.test("dropWhile", (function (t) {
               4,
               5
             ]);
-        return testEqual(t, "2", Garter_Array.dropWhile([
-                        1,
-                        2,
-                        3,
-                        4,
-                        5
-                      ], (function (param) {
-                          return Garter_Fn.constantly(true, param);
-                        })), []);
+        testEqual(t, "2", Garter_Array.dropWhile([
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ], (function (param) {
+                    return Garter_Fn.constantly(true, param);
+                  })), []);
       }));
 
 Zora$1.test("keepSome", (function (t) {
-        return testEqual(t, "1", Garter_Array.keepSome([
-                        1,
-                        undefined,
-                        3
-                      ]), [
-                    1,
-                    3
-                  ]);
+        testEqual(t, "1", Garter_Array.keepSome([
+                  1,
+                  undefined,
+                  3
+                ]), [
+              1,
+              3
+            ]);
       }));
 
 Zora$1.test("intersperse", (function (t) {
@@ -151,27 +150,27 @@ Zora$1.test("intersperse", (function (t) {
               0,
               2
             ]);
-        return testEqual(t, "4", Garter_Array.intersperse([
-                        1,
-                        2,
-                        3
-                      ], 0), [
-                    1,
-                    0,
-                    2,
-                    0,
-                    3
-                  ]);
+        testEqual(t, "4", Garter_Array.intersperse([
+                  1,
+                  2,
+                  3
+                ], 0), [
+              1,
+              0,
+              2,
+              0,
+              3
+            ]);
       }));
 
 Zora$1.test("joinWith", (function (t) {
         testEqual(t, "", Garter_Array.$$String.joinWith([], ","), "");
         testEqual(t, "", Garter_Array.$$String.joinWith(["a"], ","), "a");
-        return testEqual(t, "", Garter_Array.$$String.joinWith([
-                        "a",
-                        "b",
-                        "c"
-                      ], ","), "a,b,c");
+        testEqual(t, "", Garter_Array.$$String.joinWith([
+                  "a",
+                  "b",
+                  "c"
+                ], ","), "a,b,c");
       }));
 
 var $$String = {};
@@ -179,6 +178,5 @@ var $$String = {};
 export {
   testEqual ,
   $$String ,
-  
 }
 /*  Not a pure module */

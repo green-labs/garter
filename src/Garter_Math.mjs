@@ -59,6 +59,5 @@ export {
   average_float ,
   clamp_int ,
   clamp_float ,
-  
 }
 /* No side effect */

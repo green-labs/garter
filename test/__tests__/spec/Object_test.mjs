@@ -12,13 +12,12 @@ function testEqual(t, name, lhs, rhs) {
           t.equal(lhs, rhs, name);
           return Zora.done(undefined);
         }));
-  
 }
 
 Zora$1.test("fromKV", (function (t) {
-        return testEqual(t, "1", Garter_Object.fromKV("a", 1), {
-                    a: 1
-                  });
+        testEqual(t, "1", Garter_Object.fromKV("a", 1), {
+              a: 1
+            });
       }));
 
 function roundtrip(o) {
@@ -46,7 +45,6 @@ Zora$1.test("toJsonUnsafe", (function (t) {
                 t.notEqual(Garter_Object.toJsonUnsafe(o), roundtrip(o), "function");
                 return Zora.done(undefined);
               }));
-        
       }));
 
 Zora$1.test("[Object] toJsonExn", (function (t) {
@@ -68,7 +66,6 @@ Zora$1.test("[Object] toJsonExn", (function (t) {
                 t.equal(Garter_Object.toJsonExn(o), roundtrip(o), "roundtrip");
                 return Zora.done(undefined);
               }));
-        
       }));
 
 Zora$1.test("[Object] toJson", (function (t) {
@@ -90,12 +87,10 @@ Zora$1.test("[Object] toJson", (function (t) {
                 t.equal(Garter_Object.toJson(o), Caml_option.some(roundtrip(o)), "roundtrip");
                 return Zora.done(undefined);
               }));
-        
       }));
 
 export {
   testEqual ,
   roundtrip ,
-  
 }
 /*  Not a pure module */
