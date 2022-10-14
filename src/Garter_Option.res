@@ -1,3 +1,5 @@
+include Belt.Option
+
 // Applicative of Belt.Option
 let apply = (fa, b) =>
   switch (fa, b) {
