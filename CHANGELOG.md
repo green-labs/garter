@@ -1,5 +1,11 @@
 # @greenlabs/garter
 
+## 0.11.2
+
+### Patch Changes
+
+- Include Belt.Option in Option
+
 ## 0.11.1
 
 ### Patch Changes
