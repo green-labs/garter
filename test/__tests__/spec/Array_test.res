@@ -4,10 +4,8 @@ open Garter.Array
 open Garter.Fn
 
 let testEqual = (t, name, lhs, rhs) =>
-  t->test(name, t => {
+  t->test(name, async t => {
     t->equal(lhs, rhs, name)
-
-    done()
   })
 
 zoraBlock("take", t => {

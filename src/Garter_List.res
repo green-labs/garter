@@ -18,11 +18,9 @@ let dropExn = (l, cnt) => {
 
 let splitAtExn = (l, n) => (takeExn(l, n), dropExn(l, n))
 
-let reduce1U = (l, f) => {
+let reduce1 = (l, f) => {
   switch l {
   | list{} => raise(Not_found)
   | list{x, ...xs} => reduceU(xs, x, f)
   }
 }
-
-let reduce1 = (l, f) => reduce1U(l, (. a, x) => f(. a, x))

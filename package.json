@@ -6,16 +6,16 @@
     "rescript"
   ],
   "dependencies": {
-    "@rescript/std": "^10.0.0"
+    "@rescript/std": "^10.1.4"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.20.0",
-    "@dusty-phillips/rescript-zora": "^3.0.0",
+    "@changesets/cli": "^2.26.1",
+    "@dusty-phillips/rescript-zora": "^4.0.0",
     "onchange": "^7.1.0",
-    "pta": "^1.0.2",
-    "rescript": "^10.0.0",
+    "pta": "^1.2.0",
+    "rescript": "11.0.0-beta.2",
     "tap-difflet": "^0.7.2",
-    "zora": "^5.0.3"
+    "zora": "^5.2.0"
   },
   "files": [
     "bsconfig.json",

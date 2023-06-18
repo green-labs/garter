@@ -23,13 +23,13 @@ let take = (ar, n) => {
 
 let takeWhileU = (ar, pred) => {
   let i = ref(0)
-  while i.contents < length(ar) && pred(. getUnsafe(ar, i.contents)) {
+  while i.contents < length(ar) && pred(getUnsafe(ar, i.contents)) {
     i := i.contents + 1
   }
   take(ar, i.contents)
 }
 
-let takeWhile = (ar, pred) => takeWhileU(ar, (. x) => pred(x))
+let takeWhile = (ar, pred) => takeWhileU(ar, x => pred(x))
 
 let drop = (ar, n) => {
   let offset = if n < 0 {
@@ -44,35 +44,35 @@ let drop = (ar, n) => {
 
 let dropWhileU = (ar, pred) => {
   let i = ref(0)
-  while i.contents < length(ar) && pred(. getUnsafe(ar, i.contents)) {
+  while i.contents < length(ar) && pred(getUnsafe(ar, i.contents)) {
     i := i.contents + 1
   }
   drop(ar, i.contents)
 }
 
-let dropWhile = (ar, pred) => dropWhileU(ar, (. x) => pred(x))
+let dropWhile = (ar, pred) => dropWhileU(ar, x => pred(x))
 
 let updateUnsafeU = (ar, i, f) => {
   let v = getUnsafe(ar, i)
-  setUnsafe(ar, i, f(. v))
+  setUnsafe(ar, i, f(v))
 }
 
-let updateUnsafe = (ar, i, f) => updateUnsafeU(ar, i, (. x) => f(x))
+let updateUnsafe = (ar, i, f) => updateUnsafeU(ar, i, x => f(x))
 
 let updateExnU = (ar, i, f) => {
   let v = getExn(ar, i)
-  setUnsafe(ar, i, f(. v))
+  setUnsafe(ar, i, f(v))
 }
 
-let updateExn = (ar, i, f) => updateExnU(ar, i, (. x) => f(x))
+let updateExn = (ar, i, f) => updateExnU(ar, i, x => f(x))
 
 let keepSome = xs => keepMap(xs, x => x)
 
 let groupBy = (xs, keyFn, ~id) => {
   let empty = Belt.Map.make(~id)
 
-  reduceU(xs, empty, (. res, x) =>
-    Belt.Map.updateU(res, keyFn(x), (. v) =>
+  reduceU(xs, empty, (res, x) =>
+    Belt.Map.updateU(res, keyFn(x), v =>
       switch v {
       | Some(l) => Some(l->concat([x]))
       | None => Some([x])
@@ -84,14 +84,14 @@ let groupBy = (xs, keyFn, ~id) => {
 let indexBy = (xs, indexFn, ~id) => {
   let empty = Belt.Map.make(~id)
 
-  reduceU(xs, empty, (. res, x) => Belt.Map.set(res, indexFn(x), x))
+  reduceU(xs, empty, (res, x) => Belt.Map.set(res, indexFn(x), x))
 }
 
 let frequencies = (ar, ~id) => groupBy(ar, Garter_Fn.identity, ~id)->Belt.Map.map(length)
 
 let distinct = (ar, ~id) =>
   ar
-  ->reduceU((Belt.Set.make(~id), list{}), (. (seen, res), v) =>
+  ->reduceU((Belt.Set.make(~id), list{}), ((seen, res), v) =>
     if seen->Belt.Set.has(v) {
       (seen, res)
     } else {
@@ -139,8 +139,8 @@ module Int = {
   let groupBy = (xs, keyFn) => {
     let empty = Belt.Map.Int.empty
 
-    reduceU(xs, empty, (. res, x) =>
-      Belt.Map.Int.updateU(res, keyFn(x), (. v) =>
+    reduceU(xs, empty, (res, x) =>
+      Belt.Map.Int.updateU(res, keyFn(x), v =>
         switch v {
         | Some(l) => Some(l->concat([x]))
         | None => Some([x])
@@ -152,21 +152,21 @@ module Int = {
   let indexBy = (xs, indexFn) => {
     let empty = Belt.Map.Int.empty
 
-    reduceU(xs, empty, (. res, x) => Belt.Map.Int.set(res, indexFn(x), x))
+    reduceU(xs, empty, (res, x) => Belt.Map.Int.set(res, indexFn(x), x))
   }
 }
 
 module String = {
   let joinWith = (xs, s) => {
-    Belt.Array.joinWithU(xs, s, (. x) => x)
+    Belt.Array.joinWithU(xs, s, x => x)
   }
 
   // Belt.Map 대신 Belt.Map.String을 씁니다.
   let groupBy = (xs, keyFn) => {
     let empty = Belt.Map.String.empty
 
-    reduceU(xs, empty, (. res, x) =>
-      Belt.Map.String.updateU(res, keyFn(x), (. v) =>
+    reduceU(xs, empty, (res, x) =>
+      Belt.Map.String.updateU(res, keyFn(x), v =>
         switch v {
         | Some(l) => Some(l->concat([x]))
         | None => Some([x])
@@ -178,12 +178,12 @@ module String = {
   let indexBy = (xs, indexFn) => {
     let empty = Belt.Map.String.empty
 
-    reduceU(xs, empty, (. res, x) => Belt.Map.String.set(res, indexFn(x), x))
+    reduceU(xs, empty, (res, x) => Belt.Map.String.set(res, indexFn(x), x))
   }
 }
 
 module NonEmpty = {
-  include Belt.Array
+  type t<'a> = Belt.Array.t<'a>
 
   let fromArray = xs =>
     switch xs {
@@ -203,43 +203,29 @@ module NonEmpty = {
 
   let last = nxs => nxs->lastUnsafe
 
-  let reduce1U = (xs, f) => {
+  let reduce1 = (xs, f) => {
     let r = ref(xs->getUnsafe(0))
     for i in 1 to length(xs) - 1 {
-      r := f(. r.contents, xs->getUnsafe(i))
+      r := f(r.contents, xs->getUnsafe(i))
     }
     r.contents
   }
 
-  let reduce1 = (xs, f) => reduce1U(xs, (. a, x) => f(a, x))
+  let minBy = (xs, cmp) => reduce1(xs, (a, b) => cmp(a, b) > 0 ? b : a)
 
-  let minByU = (xs, cmp) => reduce1U(xs, (. a, b) => cmp(. a, b) > 0 ? b : a)
-
-  let minBy = (xs, cmp) => minByU(xs, (. a, b) => cmp(a, b))
-
-  let maxByU = (xs, cmp) => reduce1U(xs, (. a, b) => cmp(. a, b) < 0 ? b : a)
-
-  let maxBy = (xs, cmp) => maxByU(xs, (. a, b) => cmp(a, b))
+  let maxBy = (xs, cmp) => reduce1(xs, (a, b) => cmp(a, b) < 0 ? b : a)
 
   let take = (nxs, n) => nxs->take(n)
 
-  let takeWhileU = (nxs, n) => nxs->takeWhileU(n)
-
-  let takeWhile = (nxs, n) => nxs->takeWhile(n)
+  let takeWhile = (nxs, n) => nxs->takeWhileU(n)
 
   let drop = (nxs, n) => nxs->drop(n)
 
-  let dropWhileU = (nxs, pred) => nxs->dropWhileU(pred)
+  let dropWhile = (nxs, pred) => nxs->dropWhileU(pred)
 
-  let dropWhile = (nxs, pred) => nxs->dropWhile(pred)
+  let updateUnsafe = (nxs, i, f) => nxs->updateUnsafeU(i, f)
 
-  let updateUnsafeU = (nxs, i, f) => nxs->updateUnsafeU(i, f)
-
-  let updateUnsafe = (nxs, i, f) => nxs->updateUnsafe(i, f)
-
-  let updateExnU = (nxs, i, f) => nxs->updateExnU(i, f)
-
-  let updateExn = (nxs, i, f) => nxs->updateExn(i, f)
+  let updateExn = (nxs, i, f) => nxs->updateExnU(i, f)
 
   let keepSome = nxs => nxs->keepSome
 
@@ -271,4 +257,86 @@ module NonEmpty = {
     let indexBy = (nxs, indexFn) => nxs->String.indexBy(indexFn)
     let joinWith = String.joinWith
   }
+
+  let length = xs => Belt.Array.length(xs)
+
+  let size = xs => Belt.Array.size(xs)
+
+  let get = (xs, i) => Belt.Array.get(xs, i)
+  let getExn = (xs, i) => Belt.Array.getExn(xs, i)
+  let getUnsafe = (xs, i) => Belt.Array.getUnsafe(xs, i)
+  let getUndefined = (xs, i) => Belt.Array.getUndefined(xs, i)
+
+  let set = (xs, i, v) => Belt.Array.set(xs, i, v)
+  let setExn = (xs, i, v) => Belt.Array.setExn(xs, i, v)
+  let setUnsafe = (xs, i, v) => Belt.Array.setUnsafe(xs, i, v)
+
+  let shuffleInPlace = xs => Belt.Array.shuffleInPlace(xs)
+  let shuffle = xs => Belt.Array.shuffle(xs)
+
+  let reverseInPlace = xs => Belt.Array.reverseInPlace(xs)
+  let reverse = xs => Belt.Array.reverse(xs)
+
+  let zip = (xs, ys) => Belt.Array.zip(xs, ys)
+  let zipBy = (xs, ys, f) => Belt.Array.zipByU(xs, ys, f)
+
+  let unzip = xs => Belt.Array.unzip(xs)
+
+  let concat = (xs, ys) => Belt.Array.concat(xs, ys)
+  let concatMany = xs => Belt.Array.concatMany(xs)
+
+  let slice = (xs, ~offset, ~len) => Belt.Array.slice(xs, ~offset, ~len)
+  let sliceToEnd = (xs, offset) => Belt.Array.sliceToEnd(xs, offset)
+  let copy = xs => Belt.Array.copy(xs)
+
+  let fill = (xs, ~offset, ~len, v) => Belt.Array.fill(xs, ~offset, ~len, v)
+
+  let blit = (~src, ~srcOffset, ~dst, ~dstOffset, ~len) =>
+    Belt.Array.blit(~src, ~srcOffset, ~dst, ~dstOffset, ~len)
+  let blitUnsafe = (~src, ~srcOffset, ~dst, ~dstOffset, ~len) =>
+    Belt.Array.blitUnsafe(~src, ~srcOffset, ~dst, ~dstOffset, ~len)
+
+  let forEach = (xs, f) => Belt.Array.forEachU(xs, f)
+
+  let map = (xs, f) => Belt.Array.mapU(xs, f)
+
+  let getBy = (xs, f) => Belt.Array.getByU(xs, f)
+
+  let getIndexBy = (xs, f) => Belt.Array.getIndexByU(xs, f)
+
+  let keep = (xs, f) => Belt.Array.keepU(xs, f)
+
+  let keepWithIndex = (xs, f) => Belt.Array.keepWithIndexU(xs, f)
+
+  let keepMap = (xs, f) => Belt.Array.keepMapU(xs, f)
+
+  let forEachWithIndex = (xs, f) => Belt.Array.forEachWithIndexU(xs, f)
+
+  let mapWithIndex = (xs, f) => Belt.Array.mapWithIndexU(xs, f)
+
+  let partition = (xs, f) => Belt.Array.partitionU(xs, f)
+
+  let reduce = (xs, init, f) => Belt.Array.reduceU(xs, init, f)
+
+  let reduceReverse = (xs, init, f) => Belt.Array.reduceReverseU(xs, init, f)
+
+  let reduceReverse2 = (xs, ys, init, f) => Belt.Array.reduceReverse2U(xs, ys, init, f)
+
+  let reduceWithIndex = (xs, init, f) => Belt.Array.reduceWithIndexU(xs, init, f)
+
+  let joinWith = (xs, v, f) => Belt.Array.joinWithU(xs, v, f)
+
+  let some = (xs, f) => Belt.Array.someU(xs, f)
+
+  let every = (xs, f) => Belt.Array.everyU(xs, f)
+
+  let some2 = (xs, ys, f) => Belt.Array.some2U(xs, ys, f)
+
+  let every2 = (xs, ys, f) => Belt.Array.every2U(xs, ys, f)
+
+  let cmp = (xs, ys, f) => Belt.Array.cmpU(xs, ys, f)
+
+  let eq = (xs, ys, f) => Belt.Array.eqU(xs, ys, f)
+
+  let truncateToLengthUnsafe = (xs, n) => Belt.Array.truncateToLengthUnsafe(xs, n)
 }

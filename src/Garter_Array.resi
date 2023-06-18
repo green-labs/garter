@@ -15,7 +15,6 @@ let last: array<'a> => option<'a>
 n이 음수라면 빈 배열을 반환합니다.
 */
 let take: (Js.Array2.t<'a>, int) => Js.Array2.t<'a>
-let takeWhileU: (Js.Array2.t<'a>, (. 'a) => bool) => Js.Array2.t<'a>
 let takeWhile: (Js.Array2.t<'a>, 'a => bool) => Js.Array2.t<'a>
 
 /**
@@ -23,16 +22,13 @@ let takeWhile: (Js.Array2.t<'a>, 'a => bool) => Js.Array2.t<'a>
 n이 배열의 크기보다 크면 빈 배열 반환합니다.
 */
 let drop: (Js.Array2.t<'a>, int) => Js.Array2.t<'a>
-let dropWhileU: (Js.Array2.t<'a>, (. 'a) => bool) => Js.Array2.t<'a>
 let dropWhile: (Js.Array2.t<'a>, 'a => bool) => Js.Array2.t<'a>
 
 /**
 [i]번째 인덱스의 값에 [f]를 수행한 결과를 in-place로 업데이트합니다.  
 [f]는 old value를 받아 new value를 반환하는 함수입니다.
 */
-let updateUnsafeU: (array<'a>, int, (. 'a) => 'a) => unit
 let updateUnsafe: (array<'a>, int, 'a => 'a) => unit
-let updateExnU: (array<'a>, int, (. 'a) => 'a) => unit
 let updateExn: (array<'a>, int, 'a => 'a) => unit
 
 /**
@@ -165,7 +161,6 @@ module NonEmpty: {
   let reverse: t<'a> => t<'a>
 
   let zip: (t<'a>, t<'b>) => t<('a, 'b)>
-  let zipByU: (t<'a>, t<'b>, (. 'a, 'b) => 'c) => t<'c>
   let zipBy: (t<'a>, t<'b>, ('a, 'b) => 'c) => t<'c>
 
   let unzip: t<('a, 'b)> => (t<'a>, t<'b>)
@@ -188,67 +183,46 @@ module NonEmpty: {
     ~len: int,
   ) => unit
 
-  let forEachU: (t<'a>, (. 'a) => unit) => unit
   let forEach: (t<'a>, 'a => unit) => unit
 
-  let mapU: (t<'a>, (. 'a) => 'b) => t<'b>
   let map: (t<'a>, 'a => 'b) => t<'b>
 
-  let getByU: (t<'a>, (. 'a) => bool) => option<'a>
   let getBy: (t<'a>, 'a => bool) => option<'a>
 
-  let getIndexByU: (t<'a>, (. 'a) => bool) => option<int>
   let getIndexBy: (t<'a>, 'a => bool) => option<int>
 
-  let keepU: (t<'a>, (. 'a) => bool) => array<'a>
   let keep: (t<'a>, 'a => bool) => array<'a>
 
-  let keepWithIndexU: (t<'a>, (. 'a, int) => bool) => array<'a>
   let keepWithIndex: (t<'a>, ('a, int) => bool) => array<'a>
 
-  let keepMapU: (t<'a>, (. 'a) => option<'b>) => array<'b>
   let keepMap: (t<'a>, 'a => option<'b>) => array<'b>
 
-  let forEachWithIndexU: (t<'a>, (. int, 'a) => unit) => unit
   let forEachWithIndex: (t<'a>, (int, 'a) => unit) => unit
 
-  let mapWithIndexU: (t<'a>, (. int, 'a) => 'b) => t<'b>
   let mapWithIndex: (t<'a>, (int, 'a) => 'b) => t<'b>
 
-  let partitionU: (t<'a>, (. 'a) => bool) => (array<'a>, array<'a>)
   let partition: (t<'a>, 'a => bool) => (array<'a>, array<'a>)
 
-  let reduceU: (t<'b>, 'a, (. 'a, 'b) => 'a) => 'a
   let reduce: (t<'b>, 'a, ('a, 'b) => 'a) => 'a
 
-  let reduceReverseU: (t<'b>, 'a, (. 'a, 'b) => 'a) => 'a
   let reduceReverse: (t<'b>, 'a, ('a, 'b) => 'a) => 'a
 
-  let reduceReverse2U: (t<'a>, t<'b>, 'c, (. 'c, 'a, 'b) => 'c) => 'c
   let reduceReverse2: (t<'a>, t<'b>, 'c, ('c, 'a, 'b) => 'c) => 'c
 
-  let reduceWithIndexU: (t<'a>, 'b, (. 'b, 'a, int) => 'b) => 'b
   let reduceWithIndex: (t<'a>, 'b, ('b, 'a, int) => 'b) => 'b
 
-  let joinWithU: (t<'a>, string, (. 'a) => string) => string
   let joinWith: (t<'a>, string, 'a => string) => string
 
-  let someU: (t<'a>, (. 'a) => bool) => bool
   let some: (t<'a>, 'a => bool) => bool
 
-  let everyU: (t<'a>, (. 'a) => bool) => bool
   let every: (t<'a>, 'a => bool) => bool
 
-  let some2U: (t<'a>, t<'b>, (. 'a, 'b) => bool) => bool
   let some2: (t<'a>, t<'b>, ('a, 'b) => bool) => bool
 
-  let every2U: (t<'a>, t<'b>, (. 'a, 'b) => bool) => bool
   let every2: (t<'a>, t<'b>, ('a, 'b) => bool) => bool
 
-  let cmpU: (t<'a>, t<'a>, (. 'a, 'a) => int) => int
   let cmp: (t<'a>, t<'a>, ('a, 'a) => int) => int
 
-  let eqU: (t<'a>, t<'a>, (. 'a, 'a) => bool) => bool
   let eq: (t<'a>, t<'a>, ('a, 'a) => bool) => bool
 
   let truncateToLengthUnsafe: (t<'a>, int) => unit
@@ -261,26 +235,19 @@ module NonEmpty: {
   let first: t<'a> => 'a
   let last: t<'a> => 'a
 
-  let reduce1U: (t<'a>, (. 'a, 'a) => 'a) => 'a
   let reduce1: (t<'a>, ('a, 'a) => 'a) => 'a
 
-  let minByU: (t<'a>, (. 'a, 'a) => int) => 'a
   let minBy: (t<'a>, ('a, 'a) => int) => 'a
 
-  let maxByU: (t<'a>, (. 'a, 'a) => int) => 'a
   let maxBy: (t<'a>, ('a, 'a) => int) => 'a
 
   let take: (t<'a>, int) => array<'a>
-  let takeWhileU: (t<'a>, (. 'a) => bool) => array<'a>
   let takeWhile: (t<'a>, 'a => bool) => array<'a>
 
   let drop: (t<'a>, int) => array<'a>
-  let dropWhileU: (t<'a>, (. 'a) => bool) => array<'a>
   let dropWhile: (t<'a>, 'a => bool) => array<'a>
 
-  let updateUnsafeU: (t<'a>, int, (. 'a) => 'a) => unit
   let updateUnsafe: (t<'a>, int, 'a => 'a) => unit
-  let updateExnU: (t<'a>, int, (. 'a) => 'a) => unit
   let updateExn: (t<'a>, int, 'a => 'a) => unit
 
   let keepSome: t<option<'a>> => array<'a>

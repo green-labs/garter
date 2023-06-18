@@ -35,7 +35,7 @@ function splitAtExn(l, n) {
         ];
 }
 
-function reduce1U(l, f) {
+function reduce1(l, f) {
   if (l) {
     return Belt_List.reduceU(l.tl, l.hd, f);
   }
@@ -43,12 +43,6 @@ function reduce1U(l, f) {
         RE_EXN_ID: "Not_found",
         Error: new Error()
       };
-}
-
-function reduce1(l, f) {
-  return reduce1U(l, (function (a, x) {
-                return f(a, x);
-              }));
 }
 
 var length = Belt_List.length;
@@ -320,7 +314,6 @@ export {
   takeExn ,
   dropExn ,
   splitAtExn ,
-  reduce1U ,
   reduce1 ,
 }
 /* No side effect */
