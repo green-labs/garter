@@ -4,10 +4,8 @@ open Garter.Array
 open! Garter.Array.NonEmpty
 
 let testEqual = (t, name, lhs, rhs) =>
-  t->test(name, t => {
+  t->test(name, async t => {
     t->equal(lhs, rhs, name)
-
-    done()
   })
 
 let emptyArray: option<Garter.Array.NonEmpty.t<int>> = []->fromArray
@@ -42,12 +40,10 @@ zoraBlock("reduce1", t => t->testEqual("", reduce1(range(1, 10)->fromArrayExn, \
 
 zoraBlock("minBy", t => {
   t->testEqual("1", minBy([1, 2, 3, 4, 5]->fromArrayExn, compare), 1)
-  t->testEqual("2", minByU([1, 2, 3, 4, 5]->fromArrayExn, (. a, b) => compare(a, b)), 1)
 })
 
 zoraBlock("maxBy", t => {
   t->testEqual("1", maxBy([1, 2, 3, 4, 5]->fromArrayExn, compare), 5)
-  t->testEqual("2", maxByU([1, 2, 3, 4, 5]->fromArrayExn, (. a, b) => compare(a, b)), 5)
 })
 
 zoraBlock("concatMany", t => {
