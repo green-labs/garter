@@ -1,5 +1,11 @@
 # @greenlabs/garter
 
+## 0.12.0-next.0
+
+### Minor Changes
+
+- 8471886: support rescript v11
+
 ## 0.11.2
 
 ### Patch Changes

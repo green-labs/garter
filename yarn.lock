@@ -316,10 +316,10 @@ __metadata:
   dependencies:
     "@changesets/cli": ^2.26.1
     "@dusty-phillips/rescript-zora": ^4.0.0
-    "@rescript/std": ^10.1.4
+    "@rescript/std": 11.0.0-beta.3
     onchange: ^7.1.0
     pta: ^1.2.0
-    rescript: 11.0.0-beta.2
+    rescript: 11.0.0-beta.3
     tap-difflet: ^0.7.2
     zora: ^5.2.0
   languageName: unknown
@@ -388,10 +388,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rescript/std@npm:^10.1.4":
-  version: 10.1.4
-  resolution: "@rescript/std@npm:10.1.4"
-  checksum: 895a688dca834db07f512345f56febd1baed60f48766d66760dc862d893773ea07ae59ae658e047da6b61132e4f0163b024cfbd4e5b6f4ae7f7a563b227b3aa6
+"@rescript/std@npm:11.0.0-beta.3":
+  version: 11.0.0-beta.3
+  resolution: "@rescript/std@npm:11.0.0-beta.3"
+  checksum: f3ed1bb7c54748104949698dd241e8e938aeb178912a5ec6b006591cc4efd2cba37fc51f16c4ee5111e9dbf2a3540b36acc7a136702bd78f78819938d7e9e382
   languageName: node
   linkType: hard
 
@@ -3109,14 +3109,14 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"rescript@npm:11.0.0-beta.2":
-  version: 11.0.0-beta.2
-  resolution: "rescript@npm:11.0.0-beta.2"
+"rescript@npm:11.0.0-beta.3":
+  version: 11.0.0-beta.3
+  resolution: "rescript@npm:11.0.0-beta.3"
   bin:
     bsc: bsc
     bstracing: lib/bstracing
     rescript: rescript
-  checksum: ed35cacf9a07c2695ee5ea5d7bcd919281c718540077717347e9e4297d113186c8411ea2f0e473f5099757db9fe776afbbdaaae44c5e608136408aec7bee3dba
+  checksum: 865f3f754349baec5783010a0632e9b3fa01a5b100eea35e1392b9d5323d0e9f181f9514c8c97be88213b31ed27a64e710117dcce3a5c7d0871223766e1f59b8
   languageName: node
   linkType: hard
 
