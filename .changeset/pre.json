@@ -1,0 +1,10 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@greenlabs/garter": "0.11.2"
+  },
+  "changesets": [
+    "odd-terms-punch"
+  ]
+}
