@@ -89,9 +89,14 @@ let indexBy = (xs, indexFn, ~id) => {
 
 let frequencies = (ar, ~id) => groupBy(ar, Garter_Fn.identity, ~id)->Belt.Map.map(length)
 
-let distinct = (ar, ~id) =>
-  ar
-  ->reduceU((Belt.Set.make(~id), list{}), ((seen, res), v) =>
+let distinctBy = (type a, arr: array<a>, f) => {
+  module Comparable = Belt.Id.MakeComparableU({
+    type t = a
+    let cmp = (a: t, b: t) => Pervasives.compare(f(a), f(b))
+  })
+
+  arr
+  ->reduceU((Belt.Set.make(~id=module(Comparable)), list{}), ((seen, res), v) =>
     if seen->Belt.Set.has(v) {
       (seen, res)
     } else {
@@ -101,6 +106,11 @@ let distinct = (ar, ~id) =>
   ->snd
   ->Belt.List.reverse
   ->Belt.List.toArray
+}
+
+let distinct = arr => {
+  arr->distinctBy(x => x)
+}
 
 let scan = (xs, init, f) => {
   let state = makeUninitializedUnsafe(length(xs))
@@ -235,7 +245,9 @@ module NonEmpty = {
 
   let frequencies = (nxs, ~id) => nxs->frequencies(~id)
 
-  let distinct = (nxs, ~id) => nxs->distinct(~id)->fromArrayExn
+  let distinct = nxs => nxs->distinct->fromArrayExn
+
+  let distinctBy = (nxs, f) => nxs->distinctBy(f)->fromArrayExn
 
   let scan = (nxs, init, f) => nxs->scan(init, f)->fromArrayExn
 
