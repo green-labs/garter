@@ -1,5 +1,11 @@
 # @greenlabs/garter
 
+## 0.12.0-next.3
+
+### Patch Changes
+
+- Fix changeset publish ci
+
 ## 0.12.0-next.2
 
 ### Patch Changes
