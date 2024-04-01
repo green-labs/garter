@@ -89,13 +89,13 @@ let indexBy = (xs, indexFn, ~id) => {
 
 let frequencies = (ar, ~id) => groupBy(ar, Garter_Fn.identity, ~id)->Belt.Map.map(length)
 
-let distinctBy = (type a, arr: array<a>, f) => {
+let distinctBy = (type a, ar: array<a>, f) => {
   module Comparable = Belt.Id.MakeComparableU({
     type t = a
     let cmp = (a: t, b: t) => Pervasives.compare(f(a), f(b))
   })
 
-  arr
+  ar
   ->reduceU((Belt.Set.make(~id=module(Comparable)), list{}), ((seen, res), v) =>
     if seen->Belt.Set.has(v) {
       (seen, res)
@@ -108,8 +108,8 @@ let distinctBy = (type a, arr: array<a>, f) => {
   ->Belt.List.toArray
 }
 
-let distinct = arr => {
-  arr->distinctBy(x => x)
+let distinct = ar => {
+  ar->distinctBy(x => x)
 }
 
 let scan = (xs, init, f) => {

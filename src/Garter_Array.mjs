@@ -135,14 +135,14 @@ function frequencies(ar, id) {
               }));
 }
 
-function distinctBy(arr, f) {
+function distinctBy(ar, f) {
   var cmp = function (a, b) {
     return Caml_obj.compare(f(a), f(b));
   };
   var Comparable = Belt_Id.MakeComparableU({
         cmp: cmp
       });
-  return Belt_List.toArray(Belt_List.reverse(Belt_Array.reduceU(arr, [
+  return Belt_List.toArray(Belt_List.reverse(Belt_Array.reduceU(ar, [
                         Belt_Set.make(Comparable),
                         /* [] */0
                       ], (function (param, v) {
@@ -162,8 +162,8 @@ function distinctBy(arr, f) {
                         }))[1]));
 }
 
-function distinct(arr) {
-  return distinctBy(arr, (function (x) {
+function distinct(ar) {
+  return distinctBy(ar, (function (x) {
                 return x;
               }));
 }
