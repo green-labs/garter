@@ -78,9 +78,14 @@ let indexBy: (array<'a>, 'a => 'b, ~id: Belt.Map.id<'b, 'c>) => Belt.Map.t<'b, '
 let frequencies: (array<'a>, ~id: Belt.Map.id<'a, 'b>) => Belt.Map.t<'a, int, 'b>
 
 /**
+먼저 등장하는 순서를 유지하면서 키에 따라 중복 원소를 제거합니다.
+*/
+let distinctBy: (array<'a>, 'a => 'b) => array<'a>
+
+/**
 먼저 등장하는 순서를 유지하면서 중복 원소를 제거합니다.
 */
-let distinct: (array<'a>, ~id: Belt.Set.id<'a, 'b>) => array<'a>
+let distinct: array<'a> => array<'a>
 
 /**
 `reduce`와 비슷하나 중간 결과를 모두 포함한 `array`를 반환합니다.
@@ -258,7 +263,9 @@ module NonEmpty: {
 
   let frequencies: (t<'a>, ~id: Belt.Map.id<'a, 'b>) => Belt.Map.t<'a, int, 'b>
 
-  let distinct: (t<'a>, ~id: Belt.Set.id<'a, 'b>) => t<'a>
+  let distinct: t<'a> => t<'a>
+
+  let distinctBy: (t<'a>, 'a => 'b) => t<'a>
 
   let scan: (t<'a>, 'b, ('b, 'a) => 'b) => t<'b>
 

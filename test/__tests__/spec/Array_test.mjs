@@ -133,6 +133,45 @@ Zora.test("keepSome", (function (t) {
             ]);
       }));
 
+Zora.test("distinct", (function (t) {
+        testEqual(t, "순서를 유지하면서 중복을 제거한다.", Garter_Array.distinct([
+                  2,
+                  1,
+                  2
+                ]), [
+              2,
+              1
+            ]);
+      }));
+
+Zora.test("distinctBy", (function (t) {
+        testEqual(t, "순서를 유지하면서 키에 따라 중복을 제거한다.", Garter_Array.distinctBy([
+                  {
+                    id: 1,
+                    name: "foo"
+                  },
+                  {
+                    id: 2,
+                    name: "bar"
+                  },
+                  {
+                    id: 3,
+                    name: "foo"
+                  }
+                ], (function (v) {
+                    return v.name;
+                  })), [
+              {
+                id: 1,
+                name: "foo"
+              },
+              {
+                id: 2,
+                name: "bar"
+              }
+            ]);
+      }));
+
 Zora.test("intersperse", (function (t) {
         testEqual(t, "1", Garter_Array.intersperse([], 0), []);
         testEqual(t, "2", Garter_Array.intersperse([1], 0), [1]);
