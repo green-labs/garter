@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@rescript/std':
-    specifier: 11.0.0-beta.3
-    version: 11.0.0-beta.3
+    specifier: ^11.0.1
+    version: 11.0.1
 
 devDependencies:
   '@changesets/cli':
@@ -303,8 +303,8 @@ packages:
       fastq: 1.17.1
     dev: true
 
-  /@rescript/std@11.0.0-beta.3:
-    resolution: {integrity: sha512-xA+IY0Mm0jd5GDVGKdeJBLgQAkcdFFir9acMAeqp8ebF+cyZ61I71n/RP8NvsZ2SqTuuXQ4KvS8nB7XOA/SKdg==}
+  /@rescript/std@11.0.1:
+    resolution: {integrity: sha512-u00h1oNU5jSUh2Nu8Ozo0FKkefmKckeqd2aSCiZr+iJxMOSJalR/uQIAHbiGfT6+yTPYUMsLhnrxkkCWpjkNBg==}
     dev: false
 
   /@types/minimist@1.2.5:
