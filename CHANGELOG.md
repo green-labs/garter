@@ -1,5 +1,11 @@
 # @greenlabs/garter
 
+## 0.12.0-next.5
+
+### Patch Changes
+
+- Fix missing rescript.json
+
 ## 0.12.0-next.3
 
 ### Patch Changes
