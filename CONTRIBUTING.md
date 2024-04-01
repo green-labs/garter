@@ -1,4 +1,4 @@
-# Contributing to Green-Labs/Garter
+# Contributing to Garter
 First off, thank you for considering contributing to Garter.
 
 ## Ways to Contribute
