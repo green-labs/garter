@@ -5,6 +5,8 @@
     "@greenlabs/garter": "0.11.2"
   },
   "changesets": [
-    "odd-terms-punch"
+    "odd-terms-punch",
+    "poor-yaks-punch",
+    "short-carrots-shop"
   ]
 }

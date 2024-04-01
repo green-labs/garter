@@ -1,5 +1,18 @@
 # @greenlabs/garter
 
+## 0.12.0-next.1
+
+### Minor Changes
+
+- dcc14a1: Added `distinctBy` and changed `distinct` function signature in Array module
+
+### Patch Changes
+
+- acacc50: Spring cleanup
+
+  - Upgrade ReScript, std v11
+  - Using pnpm
+
 ## 0.12.0-next.0
 
 ### Minor Changes
