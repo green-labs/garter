@@ -29,5 +29,5 @@
     "test:watch": "onchange --initial '{test,src}/**/*.mjs' -- pta 'test/__tests__/**/*.mjs' | tap-difflet",
     "test": "pta './test/__tests__/Index.mjs' | tap-difflet"
   },
-  "packageManager": "yarn@3.6.0"
+  "packageManager": "pnpm@8.8.0"
 }
