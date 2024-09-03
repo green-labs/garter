@@ -68,8 +68,8 @@ packages:
     resolution: {integrity: sha512-6xnwtvp9DY1EINIKdTfvfeAtCYw4OqBZJhtiqkT3ivjnEfa25VQ3TsKvaFfKm8MyGIEfE95qLe+bNEt3nB0Ylg==}
     dev: true
 
-  /@blakeembrey/template@1.1.0:
-    resolution: {integrity: sha512-iZf+UWfL+DogJVpd/xMQyP6X6McYd6ArdYoPMiv/zlOTzeXXfQbYxBNJJBF6tThvsjLMbA8tLjkCdm9RWMFCCw==}
+  /@blakeembrey/template@1.2.0:
+    resolution: {integrity: sha512-w/63nURdkRPpg3AXbNr7lPv6HgOuVDyefTumiXsbXxtIwcuk5EXayWR5OpSwDjsQPgaYsfUSedMduaNOjAYY8A==}
     dev: true
 
   /@changesets/apply-release-plan@7.0.0:
@@ -1564,7 +1564,7 @@ packages:
     hasBin: true
     dependencies:
       '@blakeembrey/deque': 1.0.5
-      '@blakeembrey/template': 1.1.0
+      '@blakeembrey/template': 1.2.0
       arg: 4.1.3
       chokidar: 3.6.0
       cross-spawn: 7.0.3
