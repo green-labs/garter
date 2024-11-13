@@ -21,6 +21,6 @@ let splitAtExn = (l, n) => (takeExn(l, n), dropExn(l, n))
 let reduce1 = (l, f) => {
   switch l {
   | list{} => raise(Not_found)
-  | list{x, ...xs} => reduceU(xs, x, f)
+  | list{x, ...xs} => reduce(xs, x, f)
   }
 }

@@ -12,13 +12,10 @@
   ],
   "package-specs": [
     {
-      "module": "es6",
+      "module": "esmodule",
       "in-source": true
     }
   ],
   "suffix": ".mjs",
-  "external-stdlib": "@rescript/std",
-  "bs-dev-dependencies": [
-    "@dusty-phillips/rescript-zora"
-  ]
+  "bs-dev-dependencies": ["@dusty-phillips/rescript-zora"]
 }

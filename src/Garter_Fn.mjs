@@ -10,14 +10,12 @@ function complement(f, x) {
 }
 
 function constantly(a) {
-  return function (param) {
-    return a;
-  };
+  return param => a;
 }
 
 export {
-  identity ,
-  complement ,
-  constantly ,
+  identity,
+  complement,
+  constantly,
 }
 /* No side effect */
