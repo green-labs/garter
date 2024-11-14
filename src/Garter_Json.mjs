@@ -4,18 +4,16 @@
 function stringify(x) {
   try {
     return JSON.stringify(x);
-  }
-  catch (exn){
-    return ;
+  } catch (exn) {
+    return;
   }
 }
 
 function parse(s) {
   try {
     return JSON.parse(s);
-  }
-  catch (exn){
-    return ;
+  } catch (exn) {
+    return;
   }
 }
 
@@ -24,8 +22,8 @@ function stringifyExn(prim) {
 }
 
 export {
-  stringifyExn ,
-  stringify ,
-  parse ,
+  stringifyExn,
+  stringify,
+  parse,
 }
 /* No side effect */

@@ -39,11 +39,11 @@ zoraBlock("take", t => {
 zoraBlock("reduce1", t => t->testEqual("", reduce1(range(1, 10)->fromArrayExn, \"+"), 55))
 
 zoraBlock("minBy", t => {
-  t->testEqual("1", minBy([1, 2, 3, 4, 5]->fromArrayExn, compare), 1)
+  t->testEqual("1", minBy([1, 2, 3, 4, 5]->fromArrayExn, Pervasives.compare), 1)
 })
 
 zoraBlock("maxBy", t => {
-  t->testEqual("1", maxBy([1, 2, 3, 4, 5]->fromArrayExn, compare), 5)
+  t->testEqual("1", maxBy([1, 2, 3, 4, 5]->fromArrayExn, Pervasives.compare), 5)
 })
 
 zoraBlock("concatMany", t => {

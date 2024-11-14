@@ -5,211 +5,199 @@ import * as Garter_Fn from "../../../src/Garter_Fn.mjs";
 import * as Garter_Array from "../../../src/Garter_Array.mjs";
 
 function testEqual(t, name, lhs, rhs) {
-  t.test(name, (async function (t) {
-          t.equal(lhs, rhs, name);
-        }));
+  t.test(name, async t => {
+    t.equal(lhs, rhs, name);
+  });
 }
 
-Zora.test("take", (function (t) {
-        testEqual(t, "1", Garter_Array.take([
-                  1,
-                  2,
-                  3,
-                  4,
-                  5
-                ], -1), []);
-        testEqual(t, "2", Garter_Array.take([
-                  1,
-                  2,
-                  3,
-                  4,
-                  5
-                ], 2), [
-              1,
-              2
-            ]);
-        testEqual(t, "3", Garter_Array.take([
-                  1,
-                  2,
-                  3,
-                  4,
-                  5
-                ], 7), [
-              1,
-              2,
-              3,
-              4,
-              5
-            ]);
-      }));
+Zora.test("take", t => {
+  testEqual(t, "1", Garter_Array.take([
+    1,
+    2,
+    3,
+    4,
+    5
+  ], -1), []);
+  testEqual(t, "2", Garter_Array.take([
+    1,
+    2,
+    3,
+    4,
+    5
+  ], 2), [
+    1,
+    2
+  ]);
+  testEqual(t, "3", Garter_Array.take([
+    1,
+    2,
+    3,
+    4,
+    5
+  ], 7), [
+    1,
+    2,
+    3,
+    4,
+    5
+  ]);
+});
 
-Zora.test("drop", (function (t) {
-        testEqual(t, "1", Garter_Array.drop([
-                  1,
-                  2,
-                  3,
-                  4,
-                  5
-                ], -1), [
-              1,
-              2,
-              3,
-              4,
-              5
-            ]);
-        testEqual(t, "2", Garter_Array.drop([
-                  1,
-                  2,
-                  3,
-                  4,
-                  5
-                ], 2), [
-              3,
-              4,
-              5
-            ]);
-        testEqual(t, "3", Garter_Array.drop([
-                  1,
-                  2,
-                  3,
-                  4,
-                  5
-                ], 7), []);
-      }));
+Zora.test("drop", t => {
+  testEqual(t, "1", Garter_Array.drop([
+    1,
+    2,
+    3,
+    4,
+    5
+  ], -1), [
+    1,
+    2,
+    3,
+    4,
+    5
+  ]);
+  testEqual(t, "2", Garter_Array.drop([
+    1,
+    2,
+    3,
+    4,
+    5
+  ], 2), [
+    3,
+    4,
+    5
+  ]);
+  testEqual(t, "3", Garter_Array.drop([
+    1,
+    2,
+    3,
+    4,
+    5
+  ], 7), []);
+});
 
-Zora.test("takeWhile", (function (t) {
-        testEqual(t, "1", Garter_Array.takeWhile([
-                  1,
-                  2,
-                  3,
-                  4,
-                  5
-                ], (function (x) {
-                    return x <= 2;
-                  })), [
-              1,
-              2
-            ]);
-        testEqual(t, "2", Garter_Array.takeWhile([
-                  1,
-                  2,
-                  3,
-                  4,
-                  5
-                ], Garter_Fn.constantly(false)), []);
-      }));
+Zora.test("takeWhile", t => {
+  testEqual(t, "1", Garter_Array.takeWhile([
+    1,
+    2,
+    3,
+    4,
+    5
+  ], x => x <= 2), [
+    1,
+    2
+  ]);
+  testEqual(t, "2", Garter_Array.takeWhile([
+    1,
+    2,
+    3,
+    4,
+    5
+  ], Garter_Fn.constantly(false)), []);
+});
 
-Zora.test("dropWhile", (function (t) {
-        testEqual(t, "1", Garter_Array.dropWhile([
-                  1,
-                  2,
-                  3,
-                  4,
-                  5
-                ], (function (x) {
-                    return x <= 2;
-                  })), [
-              3,
-              4,
-              5
-            ]);
-        testEqual(t, "2", Garter_Array.dropWhile([
-                  1,
-                  2,
-                  3,
-                  4,
-                  5
-                ], Garter_Fn.constantly(true)), []);
-      }));
+Zora.test("dropWhile", t => {
+  testEqual(t, "1", Garter_Array.dropWhile([
+    1,
+    2,
+    3,
+    4,
+    5
+  ], x => x <= 2), [
+    3,
+    4,
+    5
+  ]);
+  testEqual(t, "2", Garter_Array.dropWhile([
+    1,
+    2,
+    3,
+    4,
+    5
+  ], Garter_Fn.constantly(true)), []);
+});
 
-Zora.test("keepSome", (function (t) {
-        testEqual(t, "1", Garter_Array.keepSome([
-                  1,
-                  undefined,
-                  3
-                ]), [
-              1,
-              3
-            ]);
-      }));
+Zora.test("keepSome", t => testEqual(t, "1", Garter_Array.keepSome([
+  1,
+  undefined,
+  3
+]), [
+  1,
+  3
+]));
 
-Zora.test("distinct", (function (t) {
-        testEqual(t, "순서를 유지하면서 중복을 제거한다.", Garter_Array.distinct([
-                  2,
-                  1,
-                  2
-                ]), [
-              2,
-              1
-            ]);
-      }));
+Zora.test("distinct", t => testEqual(t, "순서를 유지하면서 중복을 제거한다.", Garter_Array.distinct([
+  2,
+  1,
+  2
+]), [
+  2,
+  1
+]));
 
-Zora.test("distinctBy", (function (t) {
-        testEqual(t, "순서를 유지하면서 키에 따라 중복을 제거한다.", Garter_Array.distinctBy([
-                  {
-                    id: 1,
-                    name: "foo"
-                  },
-                  {
-                    id: 2,
-                    name: "bar"
-                  },
-                  {
-                    id: 3,
-                    name: "foo"
-                  }
-                ], (function (v) {
-                    return v.name;
-                  })), [
-              {
-                id: 1,
-                name: "foo"
-              },
-              {
-                id: 2,
-                name: "bar"
-              }
-            ]);
-      }));
+Zora.test("distinctBy", t => testEqual(t, "순서를 유지하면서 키에 따라 중복을 제거한다.", Garter_Array.distinctBy([
+  {
+    id: 1,
+    name: "foo"
+  },
+  {
+    id: 2,
+    name: "bar"
+  },
+  {
+    id: 3,
+    name: "foo"
+  }
+], v => v.name), [
+  {
+    id: 1,
+    name: "foo"
+  },
+  {
+    id: 2,
+    name: "bar"
+  }
+]));
 
-Zora.test("intersperse", (function (t) {
-        testEqual(t, "1", Garter_Array.intersperse([], 0), []);
-        testEqual(t, "2", Garter_Array.intersperse([1], 0), [1]);
-        testEqual(t, "3", Garter_Array.intersperse([
-                  1,
-                  2
-                ], 0), [
-              1,
-              0,
-              2
-            ]);
-        testEqual(t, "4", Garter_Array.intersperse([
-                  1,
-                  2,
-                  3
-                ], 0), [
-              1,
-              0,
-              2,
-              0,
-              3
-            ]);
-      }));
+Zora.test("intersperse", t => {
+  testEqual(t, "1", Garter_Array.intersperse([], 0), []);
+  testEqual(t, "2", Garter_Array.intersperse([1], 0), [1]);
+  testEqual(t, "3", Garter_Array.intersperse([
+    1,
+    2
+  ], 0), [
+    1,
+    0,
+    2
+  ]);
+  testEqual(t, "4", Garter_Array.intersperse([
+    1,
+    2,
+    3
+  ], 0), [
+    1,
+    0,
+    2,
+    0,
+    3
+  ]);
+});
 
-Zora.test("joinWith", (function (t) {
-        testEqual(t, "", Garter_Array.$$String.joinWith([], ","), "");
-        testEqual(t, "", Garter_Array.$$String.joinWith(["a"], ","), "a");
-        testEqual(t, "", Garter_Array.$$String.joinWith([
-                  "a",
-                  "b",
-                  "c"
-                ], ","), "a,b,c");
-      }));
+Zora.test("joinWith", t => {
+  testEqual(t, "", Garter_Array.$$String.joinWith([], ","), "");
+  testEqual(t, "", Garter_Array.$$String.joinWith(["a"], ","), "a");
+  testEqual(t, "", Garter_Array.$$String.joinWith([
+    "a",
+    "b",
+    "c"
+  ], ","), "a,b,c");
+});
 
-var $$String = {};
+let $$String = {};
 
 export {
-  testEqual ,
-  $$String ,
+  testEqual,
+  $$String,
 }
 /*  Not a pure module */

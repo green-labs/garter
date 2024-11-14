@@ -1,20 +1,20 @@
-module StringComparable = Belt.Id.MakeComparableU({
+module StringComparable = Belt.Id.MakeComparable({
   type t = string
-  let cmp = (. a, b) => Js.String2.localeCompare(a, b)->int_of_float
+  let cmp = (a, b) => Js.String2.localeCompare(a, b)->Float.toInt
 })
 
-module IntComparable = Belt.Id.MakeComparableU({
+module IntComparable = Belt.Id.MakeComparable({
   type t = int
-  let cmp = (. a, b) => a - b
+  let cmp = (a, b) => a - b
 })
 
-module Int64Comparable = Belt.Id.MakeComparableU({
-  type t = Int64.t
-  let cmp = (. a, b) => Int64.compare(a, b)
+module BigIntComparable = Belt.Id.MakeComparable({
+  type t = bigint
+  let cmp = (a, b) => BigInt.\"-"(a, b)->BigInt.toInt
 })
 
 // 정말 필요한 것인지 다시 생각해기
-module FloatComparable = Belt.Id.MakeComparableU({
+module FloatComparable = Belt.Id.MakeComparable({
   type t = float
-  let cmp = (. a, b) => Pervasives.compare(a, b)
+  let cmp = (a, b) => Pervasives.compare(a, b)
 })
