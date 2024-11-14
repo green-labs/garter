@@ -6,7 +6,7 @@ settings:
 
 devDependencies:
   '@changesets/cli':
-    specifier: ^2.26.1
+    specifier: ^2.27.9
     version: 2.27.9
   '@dusty-phillips/rescript-zora':
     specifier: ^4.0.0

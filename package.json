@@ -1,13 +1,13 @@
 {
   "name": "@greenlabs/garter",
-  "version": "0.12.0-next.5",
+  "version": "0.12.0-next.6",
   "license": "MIT",
   "keywords": [
     "rescript"
   ],
   "dependencies": {},
   "devDependencies": {
-    "@changesets/cli": "^2.26.1",
+    "@changesets/cli": "^2.27.9",
     "@dusty-phillips/rescript-zora": "^4.0.0",
     "@rescript/core": "1.6.1",
     "onchange": "^7.1.0",
