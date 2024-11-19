@@ -1,5 +1,23 @@
 # @greenlabs/garter
 
+## 0.12.0
+
+### Minor Changes
+
+- 8471886: support rescript v11
+- dcc14a1: Added `distinctBy` and changed `distinct` function signature in Array module
+
+### Patch Changes
+
+- acacc50: Spring cleanup
+
+  - Upgrade ReScript, std v11
+  - Using pnpm
+
+- 4f5445c: Fix missing rescript.json
+- 60c0193: remove yarn
+- ce81225: Fix changeset publish ci
+
 ## 0.12.0-next.5
 
 ### Patch Changes
