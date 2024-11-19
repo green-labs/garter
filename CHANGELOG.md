@@ -1,5 +1,11 @@
 # @greenlabs/garter
 
+## 0.13.0
+
+### Minor Changes
+
+- c332faa: support rescript v12
+
 ## 0.12.0
 
 ### Minor Changes
