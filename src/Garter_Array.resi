@@ -14,15 +14,15 @@ let last: array<'a> => option<'a>
 0번째 인덱스부터 최대 n개의 원소를 반환합니다.  
 n이 음수라면 빈 배열을 반환합니다.
 */
-let take: (Js.Array2.t<'a>, int) => Js.Array2.t<'a>
-let takeWhile: (Js.Array2.t<'a>, 'a => bool) => Js.Array2.t<'a>
+let take: (array<'a>, int) => array<'a>
+let takeWhile: (array<'a>, 'a => bool) => array<'a>
 
 /**
 0번째 인덱스부터 n개를 제외한 원소들의 배열을 반환합니다.  
 n이 배열의 크기보다 크면 빈 배열 반환합니다.
 */
-let drop: (Js.Array2.t<'a>, int) => Js.Array2.t<'a>
-let dropWhile: (Js.Array2.t<'a>, 'a => bool) => Js.Array2.t<'a>
+let drop: (array<'a>, int) => array<'a>
+let dropWhile: (array<'a>, 'a => bool) => array<'a>
 
 /**
 [i]번째 인덱스의 값에 [f]를 수행한 결과를 in-place로 업데이트합니다.  
@@ -153,7 +153,7 @@ module NonEmpty: {
   let get: (t<'a>, int) => option<'a>
   let getExn: (t<'a>, int) => 'a
   let getUnsafe: (t<'a>, int) => 'a
-  let getUndefined: (t<'a>, int) => Js.Undefined.t<'a>
+  let getUndefined: (t<'a>, int) => undefined<'a>
 
   let set: (t<'a>, int, 'a) => bool
   let setExn: (t<'a>, int, 'a) => unit

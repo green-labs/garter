@@ -2,7 +2,7 @@
 
 import * as Zora from "zora";
 import * as Garter_Math from "../../../src/Garter_Math.mjs";
-import * as Primitive_object from "rescript/lib/es6/Primitive_object.js";
+import * as Primitive_object from "@rescript/runtime/lib/es6/Primitive_object.js";
 
 function testEqual(lhs, rhs) {
   if (Primitive_object.equal(lhs, rhs)) {

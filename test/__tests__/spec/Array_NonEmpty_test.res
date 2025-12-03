@@ -5,7 +5,7 @@ open! Garter.Array.NonEmpty
 
 let testEqual = (t, name, lhs, rhs) =>
   t->test(name, async t => {
-    t->equal(lhs, rhs, name)
+    t->equal(lhs, rhs, ~msg=name)
   })
 
 let emptyArray: option<Garter.Array.NonEmpty.t<int>> = []->fromArray

@@ -14,7 +14,7 @@ padEnd "200" 5 = "200  "
 ```
 */
 @send
-external padEnd: (t, int) => t = "padEnd"
+external padEnd: (string, int) => string = "padEnd"
 
 /**
 [padEndWith n s] pads the string with a given string [s] (repeated, if needed) so that the resulting string reaches a given length [n].
@@ -27,7 +27,7 @@ padEndWith "Breaded Mushrooms" 25 "." = "Breaded Mushrooms........"
 ```
 */
 @send
-external padEndWith: (t, int, t) => t = "padEnd"
+external padEndWith: (string, int, string) => string = "padEnd"
 
 /**
 [padStart n] pads the string with " " (U+0020) so that the resulting string reaches a given length [n].
@@ -40,7 +40,7 @@ padStart "200" 5 = "  200"
 ```
 */
 @send
-external padStart: (t, int) => t = "padStart"
+external padStart: (string, int) => string = "padStart"
 
 /**
 [padStartWith n s] pads the string with a given string [s] (repeated, if needed) so that the resulting string reaches a given length [n].
@@ -53,7 +53,7 @@ padStartWith "Breaded Mushrooms" 25 "." = "........Breaded Mushrooms"
 ```
 */
 @send
-external padStartWith: (t, int, t) => t = "padStart"
+external padStartWith: (string, int, string) => string = "padStart"
 
 /**
 [trimEnd str] returns a string that is [str] with whitespace stripped from the end.
@@ -66,7 +66,7 @@ trimEnd "\n\r\t abc def \n\n\t\r " = "\n\r\t abc def"
 ```
 */
 @send
-external trimEnd: t => t = "trimEnd"
+external trimEnd: string => string = "trimEnd"
 
 /**
 [trimStart str] returns a string that is [str] with whitespace stripped from the beginning.
@@ -79,4 +79,4 @@ trimStart "\n\r\t abc def \n\n\t\r " = "abc def \n\n\t\r "
 ```
 */
 @send
-external trimStart: t => t = "trimStart"
+external trimStart: string => string = "trimStart"

@@ -2,7 +2,8 @@
   "name": "@greenlabs/garter",
   "sources": [
     {
-      "dir": "src"
+      "dir": "src",
+      "in-source": true
     },
     {
       "dir": "test",
@@ -12,10 +13,9 @@
   ],
   "package-specs": [
     {
-      "module": "esmodule",
-      "in-source": true
+      "module": "esmodule"
     }
   ],
   "suffix": ".mjs",
-  "bs-dev-dependencies": ["@dusty-phillips/rescript-zora"]
+  "dev-dependencies": ["@dusty-phillips/rescript-zora"]
 }

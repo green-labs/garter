@@ -1,20 +1,20 @@
 {
   "name": "@greenlabs/garter",
-  "version": "0.12.0",
+  "version": "1.0.0",
   "license": "MIT",
   "keywords": [
     "rescript"
   ],
-  "dependencies": {},
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
-    "@dusty-phillips/rescript-zora": "^4.0.0",
+    "@dusty-phillips/rescript-zora": "^5.0.1",
     "@rescript/core": "1.6.1",
+    "@rescript/runtime": "^12.0.0",
     "onchange": "^7.1.0",
     "pta": "^1.2.0",
-    "rescript": "^12.0.0-alpha.4",
+    "rescript": "^12.0.0",
     "tap-difflet": "^0.7.2",
-    "zora": "^5.2.0"
+    "zora": "^6.0.0"
   },
   "files": [
     "rescript.json",
@@ -24,10 +24,10 @@
   "scripts": {
     "clean": "rescript clean",
     "build": "rescript build",
-    "watch": "rescript build -w",
+    "watch": "rescript watch",
     "test:watch": "onchange --initial '{test,src}/**/*.mjs' -- pta 'test/__tests__/**/*.mjs' | tap-difflet",
     "test": "pta './test/__tests__/Index.mjs' | tap-difflet",
     "release": "pnpm build && pnpm changeset publish"
   },
-  "packageManager": "pnpm@8.8.0"
+  "packageManager": "pnpm@10.24.0"
 }

@@ -11,11 +11,11 @@ let any5 = (a, b, c, d, e) => [Any(a), Any(b), Any(c), Any(d), Any(e)]
 let any6 = (a, b, c, d, e, f) => [Any(a), Any(b), Any(c), Any(d), Any(e), Any(f)]
 let any7 = (a, b, c, d, e, f, g) => [Any(a), Any(b), Any(c), Any(d), Any(e), Any(f), Any(g)]
 
-let isEmpty = o => o->Js.Obj.keys->Garter_Array.isEmpty
+let isEmpty = o => o->Object.keysToArray->Garter_Array.isEmpty
 
-external toJsonUnsafe: {..} => Js.Json.t = "%identity"
+external toJsonUnsafe: {..} => JSON.t = "%identity"
 
-let toJsonExn = o => o->Garter_Json.stringifyExn->Obj.magic->Js.Json.parseExn
+let toJsonExn = o => o->Garter_Json.stringifyExn->Obj.magic->JSON.parseOrThrow
 
 let toJson = o =>
   try {

@@ -18,7 +18,7 @@ let take = (ar, n) => {
   } else {
     n
   }
-  Js.Array2.slice(ar, ~start=0, ~end_=len)
+  Array.slice(ar, ~start=0, ~end=len)
 }
 
 let takeWhile = (ar, pred) => {
@@ -37,7 +37,7 @@ let drop = (ar, n) => {
   } else {
     n
   }
-  Js.Array2.sliceFrom(ar, offset)
+  Array.slice(ar, ~start=offset)
 }
 
 let dropWhile = (ar, pred) => {
@@ -95,7 +95,7 @@ let distinctBy = (type a, ar: array<a>, f) => {
       (seen->Belt.Set.add(v), res->Belt.List.add(v))
     }
   )
-  ->snd
+  ->Pair.second
   ->Belt.List.reverse
   ->Belt.List.toArray
 }
@@ -116,12 +116,12 @@ let scan = (xs, init, f) => {
 
 let chunk = (xs, step) =>
   rangeBy(0, length(xs) - 1, ~step)->map(offset => {
-    xs->Js.Array2.slice(~start=offset, ~end_=offset + step)
+    xs->Array.slice(~start=offset, ~end=offset + step)
   })
 
 let randomOne = xs => xs->get(Js.Math.random_int(0, length(xs)))
 
-let randomSample = (xs, prob) => xs->keep(_ => Js.Math.random() < prob)
+let randomSample = (xs, prob) => xs->keep(_ => Math.random() < prob)
 
 let intersperse = (xs, delim) => {
   switch xs->length {
@@ -195,7 +195,7 @@ module NonEmpty = {
 
   let fromArrayExn = xs =>
     switch xs {
-    | [] => raise(Invalid_argument("array is empty"))
+    | [] => throw(Invalid_argument("array is empty"))
     | nxs => nxs
     }
 

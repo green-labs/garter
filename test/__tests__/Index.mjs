@@ -7,8 +7,6 @@ import * as Object_test from "./spec/Object_test.mjs";
 import * as String_test from "./spec/String_test.mjs";
 import * as Array_NonEmpty_test from "./spec/Array_NonEmpty_test.mjs";
 
-let $$String = Array_test.$$String;
-
 let emptyArray = Array_NonEmpty_test.emptyArray;
 
 let nonEmptyArray = Array_NonEmpty_test.nonEmptyArray;
@@ -18,7 +16,6 @@ let testEqual = Json_test.testEqual;
 let roundtrip = Json_test.roundtrip;
 
 export {
-  $$String,
   emptyArray,
   nonEmptyArray,
   testEqual,

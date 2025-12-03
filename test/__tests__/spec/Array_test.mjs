@@ -184,20 +184,7 @@ Zora.test("intersperse", t => {
   ]);
 });
 
-Zora.test("joinWith", t => {
-  testEqual(t, "", Garter_Array.$$String.joinWith([], ","), "");
-  testEqual(t, "", Garter_Array.$$String.joinWith(["a"], ","), "a");
-  testEqual(t, "", Garter_Array.$$String.joinWith([
-    "a",
-    "b",
-    "c"
-  ], ","), "a,b,c");
-});
-
-let $$String = {};
-
 export {
   testEqual,
-  $$String,
 }
 /*  Not a pure module */

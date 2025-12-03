@@ -9,7 +9,7 @@ let stringify = x =>
 
 let parse = s =>
   try {
-    s->Js.Json.parseExn->Some
+    s->JSON.parseOrThrow->Some
   } catch {
   | _ => None
   }
