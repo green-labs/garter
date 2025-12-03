@@ -1,5 +1,13 @@
 # @greenlabs/garter
 
+## 1.0.0
+
+### Major Changes
+
+- Upgrade to ReScript v12.0.0 (stable)
+- Add @rescript/runtime dependency
+- Update test dependencies (zora v6, rescript-zora v5)
+
 ## 0.12.0
 
 ### Minor Changes
