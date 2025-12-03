@@ -9,14 +9,11 @@ importers:
   .:
     devDependencies:
       '@changesets/cli':
-        specifier: ^2.27.9
+        specifier: ^2.29.8
         version: 2.29.8
       '@dusty-phillips/rescript-zora':
         specifier: ^5.0.1
         version: 5.0.1
-      '@rescript/core':
-        specifier: 1.6.1
-        version: 1.6.1(rescript@12.0.0)
       '@rescript/runtime':
         specifier: ^12.0.0
         version: 12.0.0
@@ -24,7 +21,7 @@ importers:
         specifier: ^7.1.0
         version: 7.1.0
       pta:
-        specifier: ^1.2.0
+        specifier: ^1.3.0
         version: 1.3.0(zora@6.0.0)
       rescript:
         specifier: ^12.0.0
@@ -132,11 +129,6 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
-
-  '@rescript/core@1.6.1':
-    resolution: {integrity: sha512-vyb5k90ck+65Fgui+5vCja/mUfzKaK3kOPT4Z6aAJdHLH1eljEi1zKhXroCiCtpNLSWp8k4ulh1bdB5WS0hvqA==}
-    peerDependencies:
-      rescript: '>=11.1.0'
 
   '@rescript/darwin-arm64@12.0.0':
     resolution: {integrity: sha512-N2zNj/Uh0zrg8BJGWxdQjYTDf0d2ZV8D+Vmct8xORaUcEZvAkvZb+xA66UxP2QGhWmATcHmBth7oJ48xpWz/Vg==}
@@ -1372,10 +1364,6 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
-
-  '@rescript/core@1.6.1(rescript@12.0.0)':
-    dependencies:
-      rescript: 12.0.0
 
   '@rescript/darwin-arm64@12.0.0':
     optional: true

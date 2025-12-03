@@ -6,12 +6,11 @@
     "rescript"
   ],
   "devDependencies": {
-    "@changesets/cli": "^2.27.9",
+    "@changesets/cli": "^2.29.8",
     "@dusty-phillips/rescript-zora": "^5.0.1",
-    "@rescript/core": "1.6.1",
     "@rescript/runtime": "^12.0.0",
     "onchange": "^7.1.0",
-    "pta": "^1.2.0",
+    "pta": "^1.3.0",
     "rescript": "^12.0.0",
     "tap-difflet": "^0.7.2",
     "zora": "^6.0.0"
